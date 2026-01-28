@@ -6,8 +6,7 @@
     <title>AMMAR AI Academy - Advanced ICP System with PDF Export & Web Search</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js" defer></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" defer></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v3/dist/tesseract.min.js"></script>
     <style>
         :root {
@@ -994,6 +993,58 @@
         </div>
     </div>
 
+    <!-- تبويب نماذج الذكاء الاصطناعي -->
+    <div id="ai-models-tab" class="tab-content">
+        <div class="settings-container">
+            <h2 style="margin-bottom: 25px; color: var(--stellar); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <i class="fas fa-robot"></i> Multi-AI Model System
+            </h2>
+
+            <div class="settings-group">
+                <h3><i class="fas fa-crown"></i> OpenRouter Models (Recommended)</h3>
+                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
+                    Advanced AI models via OpenRouter API. Provides best quality and performance.
+                </p>
+                
+                <div id="openrouter-models">
+                    <!-- Models populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <h3><i class="fas fa-sliders-h"></i> Active Model Settings</h3>
+                <div style="background: #f0f9ff; padding: 20px; border-radius: var(--radius);">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div id="current-model-icon" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--stellar), var(--existential)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div>
+                            <h4 id="current-model-title" style="color: var(--stellar); margin-bottom: 5px;">No Model Selected</h4>
+                            <p id="current-model-desc" style="color: var(--dark); font-size: 0.9rem;">Select a model from the lists above</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                                Creativity (Temperature)
+                                <span id="temperature-value">0.7</span>
+                            </label>
+                            <input type="range" id="temperature" min="0" max="1" step="0.1" value="0.7" style="width: 100%;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                                Max Length (Tokens)
+                                <span id="max-tokens-value">2000</span>
+                            </label>
+                            <input type="range" id="max-tokens" min="100" max="4000" step="100" value="2000" style="width: 100%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- تبويب تصدير PDF -->
     <div id="pdf-export-tab" class="tab-content">
         <div class="settings-container">
@@ -1195,58 +1246,6 @@
         </div>
     </div>
 
-    <!-- تبويب نماذج الذكاء الاصطناعي -->
-    <div id="ai-models-tab" class="tab-content">
-        <div class="settings-container">
-            <h2 style="margin-bottom: 25px; color: var(--stellar); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                <i class="fas fa-robot"></i> Multi-AI Model System
-            </h2>
-
-            <div class="settings-group">
-                <h3><i class="fas fa-crown"></i> OpenRouter Models (Recommended)</h3>
-                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
-                    Advanced AI models via OpenRouter API. Provides best quality and performance.
-                </p>
-                
-                <div id="openrouter-models">
-                    <!-- Models populated by JavaScript -->
-                </div>
-            </div>
-
-            <div class="settings-group">
-                <h3><i class="fas fa-sliders-h"></i> Active Model Settings</h3>
-                <div style="background: #f0f9ff; padding: 20px; border-radius: var(--radius);">
-                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-                        <div id="current-model-icon" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--stellar), var(--existential)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div>
-                            <h4 id="current-model-title" style="color: var(--stellar); margin-bottom: 5px;">No Model Selected</h4>
-                            <p id="current-model-desc" style="color: var(--dark); font-size: 0.9rem;">Select a model from the lists above</p>
-                        </div>
-                    </div>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
-                        <div>
-                            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
-                                Creativity (Temperature)
-                                <span id="temperature-value">0.7</span>
-                            </label>
-                            <input type="range" id="temperature" min="0" max="1" step="0.1" value="0.7" style="width: 100%;">
-                        </div>
-                        <div>
-                            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
-                                Max Length (Tokens)
-                                <span id="max-tokens-value">2000</span>
-                            </label>
-                            <input type="range" id="max-tokens" min="100" max="4000" step="100" value="2000" style="width: 100%;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- تبويب إعدادات OpenRouter -->
     <div id="openrouter-settings-tab" class="tab-content">
         <div class="settings-container">
@@ -1350,1336 +1349,1797 @@
     <!-- منطقة الإشعارات -->
     <div id="notification-container"></div>
 
-<script>
-// ==========================================
-// 1. نظام الملفات والصور
-// ==========================================
-const FileSystem = {
-    uploadedFiles: [],
-    maxFileSize: 10 * 1024 * 1024, // 10MB
-    allowedTypes: ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'text/plain', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
-    init: function() {
-        this.setupFileUpload();
-    },
-    
-    setupFileUpload: function() {
-        const uploadZone = document.getElementById('upload-zone');
-        const fileInput = document.getElementById('file-input');
-        const uploadArea = document.getElementById('file-upload-area');
+    <script>
+    // ==========================================
+    // 1. نظام الملفات والصور
+    // ==========================================
+    const FileSystem = {
+        uploadedFiles: [],
+        maxFileSize: 10 * 1024 * 1024, // 10MB
+        allowedTypes: ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'text/plain', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
         
-        uploadZone.addEventListener('click', () => fileInput.click());
-        uploadZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadZone.style.borderColor = var(--stellar);
-            uploadZone.style.background = 'rgba(139, 92, 246, 0.1)';
-        });
+        init: function() {
+            this.setupFileUpload();
+        },
         
-        uploadZone.addEventListener('dragleave', (e) => {
-            e.preventDefault();
-            uploadZone.style.borderColor = var(--circular);
-            uploadZone.style.background = 'rgba(16, 185, 129, 0.05)';
-        });
-        
-        uploadZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadZone.style.borderColor = var(--circular);
-            uploadZone.style.background = 'rgba(16, 185, 129, 0.05)';
+        setupFileUpload: function() {
+            const uploadZone = document.getElementById('upload-zone');
+            const fileInput = document.getElementById('file-input');
+            const uploadArea = document.getElementById('file-upload-area');
             
-            const files = e.dataTransfer.files;
-            this.handleFiles(files);
-        });
+            uploadZone.addEventListener('click', () => fileInput.click());
+            uploadZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadZone.style.borderColor = '#8b5cf6';
+                uploadZone.style.background = 'rgba(139, 92, 246, 0.1)';
+            });
+            
+            uploadZone.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                uploadZone.style.borderColor = '#10b981';
+                uploadZone.style.background = 'rgba(16, 185, 129, 0.05)';
+            });
+            
+            uploadZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadZone.style.borderColor = '#10b981';
+                uploadZone.style.background = 'rgba(16, 185, 129, 0.05)';
+                
+                const files = e.dataTransfer.files;
+                this.handleFiles(files);
+            });
+            
+            fileInput.addEventListener('change', (e) => {
+                this.handleFiles(e.target.files);
+                fileInput.value = '';
+            });
+        },
         
-        fileInput.addEventListener('change', (e) => {
-            this.handleFiles(e.target.files);
-            fileInput.value = '';
-        });
-    },
-    
-    handleFiles: function(files) {
-        for (let file of files) {
-            if (!this.validateFile(file)) {
-                continue;
+        handleFiles: function(files) {
+            for (let file of files) {
+                if (!this.validateFile(file)) {
+                    continue;
+                }
+                
+                this.processFile(file).then(fileData => {
+                    this.uploadedFiles.push(fileData);
+                    this.displayUploadedFiles();
+                    showNotification(`File "${file.name}" uploaded successfully`, 'success');
+                }).catch(error => {
+                    showNotification(`Error processing file "${file.name}": ${error.message}`, 'error');
+                });
+            }
+        },
+        
+        validateFile: function(file) {
+            if (file.size > this.maxFileSize) {
+                showNotification(`File "${file.name}" is too large (max 10MB)`, 'error');
+                return false;
             }
             
-            this.processFile(file).then(fileData => {
-                this.uploadedFiles.push(fileData);
-                this.displayUploadedFiles();
-                showNotification(`File "${file.name}" uploaded successfully`, 'success');
-            }).catch(error => {
-                showNotification(`Error processing file "${file.name}": ${error.message}`, 'error');
-            });
-        }
-    },
-    
-    validateFile: function(file) {
-        if (file.size > this.maxFileSize) {
-            showNotification(`File "${file.name}" is too large (max 10MB)`, 'error');
-            return false;
-        }
-        
-        if (!this.allowedTypes.includes(file.type)) {
-            showNotification(`File type "${file.type}" not supported`, 'error');
-            return false;
-        }
-        
-        return true;
-    },
-    
-    processFile: async function(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
+            if (!this.allowedTypes.includes(file.type)) {
+                showNotification(`File type "${file.type}" not supported`, 'error');
+                return false;
+            }
             
-            reader.onload = (e) => {
-                const fileData = {
-                    id: Date.now() + Math.random(),
-                    name: file.name,
-                    type: file.type,
-                    size: file.size,
-                    content: e.target.result,
-                    timestamp: new Date().toISOString()
+            return true;
+        },
+        
+        processFile: async function(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                
+                reader.onload = (e) => {
+                    const fileData = {
+                        id: Date.now() + Math.random(),
+                        name: file.name,
+                        type: file.type,
+                        size: file.size,
+                        content: e.target.result,
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    // إذا كانت صورة، استخدم Tesseract لاستخراج النص
+                    if (file.type.startsWith('image/')) {
+                        this.extractTextFromImage(fileData.content).then(text => {
+                            fileData.extractedText = text;
+                            resolve(fileData);
+                        }).catch(error => {
+                            fileData.extractedText = 'Text extraction failed';
+                            resolve(fileData);
+                        });
+                    } else {
+                        resolve(fileData);
+                    }
                 };
                 
-                // إذا كانت صورة، استخدم Tesseract لاستخراج النص
+                reader.onerror = () => reject(new Error('Failed to read file'));
+                
                 if (file.type.startsWith('image/')) {
-                    this.extractTextFromImage(fileData.content).then(text => {
-                        fileData.extractedText = text;
-                        resolve(fileData);
-                    }).catch(error => {
-                        fileData.extractedText = 'Text extraction failed';
-                        resolve(fileData);
-                    });
+                    reader.readAsDataURL(file);
+                } else if (file.type === 'application/pdf') {
+                    reader.readAsArrayBuffer(file);
                 } else {
-                    resolve(fileData);
+                    reader.readAsText(file);
                 }
-            };
-            
-            reader.onerror = () => reject(new Error('Failed to read file'));
-            
-            if (file.type.startsWith('image/')) {
-                reader.readAsDataURL(file);
-            } else if (file.type === 'application/pdf') {
-                reader.readAsArrayBuffer(file);
-            } else {
-                reader.readAsText(file);
-            }
-        });
-    },
-    
-    extractTextFromImage: async function(imageData) {
-        return new Promise((resolve, reject) => {
-            try {
-                // استخدام Tesseract.js لاستخراج النص من الصور
-                Tesseract.recognize(
-                    imageData,
-                    'eng+ara',
-                    {
-                        logger: m => console.log('Tesseract progress:', m)
-                    }
-                ).then(({ data: { text } }) => {
-                    resolve(text || 'No text found in image');
-                }).catch(error => {
-                    resolve('Text extraction not available');
-                });
-            } catch (error) {
-                resolve('Text extraction failed');
-            }
-        });
-    },
-    
-    displayUploadedFiles: function() {
-        const container = document.getElementById('uploaded-files');
-        container.innerHTML = '';
+            });
+        },
         
-        this.uploadedFiles.forEach(file => {
-            const fileElement = document.createElement('div');
-            fileElement.className = 'file-item';
-            fileElement.innerHTML = `
-                <div class="file-info">
-                    <i class="fas ${this.getFileIcon(file.type)} file-icon-small"></i>
-                    <div>
-                        <div style="font-weight: bold;">${file.name}</div>
-                        <div style="font-size: 0.8rem; color: #6b7280;">
-                            ${this.formatFileSize(file.size)} • ${new Date(file.timestamp).toLocaleTimeString()}
+        extractTextFromImage: async function(imageData) {
+            return new Promise((resolve, reject) => {
+                try {
+                    // استخدام Tesseract.js لاستخراج النص من الصور
+                    Tesseract.recognize(
+                        imageData,
+                        'eng+ara',
+                        {
+                            logger: m => console.log('Tesseract progress:', m)
+                        }
+                    ).then(({ data: { text } }) => {
+                        resolve(text || 'No text found in image');
+                    }).catch(error => {
+                        resolve('Text extraction not available');
+                    });
+                } catch (error) {
+                    resolve('Text extraction failed');
+                }
+            });
+        },
+        
+        displayUploadedFiles: function() {
+            const container = document.getElementById('uploaded-files');
+            container.innerHTML = '';
+            
+            this.uploadedFiles.forEach(file => {
+                const fileElement = document.createElement('div');
+                fileElement.className = 'file-item';
+                fileElement.innerHTML = `
+                    <div class="file-info">
+                        <i class="fas ${this.getFileIcon(file.type)} file-icon-small"></i>
+                        <div>
+                            <div style="font-weight: bold;">${file.name}</div>
+                            <div style="font-size: 0.8rem; color: #6b7280;">
+                                ${this.formatFileSize(file.size)} • ${new Date(file.timestamp).toLocaleTimeString()}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="file-remove" onclick="FileSystem.removeFile('${file.id}')">
-                    <i class="fas fa-times"></i>
-                </div>
-            `;
-            container.appendChild(fileElement);
-        });
-    },
-    
-    getFileIcon: function(fileType) {
-        if (fileType.startsWith('image/')) return 'fa-image';
-        if (fileType === 'application/pdf') return 'fa-file-pdf';
-        if (fileType.includes('word')) return 'fa-file-word';
-        if (fileType === 'text/plain') return 'fa-file-alt';
-        return 'fa-file';
-    },
-    
-    formatFileSize: function(bytes) {
-        if (bytes < 1024) return bytes + ' B';
-        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
-        return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
-    },
-    
-    removeFile: function(fileId) {
-        this.uploadedFiles = this.uploadedFiles.filter(file => file.id !== fileId);
-        this.displayUploadedFiles();
-        showNotification('File removed', 'info');
-    },
-    
-    getFileContentForAI: function() {
-        if (this.uploadedFiles.length === 0) return '';
+                    <div class="file-remove" onclick="FileSystem.removeFile('${file.id}')">
+                        <i class="fas fa-times"></i>
+                    </div>
+                `;
+                container.appendChild(fileElement);
+            });
+        },
         
-        let content = '\n\n=== Uploaded Files Analysis ===\n';
+        getFileIcon: function(fileType) {
+            if (fileType.startsWith('image/')) return 'fa-image';
+            if (fileType === 'application/pdf') return 'fa-file-pdf';
+            if (fileType.includes('word')) return 'fa-file-word';
+            if (fileType === 'text/plain') return 'fa-file-alt';
+            return 'fa-file';
+        },
         
-        this.uploadedFiles.forEach((file, index) => {
-            content += `\n[File ${index + 1}: ${file.name}]\n`;
-            content += `Type: ${file.type}\n`;
-            content += `Size: ${this.formatFileSize(file.size)}\n`;
+        formatFileSize: function(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        },
+        
+        removeFile: function(fileId) {
+            this.uploadedFiles = this.uploadedFiles.filter(file => file.id !== fileId);
+            this.displayUploadedFiles();
+            showNotification('File removed', 'info');
+        },
+        
+        getFileContentForAI: function() {
+            if (this.uploadedFiles.length === 0) return '';
             
-            if (file.type.startsWith('image/')) {
-                content += 'Content: Image file\n';
-                if (file.extractedText && file.extractedText !== 'Text extraction failed') {
-                    content += `Extracted Text: ${file.extractedText.substring(0, 500)}...\n`;
-                }
-            } else if (file.type === 'application/pdf') {
-                content += 'Content: PDF document (text extraction may be available)\n';
-            } else if (file.type === 'text/plain') {
-                content += `Content: ${file.content.substring(0, 1000)}...\n`;
-            }
-        });
-        
-        return content;
-    },
-    
-    clearFiles: function() {
-        this.uploadedFiles = [];
-        this.displayUploadedFiles();
-    }
-};
-
-// ==========================================
-// 2. نظام تصدير PDF
-// ==========================================
-const PDFExportSystem = {
-    currentTemplate: 'research',
-    
-    init: function() {
-        this.setupEventListeners();
-    },
-    
-    setupEventListeners: function() {
-        const pdfTemplate = document.getElementById('pdf-template');
-        const pageSize = document.getElementById('page-size');
-        const orientation = document.getElementById('orientation');
-        
-        if (pdfTemplate) {
-            pdfTemplate.addEventListener('change', (e) => {
-                this.currentTemplate = e.target.value;
-                this.updatePDFSettings();
-            });
-        }
-        
-        if (pageSize) {
-            pageSize.addEventListener('change', (e) => {
-                document.getElementById('page-size-value').textContent = 
-                    e.target.options[e.target.selectedIndex].text;
-            });
-        }
-        
-        if (orientation) {
-            orientation.addEventListener('change', (e) => {
-                document.getElementById('orientation-value').textContent = 
-                    e.target.options[e.target.selectedIndex].text;
-            });
-        }
-    },
-    
-    updatePDFSettings: function() {
-        const settings = {
-            research: {
-                pageSize: 'a4',
-                orientation: 'portrait',
-                includeImages: true,
-                includeTimestamps: true,
-                includeERD: true
-            },
-            conversation: {
-                pageSize: 'letter',
-                orientation: 'portrait',
-                includeImages: false,
-                includeTimestamps: true,
-                includeERD: false
-            },
-            analysis: {
-                pageSize: 'a4',
-                orientation: 'landscape',
-                includeImages: true,
-                includeTimestamps: true,
-                includeERD: true
-            },
-            custom: {
-                pageSize: document.getElementById('page-size').value,
-                orientation: document.getElementById('orientation').value,
-                includeImages: document.getElementById('include-images').checked,
-                includeTimestamps: document.getElementById('include-timestamps').checked,
-                includeERD: document.getElementById('include-erd').checked
-            }
-        };
-        
-        const config = settings[this.currentTemplate] || settings.research;
-        
-        document.getElementById('page-size').value = config.pageSize;
-        document.getElementById('orientation').value = config.orientation;
-        document.getElementById('include-images').checked = config.includeImages;
-        document.getElementById('include-timestamps').checked = config.includeTimestamps;
-        document.getElementById('include-erd').checked = config.includeERD;
-        
-        document.getElementById('page-size-value').textContent = 
-            config.pageSize === 'a4' ? 'A4' : config.pageSize === 'letter' ? 'Letter' : 'Legal';
-        document.getElementById('orientation-value').textContent = 
-            config.orientation === 'portrait' ? 'Portrait' : 'Landscape';
-    },
-    
-    generatePDFPreview: function() {
-        const preview = document.getElementById('pdf-preview');
-        const content = document.getElementById('pdf-content');
-        
-        if (!preview || !content) return;
-        
-        document.getElementById('pdf-date').textContent = new Date().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-        
-        document.getElementById('pdf-model').textContent = 
-            AIModelSystem.currentModel?.name || 'OpenRouter';
-        
-        const averageERD = ICPFramework.conversationHistory.length > 0 
-            ? (ICPFramework.conversationHistory.reduce((sum, entry) => sum + entry.erd, 0) / 
-               ICPFramework.conversationHistory.length).toFixed(2)
-            : '4.8';
-        
-        document.getElementById('pdf-erd').textContent = averageERD;
-        
-        // إنشاء محتوى PDF
-        let pdfContent = `
-            <h3 style="color: #333; margin-top: 20px; margin-bottom: 10px;">Conversation Summary</h3>
-            <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <strong>Total Messages:</strong> ${ICPFramework.conversationHistory.length}<br>
-                <strong>Dialogue Mode:</strong> ${ICPFramework.dialogueMode}<br>
-                <strong>Memory Usage:</strong> ${ICPFramework.messageHistory.length} messages<br>
-                <strong>Performance Score:</strong> ${averageERD}/5.0
-            </div>
-        `;
-        
-        // إضافة المحادثة
-        if (ICPFramework.conversationHistory.length > 0) {
-            pdfContent += `<h3 style="color: #333; margin-top: 20px; margin-bottom: 10px;">Conversation Transcript</h3>`;
+            let content = '\n\n=== Uploaded Files Analysis ===\n';
             
-            ICPFramework.conversationHistory.forEach((entry, index) => {
-                const timestamp = new Date(entry.timestamp).toLocaleTimeString('en-US', {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
+            this.uploadedFiles.forEach((file, index) => {
+                content += `\n[File ${index + 1}: ${file.name}]\n`;
+                content += `Type: ${file.type}\n`;
+                content += `Size: ${this.formatFileSize(file.size)}\n`;
                 
-                pdfContent += `
-                    <div style="margin-bottom: 20px; padding: 15px; background: white; border-radius: 8px; border: 1px solid #e5e7eb;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                            <strong style="color: ${ICPFramework.dialogueMode === 'existential' ? 'var(--existential)' : 'var(--linear)'}">
-                                ${entry.dialogueMode.charAt(0).toUpperCase() + entry.dialogueMode.slice(1)} Dialogue
-                            </strong>
-                            <span style="color: #6b7280; font-size: 0.9rem;">${timestamp}</span>
+                if (file.type.startsWith('image/')) {
+                    content += 'Content: Image file\n';
+                    if (file.extractedText && file.extractedText !== 'Text extraction failed') {
+                        content += `Extracted Text: ${file.extractedText.substring(0, 500)}...\n`;
+                    }
+                } else if (file.type === 'application/pdf') {
+                    content += 'Content: PDF document (text extraction may be available)\n';
+                } else if (file.type === 'text/plain') {
+                    content += `Content: ${file.content.substring(0, 1000)}...\n`;
+                }
+            });
+            
+            return content;
+        },
+        
+        clearFiles: function() {
+            this.uploadedFiles = [];
+            this.displayUploadedFiles();
+        }
+    };
+
+    // ==========================================
+    // 2. نظام أداء ICP (PerformanceSystem)
+    // ==========================================
+    const PerformanceSystem = {
+        calculateERDWithWorker: function(response, dialogueMode, contextLength, callback) {
+            setTimeout(() => {
+                const baseERD = 4.0;
+                const modeBonus = {
+                    existential: 0.8,
+                    quantum: 0.6,
+                    emotional: 0.5,
+                    linear: 0.3
+                }[dialogueMode] || 0.3;
+                
+                const lengthBonus = Math.min(contextLength / 10, 0.5);
+                const randomVariation = (Math.random() * 0.4) - 0.2;
+                
+                const erd = Math.min(5.0, baseERD + modeBonus + lengthBonus + randomVariation);
+                callback(erd);
+            }, 100);
+        },
+        
+        calculateERDLocal: function(response, dialogueMode, contextLength) {
+            const baseERD = 3.5;
+            const modeBonus = {
+                existential: 0.7,
+                quantum: 0.5,
+                emotional: 0.4,
+                linear: 0.2
+            }[dialogueMode] || 0.2;
+            
+            const lengthBonus = Math.min(contextLength / 15, 0.3);
+            const randomVariation = (Math.random() * 0.3) - 0.15;
+            
+            return Math.min(5.0, baseERD + modeBonus + lengthBonus + randomVariation);
+        }
+    };
+
+    // ==========================================
+    // 3. نظام نماذج الذكاء الاصطناعي (AIModelSystem)
+    // ==========================================
+    const AIModelSystem = {
+        currentModel: null,
+        models: [],
+        
+        init: function() {
+            this.loadDefaultModels();
+            this.setupModelSelection();
+        },
+        
+        loadDefaultModels: function() {
+            this.models = [
+                {
+                    id: 'openrouter',
+                    name: 'OpenRouter Default',
+                    provider: 'OpenRouter',
+                    description: 'Best overall performance',
+                    icon: 'fa-robot',
+                    color: 'var(--stellar)',
+                    recommended: true
+                },
+                {
+                    id: 'claude-3-opus',
+                    name: 'Claude 3 Opus',
+                    provider: 'Anthropic via OpenRouter',
+                    description: 'Most capable model',
+                    icon: 'fa-brain',
+                    color: 'var(--existential)'
+                },
+                {
+                    id: 'gpt-4-turbo',
+                    name: 'GPT-4 Turbo',
+                    provider: 'OpenAI via OpenRouter',
+                    description: 'Fast and accurate',
+                    icon: 'fa-bolt',
+                    color: 'var(--linear)'
+                },
+                {
+                    id: 'gemini-pro',
+                    name: 'Gemini Pro',
+                    provider: 'Google via OpenRouter',
+                    description: 'Excellent reasoning',
+                    icon: 'fa-gem',
+                    color: 'var(--circular)'
+                },
+                {
+                    id: 'local-llama',
+                    name: 'Local Llama',
+                    provider: 'Local',
+                    description: 'Privacy focused',
+                    icon: 'fa-home',
+                    color: 'var(--quantum)'
+                }
+            ];
+            
+            this.currentModel = this.models[0];
+            this.updateModelDisplay();
+        },
+        
+        setupModelSelection: function() {
+            const container = document.getElementById('openrouter-models');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            this.models.forEach(model => {
+                const card = document.createElement('div');
+                card.className = `model-card ${model.recommended ? 'recommended' : ''}`;
+                card.onclick = () => this.selectModel(model);
+                
+                card.innerHTML = `
+                    <div class="model-icon" style="background: ${model.color};">
+                        <i class="fas ${model.icon}"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4 style="margin: 0; color: var(--dark);">${model.name}</h4>
+                        <p style="margin: 5px 0; color: #6b7280; font-size: 0.9rem;">${model.description}</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.8rem; color: var(--stellar); font-weight: 600;">${model.provider}</span>
+                            ${model.recommended ? 
+                                '<span style="font-size: 0.7rem; background: var(--existential); color: white; padding: 2px 8px; border-radius: 10px;">Recommended</span>' : 
+                                ''
+                            }
                         </div>
-                        
-                        <div style="margin-bottom: 10px;">
-                            <strong>User:</strong> ${this.escapeHTML(entry.userMessage.substring(0, 200))}${entry.userMessage.length > 200 ? '...' : ''}
+                    </div>
+                    ${this.currentModel?.id === model.id ? 
+                        '<i class="fas fa-check-circle" style="color: var(--circular); font-size: 1.2rem;"></i>' : 
+                        ''
+                    }
+                `;
+                
+                container.appendChild(card);
+            });
+        },
+        
+        selectModel: function(model) {
+            this.currentModel = model;
+            this.setupModelSelection();
+            this.updateModelDisplay();
+            
+            showNotification(`Model switched to ${model.name}`, 'success');
+        },
+        
+        updateModelDisplay: function() {
+            if (this.currentModel) {
+                const icon = document.getElementById('current-model-icon');
+                const title = document.getElementById('current-model-title');
+                const desc = document.getElementById('current-model-desc');
+                const display = document.getElementById('current-model-display');
+                
+                if (icon) icon.innerHTML = `<i class="fas ${this.currentModel.icon}"></i>`;
+                if (title) title.textContent = this.currentModel.name;
+                if (desc) desc.textContent = this.currentModel.description;
+                if (display) display.textContent = this.currentModel.name;
+                if (document.getElementById('current-model-name')) {
+                    document.getElementById('current-model-name').textContent = this.currentModel.name;
+                }
+            }
+        },
+        
+        getModelConfig: function() {
+            return {
+                ...this.currentModel,
+                temperature: parseFloat(document.getElementById('temperature').value),
+                maxTokens: parseInt(document.getElementById('max-tokens').value)
+            };
+        }
+    };
+
+    // ==========================================
+    // 4. نظام إطار عمل ICP (ICPFramework)
+    // ==========================================
+    const ICPFramework = {
+        dialogueMode: 'linear',
+        messageHistory: [],
+        conversationHistory: [],
+        currentERD: 4.8,
+        
+        setDialogueMode: function(mode) {
+            this.dialogueMode = mode;
+            
+            const modeBtns = document.querySelectorAll('.mode-btn');
+            modeBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.mode === mode) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            showNotification(`Switched to ${mode} dialogue mode`, 'info');
+        },
+        
+        addToMemory: function(role, content) {
+            const message = {
+                id: Date.now(),
+                role: role,
+                content: content,
+                timestamp: new Date().toISOString(),
+                dialogueMode: this.dialogueMode
+            };
+            
+            this.messageHistory.push(message);
+            
+            if (this.messageHistory.length > 50) {
+                this.messageHistory = this.messageHistory.slice(-50);
+            }
+            
+            return message;
+        },
+        
+        getConversationContext: function() {
+            return this.messageHistory.slice(-10).map(msg => ({
+                role: msg.role,
+                content: msg.content
+            }));
+        },
+        
+        generateICPPrompt: function(userMessage, mode, conversationContext) {
+            const modePrompts = {
+                linear: "You are a logical, systematic AI assistant. Provide clear, step-by-step analysis. Focus on facts, data, and structured reasoning.",
+                existential: "You are a philosophical AI exploring deep questions. Focus on meaning, purpose, and broader implications. Be insightful and thought-provoking.",
+                quantum: "You are an AI that explores multiple perspectives simultaneously. Consider probabilities, alternative viewpoints, and paradoxical thinking.",
+                emotional: "You are an empathetic AI focused on emotional intelligence. Understand feelings, build rapport, and provide supportive responses."
+            };
+            
+            return `
+                ${modePrompts[mode] || modePrompts.linear}
+                
+                You are part of the AMMAR AI Academy ICP System.
+                
+                GUIDELINES:
+                1. Provide responses that demonstrate ${mode} intelligence
+                2. Reference relevant context from conversation history when appropriate
+                3. Maintain professional but engaging tone
+                4. If discussing complex topics, break them down clearly
+                5. End responses with a relevant question or insight to continue dialogue
+                
+                Conversation context (last ${conversationContext.length} messages):
+                ${JSON.stringify(conversationContext)}
+                
+                User's message: ${userMessage}
+                
+                Generate a thoughtful ${mode} intelligence response:
+            `;
+        },
+        
+        clearConversation: function() {
+            this.messageHistory = [];
+            this.conversationHistory = [];
+            this.currentERD = 4.8;
+            
+            const chatMessages = document.getElementById('chat-messages');
+            if (chatMessages) {
+                chatMessages.innerHTML = `
+                    <div class="message ai-message">
+                        <div class="message-header">
+                            <i class="fas fa-brain-circuit"></i>
+                            <span>Advanced ICP System</span>
+                            <span style="margin-right: auto; font-size: 0.8rem; color: var(--existential); font-weight: 600;">
+                                <i class="fas fa-bolt"></i> Conversation Cleared
+                            </span>
                         </div>
-                        
-                        <div style="margin-bottom: 10px;">
-                            <strong>AI Response:</strong> ${this.escapeHTML(entry.aiResponse.substring(0, 300))}${entry.aiResponse.length > 300 ? '...' : ''}
+                        <div class="message-content">
+                            Conversation history has been cleared. You can start fresh with:
+                            <br><br>
+                            • Upload new files for analysis<br>
+                            • Ask questions in different dialogue modes<br>
+                            • Use web search for real-time information<br>
+                            • Export new conversations to PDF
                         </div>
-                        
-                        <div style="font-size: 0.9rem; color: #6b7280;">
-                            <strong>ERD Score:</strong> ${entry.erd.toFixed(2)} | 
-                            <strong>Model:</strong> ${entry.model || 'OpenRouter'}
+                        <div class="erd-badge">
+                            <i class="fas fa-chart-line"></i> System Ready
                         </div>
                     </div>
                 `;
+            }
+            
+            showNotification('Conversation cleared successfully', 'success');
+        }
+    };
+
+    // ==========================================
+    // 5. نظام OpenRouter (OpenRouterSystem)
+    // ==========================================
+    const OpenRouterSystem = {
+        apiKey: '',
+        baseURL: 'https://openrouter.ai/api/v1',
+        
+        init: function() {
+            this.loadApiKey();
+        },
+        
+        loadApiKey: function() {
+            const savedKey = localStorage.getItem('openrouter_api_key');
+            if (savedKey) {
+                this.apiKey = savedKey;
+                document.getElementById('api-key-input').value = savedKey;
+            }
+        },
+        
+        saveApiKey: function() {
+            const input = document.getElementById('api-key-input');
+            this.apiKey = input.value.trim();
+            localStorage.setItem('openrouter_api_key', this.apiKey);
+            
+            showNotification('OpenRouter API key saved successfully', 'success');
+            this.updateConnectionStatus();
+        },
+        
+        updateConnectionStatus: function() {
+            const statusDiv = document.getElementById('connection-status');
+            if (!statusDiv) return;
+            
+            if (this.apiKey) {
+                statusDiv.innerHTML = `
+                    <i class="fas fa-check-circle" style="color: var(--circular);"></i>
+                    API Key Saved (${this.apiKey.substring(0, 10)}...)
+                `;
+                statusDiv.style.background = '#d1fae5';
+            } else {
+                statusDiv.innerHTML = `
+                    <i class="fas fa-exclamation-triangle" style="color: var(--existential);"></i>
+                    API Key Required
+                `;
+                statusDiv.style.background = '#fef3c7';
+            }
+        },
+        
+        testConnection: async function() {
+            if (!this.apiKey) {
+                showNotification('Please enter OpenRouter API key first', 'error');
+                return;
+            }
+            
+            const statusDiv = document.getElementById('connection-status');
+            statusDiv.innerHTML = `
+                <i class="fas fa-spinner fa-spin"></i>
+                Testing connection...
+            `;
+            
+            try {
+                const response = await fetch(`${this.baseURL}/models`, {
+                    headers: {
+                        'Authorization': `Bearer ${this.apiKey}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    statusDiv.innerHTML = `
+                        <i class="fas fa-check-circle" style="color: var(--circular);"></i>
+                        Connection Successful!
+                    `;
+                    statusDiv.style.background = '#d1fae5';
+                    showNotification('OpenRouter connection successful', 'success');
+                } else {
+                    throw new Error('API request failed');
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <i class="fas fa-times-circle" style="color: var(--pdf);"></i>
+                    Connection Failed
+                `;
+                statusDiv.style.background = '#fee2e2';
+                showNotification('OpenRouter connection failed: ' + error.message, 'error');
+            }
+        },
+        
+        sendMessage: async function(messages, config) {
+            if (!this.apiKey) {
+                throw new Error('OpenRouter API key not configured');
+            }
+            
+            const model = config.id === 'openrouter' ? 'openai/gpt-3.5-turbo' : config.id;
+            
+            const response = await fetch(`${this.baseURL}/chat/completions`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${this.apiKey}`,
+                    'Content-Type': 'application/json',
+                    'HTTP-Referer': window.location.origin,
+                    'X-Title': 'AMMAR AI Academy'
+                },
+                body: JSON.stringify({
+                    model: model,
+                    messages: messages,
+                    temperature: config.temperature || 0.7,
+                    max_tokens: config.maxTokens || 2000
+                })
             });
-        } else {
-            pdfContent += `
-                <div style="text-align: center; padding: 40px; color: #6b7280;">
-                    <i class="fas fa-comments" style="font-size: 3rem; margin-bottom: 20px; display: block; color: #d1d5db;"></i>
-                    <h4>No Conversation History</h4>
-                    <p>Start a conversation to see it exported here.</p>
+            
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error?.message || 'OpenRouter API error');
+            }
+            
+            const data = await response.json();
+            return data.choices[0].message.content;
+        }
+    };
+
+    // ==========================================
+    // 6. نظام تصدير PDF
+    // ==========================================
+    const PDFExportSystem = {
+        currentTemplate: 'research',
+        
+        init: function() {
+            this.setupEventListeners();
+        },
+        
+        setupEventListeners: function() {
+            const pdfTemplate = document.getElementById('pdf-template');
+            const pageSize = document.getElementById('page-size');
+            const orientation = document.getElementById('orientation');
+            
+            if (pdfTemplate) {
+                pdfTemplate.addEventListener('change', (e) => {
+                    this.currentTemplate = e.target.value;
+                    this.updatePDFSettings();
+                });
+            }
+            
+            if (pageSize) {
+                pageSize.addEventListener('change', (e) => {
+                    document.getElementById('page-size-value').textContent = 
+                        e.target.options[e.target.selectedIndex].text;
+                });
+            }
+            
+            if (orientation) {
+                orientation.addEventListener('change', (e) => {
+                    document.getElementById('orientation-value').textContent = 
+                        e.target.options[e.target.selectedIndex].text;
+                });
+            }
+        },
+        
+        updatePDFSettings: function() {
+            const settings = {
+                research: {
+                    pageSize: 'a4',
+                    orientation: 'portrait',
+                    includeImages: true,
+                    includeTimestamps: true,
+                    includeERD: true
+                },
+                conversation: {
+                    pageSize: 'letter',
+                    orientation: 'portrait',
+                    includeImages: false,
+                    includeTimestamps: true,
+                    includeERD: false
+                },
+                analysis: {
+                    pageSize: 'a4',
+                    orientation: 'landscape',
+                    includeImages: true,
+                    includeTimestamps: true,
+                    includeERD: true
+                },
+                custom: {
+                    pageSize: document.getElementById('page-size').value,
+                    orientation: document.getElementById('orientation').value,
+                    includeImages: document.getElementById('include-images').checked,
+                    includeTimestamps: document.getElementById('include-timestamps').checked,
+                    includeERD: document.getElementById('include-erd').checked
+                }
+            };
+            
+            const config = settings[this.currentTemplate] || settings.research;
+            
+            document.getElementById('page-size').value = config.pageSize;
+            document.getElementById('orientation').value = config.orientation;
+            document.getElementById('include-images').checked = config.includeImages;
+            document.getElementById('include-timestamps').checked = config.includeTimestamps;
+            document.getElementById('include-erd').checked = config.includeERD;
+            
+            document.getElementById('page-size-value').textContent = 
+                config.pageSize === 'a4' ? 'A4' : config.pageSize === 'letter' ? 'Letter' : 'Legal';
+            document.getElementById('orientation-value').textContent = 
+                config.orientation === 'portrait' ? 'Portrait' : 'Landscape';
+        },
+        
+        generatePDFPreview: function() {
+            const preview = document.getElementById('pdf-preview');
+            const content = document.getElementById('pdf-content');
+            
+            if (!preview || !content) return;
+            
+            document.getElementById('pdf-date').textContent = new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            document.getElementById('pdf-model').textContent = 
+                AIModelSystem.currentModel?.name || 'OpenRouter';
+            
+            const averageERD = ICPFramework.conversationHistory.length > 0 
+                ? (ICPFramework.conversationHistory.reduce((sum, entry) => sum + entry.erd, 0) / 
+                   ICPFramework.conversationHistory.length).toFixed(2)
+                : '4.8';
+            
+            document.getElementById('pdf-erd').textContent = averageERD;
+            
+            let pdfContent = `
+                <h3 style="color: #333; margin-top: 20px; margin-bottom: 10px;">Conversation Summary</h3>
+                <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <strong>Total Messages:</strong> ${ICPFramework.conversationHistory.length}<br>
+                    <strong>Dialogue Mode:</strong> ${ICPFramework.dialogueMode}<br>
+                    <strong>Memory Usage:</strong> ${ICPFramework.messageHistory.length} messages<br>
+                    <strong>Performance Score:</strong> ${averageERD}/5.0
                 </div>
             `;
-        }
-        
-        // إضافة معلومات النظام
-        pdfContent += `
-            <h3 style="color: #333; margin-top: 30px; margin-bottom: 10px;">System Information</h3>
-            <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                <strong>Generated by:</strong> AMMAR AI Academy ICP System<br>
-                <strong>Researcher:</strong> Ammar Nasser Hussein Al-Muntafiqi<br>
-                <strong>Export Format:</strong> ${document.getElementById('pdf-template').options[document.getElementById('pdf-template').selectedIndex].text}<br>
-                <strong>Page Size:</strong> ${document.getElementById('page-size-value').textContent}<br>
-                <strong>Orientation:</strong> ${document.getElementById('orientation-value').textContent}
-            </div>
             
-            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 0.8rem;">
-                © ${new Date().getFullYear()} AMMAR AI Academy - ICP Research System
-            </div>
-        `;
-        
-        content.innerHTML = pdfContent;
-        showNotification('PDF preview generated successfully', 'success');
-    },
-    
-    escapeHTML: function(text) {
-        return text
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
-    },
-    
-    exportToPDF: function() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({
-            orientation: document.getElementById('orientation').value,
-            unit: 'mm',
-            format: document.getElementById('page-size').value
-        });
-        
-        // معلومات الرأس
-        doc.setFontSize(20);
-        doc.setTextColor(139, 92, 246); // لون stellar
-        doc.text('ICP Research Conversation Export', 105, 20, { align: 'center' });
-        
-        doc.setFontSize(10);
-        doc.setTextColor(100, 100, 100);
-        doc.text(`Generated: ${new Date().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        })}`, 105, 30, { align: 'center' });
-        
-        // خط فاصل
-        doc.setDrawColor(139, 92, 246);
-        doc.setLineWidth(0.5);
-        doc.line(20, 35, 190, 35);
-        
-        let yPosition = 45;
-        
-        // معلومات موجزة
-        doc.setFontSize(12);
-        doc.setTextColor(30, 30, 30);
-        doc.text('Conversation Summary', 20, yPosition);
-        
-        yPosition += 10;
-        doc.setFontSize(10);
-        
-        const averageERD = ICPFramework.conversationHistory.length > 0 
-            ? (ICPFramework.conversationHistory.reduce((sum, entry) => sum + entry.erd, 0) / 
-               ICPFramework.conversationHistory.length).toFixed(2)
-            : '4.8';
-        
-        const summary = [
-            `Total Messages: ${ICPFramework.conversationHistory.length}`,
-            `Dialogue Mode: ${ICPFramework.dialogueMode}`,
-            `Average ERD Score: ${averageERD}`,
-            `AI Model: ${AIModelSystem.currentModel?.name || 'OpenRouter'}`,
-            `Export Template: ${document.getElementById('pdf-template').options[document.getElementById('pdf-template').selectedIndex].text}`
-        ];
-        
-        summary.forEach(line => {
-            if (yPosition > 280) {
-                doc.addPage();
-                yPosition = 20;
+            if (ICPFramework.conversationHistory.length > 0) {
+                pdfContent += `<h3 style="color: #333; margin-top: 20px; margin-bottom: 10px;">Conversation Transcript</h3>`;
+                
+                ICPFramework.conversationHistory.forEach((entry, index) => {
+                    const timestamp = new Date(entry.timestamp).toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    pdfContent += `
+                        <div style="margin-bottom: 20px; padding: 15px; background: white; border-radius: 8px; border: 1px solid #e5e7eb;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <strong style="color: ${ICPFramework.dialogueMode === 'existential' ? 'var(--existential)' : 'var(--linear)'}">
+                                    ${entry.dialogueMode.charAt(0).toUpperCase() + entry.dialogueMode.slice(1)} Dialogue
+                                </strong>
+                                <span style="color: #6b7280; font-size: 0.9rem;">${timestamp}</span>
+                            </div>
+                            
+                            <div style="margin-bottom: 10px;">
+                                <strong>User:</strong> ${this.escapeHTML(entry.userMessage.substring(0, 200))}${entry.userMessage.length > 200 ? '...' : ''}
+                            </div>
+                            
+                            <div style="margin-bottom: 10px;">
+                                <strong>AI Response:</strong> ${this.escapeHTML(entry.aiResponse.substring(0, 300))}${entry.aiResponse.length > 300 ? '...' : ''}
+                            </div>
+                            
+                            <div style="font-size: 0.9rem; color: #6b7280;">
+                                <strong>ERD Score:</strong> ${entry.erd.toFixed(2)} | 
+                                <strong>Model:</strong> ${entry.model || 'OpenRouter'}
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                pdfContent += `
+                    <div style="text-align: center; padding: 40px; color: #6b7280;">
+                        <i class="fas fa-comments" style="font-size: 3rem; margin-bottom: 20px; display: block; color: #d1d5db;"></i>
+                        <h4>No Conversation History</h4>
+                        <p>Start a conversation to see it exported here.</p>
+                    </div>
+                `;
             }
-            doc.text(line, 25, yPosition);
-            yPosition += 7;
-        });
+            
+            pdfContent += `
+                <h3 style="color: #333; margin-top: 30px; margin-bottom: 10px;">System Information</h3>
+                <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <strong>Generated by:</strong> AMMAR AI Academy ICP System<br>
+                    <strong>Researcher:</strong> Ammar Nasser Hussein Al-Muntafiqi<br>
+                    <strong>Export Format:</strong> ${document.getElementById('pdf-template').options[document.getElementById('pdf-template').selectedIndex].text}<br>
+                    <strong>Page Size:</strong> ${document.getElementById('page-size-value').textContent}<br>
+                    <strong>Orientation:</strong> ${document.getElementById('orientation-value').textContent}
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 0.8rem;">
+                    © ${new Date().getFullYear()} AMMAR AI Academy - ICP Research System
+                </div>
+            `;
+            
+            content.innerHTML = pdfContent;
+            showNotification('PDF preview generated successfully', 'success');
+        },
         
-        yPosition += 10;
+        escapeHTML: function(text) {
+            return text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        },
         
-        // المحادثة
-        if (ICPFramework.conversationHistory.length > 0) {
+        exportToPDF: function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: document.getElementById('orientation').value,
+                unit: 'mm',
+                format: document.getElementById('page-size').value
+            });
+            
+            doc.setFontSize(20);
+            doc.setTextColor(139, 92, 246);
+            doc.text('ICP Research Conversation Export', 105, 20, { align: 'center' });
+            
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text(`Generated: ${new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            })}`, 105, 30, { align: 'center' });
+            
+            doc.setDrawColor(139, 92, 246);
+            doc.setLineWidth(0.5);
+            doc.line(20, 35, 190, 35);
+            
+            let yPosition = 45;
+            
             doc.setFontSize(12);
             doc.setTextColor(30, 30, 30);
-            doc.text('Conversation Transcript', 20, yPosition);
-            yPosition += 10;
+            doc.text('Conversation Summary', 20, yPosition);
             
-            ICPFramework.conversationHistory.forEach((entry, index) => {
+            yPosition += 10;
+            doc.setFontSize(10);
+            
+            const averageERD = ICPFramework.conversationHistory.length > 0 
+                ? (ICPFramework.conversationHistory.reduce((sum, entry) => sum + entry.erd, 0) / 
+                   ICPFramework.conversationHistory.length).toFixed(2)
+                : '4.8';
+            
+            const summary = [
+                `Total Messages: ${ICPFramework.conversationHistory.length}`,
+                `Dialogue Mode: ${ICPFramework.dialogueMode}`,
+                `Average ERD Score: ${averageERD}`,
+                `AI Model: ${AIModelSystem.currentModel?.name || 'OpenRouter'}`,
+                `Export Template: ${document.getElementById('pdf-template').options[document.getElementById('pdf-template').selectedIndex].text}`
+            ];
+            
+            summary.forEach(line => {
                 if (yPosition > 280) {
                     doc.addPage();
                     yPosition = 20;
                 }
-                
-                const timestamp = new Date(entry.timestamp).toLocaleTimeString('en-US', {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-                
-                doc.setFontSize(10);
-                doc.setTextColor(139, 92, 246);
-                doc.text(`Exchange ${index + 1} - ${timestamp}`, 20, yPosition);
-                yPosition += 5;
-                
+                doc.text(line, 25, yPosition);
+                yPosition += 7;
+            });
+            
+            yPosition += 10;
+            
+            if (ICPFramework.conversationHistory.length > 0) {
+                doc.setFontSize(12);
                 doc.setTextColor(30, 30, 30);
-                doc.setFont(undefined, 'bold');
-                doc.text('User:', 25, yPosition);
-                doc.setFont(undefined, 'normal');
-                
-                const userLines = doc.splitTextToSize(entry.userMessage, 150);
-                userLines.forEach(line => {
-                    if (yPosition > 280) {
-                        doc.addPage();
-                        yPosition = 20;
-                    }
-                    doc.text(line, 30, yPosition);
-                    yPosition += 5;
-                });
-                
-                yPosition += 3;
-                doc.setFont(undefined, 'bold');
-                doc.text('AI Response:', 25, yPosition);
-                doc.setFont(undefined, 'normal');
-                yPosition += 5;
-                
-                const aiLines = doc.splitTextToSize(entry.aiResponse.substring(0, 500), 150);
-                aiLines.forEach(line => {
-                    if (yPosition > 280) {
-                        doc.addPage();
-                        yPosition = 20;
-                    }
-                    doc.text(line, 30, yPosition);
-                    yPosition += 5;
-                });
-                
-                yPosition += 5;
-                doc.setTextColor(100, 100, 100);
-                doc.text(`ERD: ${entry.erd.toFixed(2)} | Model: ${entry.model || 'OpenRouter'}`, 25, yPosition);
+                doc.text('Conversation Transcript', 20, yPosition);
                 yPosition += 10;
                 
-                // خط فاصل
-                doc.setDrawColor(200, 200, 200);
-                doc.setLineWidth(0.2);
-                doc.line(20, yPosition, 190, yPosition);
-                yPosition += 15;
-            });
+                ICPFramework.conversationHistory.forEach((entry, index) => {
+                    if (yPosition > 280) {
+                        doc.addPage();
+                        yPosition = 20;
+                    }
+                    
+                    const timestamp = new Date(entry.timestamp).toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    doc.setFontSize(10);
+                    doc.setTextColor(139, 92, 246);
+                    doc.text(`Exchange ${index + 1} - ${timestamp}`, 20, yPosition);
+                    yPosition += 5;
+                    
+                    doc.setTextColor(30, 30, 30);
+                    doc.setFont(undefined, 'bold');
+                    doc.text('User:', 25, yPosition);
+                    doc.setFont(undefined, 'normal');
+                    
+                    const userLines = doc.splitTextToSize(entry.userMessage, 150);
+                    userLines.forEach(line => {
+                        if (yPosition > 280) {
+                            doc.addPage();
+                            yPosition = 20;
+                        }
+                        doc.text(line, 30, yPosition);
+                        yPosition += 5;
+                    });
+                    
+                    yPosition += 3;
+                    doc.setFont(undefined, 'bold');
+                    doc.text('AI Response:', 25, yPosition);
+                    doc.setFont(undefined, 'normal');
+                    yPosition += 5;
+                    
+                    const aiLines = doc.splitTextToSize(entry.aiResponse.substring(0, 500), 150);
+                    aiLines.forEach(line => {
+                        if (yPosition > 280) {
+                            doc.addPage();
+                            yPosition = 20;
+                        }
+                        doc.text(line, 30, yPosition);
+                        yPosition += 5;
+                    });
+                    
+                    yPosition += 5;
+                    doc.setTextColor(100, 100, 100);
+                    doc.text(`ERD: ${entry.erd.toFixed(2)} | Model: ${entry.model || 'OpenRouter'}`, 25, yPosition);
+                    yPosition += 10;
+                    
+                    doc.setDrawColor(200, 200, 200);
+                    doc.setLineWidth(0.2);
+                    doc.line(20, yPosition, 190, yPosition);
+                    yPosition += 15;
+                });
+            }
+            
+            const pageCount = doc.internal.getNumberOfPages();
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                doc.setFontSize(8);
+                doc.setTextColor(150, 150, 150);
+                doc.text(`Page ${i} of ${pageCount}`, 105, 287, { align: 'center' });
+                doc.text('© AMMAR AI Academy - ICP Research System', 105, 292, { align: 'center' });
+            }
+            
+            const fileName = `ICP-Export-${new Date().toISOString().split('T')[0]}.pdf`;
+            doc.save(fileName);
+            
+            showNotification(`PDF exported successfully: ${fileName}`, 'success');
+            
+            PDFExportSystem.logExport();
+        },
+        
+        logExport: function() {
+            const exportStats = JSON.parse(localStorage.getItem('pdf_export_stats') || '{"count": 0, "lastExport": null}');
+            exportStats.count += 1;
+            exportStats.lastExport = new Date().toISOString();
+            localStorage.setItem('pdf_export_stats', JSON.stringify(exportStats));
         }
-        
-        // تذييل الصفحة
-        const pageCount = doc.internal.getNumberOfPages();
-        for (let i = 1; i <= pageCount; i++) {
-            doc.setPage(i);
-            doc.setFontSize(8);
-            doc.setTextColor(150, 150, 150);
-            doc.text(`Page ${i} of ${pageCount}`, 105, 287, { align: 'center' });
-            doc.text('© AMMAR AI Academy - ICP Research System', 105, 292, { align: 'center' });
-        }
-        
-        // حفظ الملف
-        const fileName = `ICP-Export-${new Date().toISOString().split('T')[0]}.pdf`;
-        doc.save(fileName);
-        
-        showNotification(`PDF exported successfully: ${fileName}`, 'success');
-        
-        // تسجيل الإحصاءات
-        PDFExportSystem.logExport();
-    },
-    
-    logExport: function() {
-        const exportStats = JSON.parse(localStorage.getItem('pdf_export_stats') || '{"count": 0, "lastExport": null}');
-        exportStats.count += 1;
-        exportStats.lastExport = new Date().toISOString();
-        localStorage.setItem('pdf_export_stats', JSON.stringify(exportStats));
-    }
-};
+    };
 
-// ==========================================
-// 3. نظام البحث في الإنترنت
-// ==========================================
-const WebSearchSystem = {
-    enabled: false,
-    apiKeys: {
-        google: '',
-        serpapi: ''
-    },
-    searchCache: new Map(),
-    
-    init: function() {
-        this.loadSettings();
-        this.setupEventListeners();
-    },
-    
-    loadSettings: function() {
-        const savedKeys = localStorage.getItem('web_search_keys');
-        if (savedKeys) {
-            this.apiKeys = JSON.parse(savedKeys);
-            document.getElementById('google-api-key').value = this.apiKeys.google || '';
-            document.getElementById('serpapi-key').value = this.apiKeys.serpapi || '';
-        }
+    // ==========================================
+    // 7. نظام البحث في الإنترنت
+    // ==========================================
+    const WebSearchSystem = {
+        enabled: false,
+        apiKeys: {
+            google: '',
+            serpapi: ''
+        },
+        searchCache: new Map(),
         
-        const searchEnabled = localStorage.getItem('web_search_enabled');
-        this.enabled = searchEnabled === 'true';
+        init: function() {
+            this.loadSettings();
+            this.setupEventListeners();
+        },
         
-        const searchEngine = localStorage.getItem('search_engine') || 'google';
-        document.getElementById('search-engine').value = searchEngine;
-        document.getElementById('search-engine-value').textContent = 
-            searchEngine.charAt(0).toUpperCase() + searchEngine.slice(1);
-    },
-    
-    saveSettings: function() {
-        this.apiKeys.google = document.getElementById('google-api-key').value.trim();
-        this.apiKeys.serpapi = document.getElementById('serpapi-key').value.trim();
+        loadSettings: function() {
+            const savedKeys = localStorage.getItem('web_search_keys');
+            if (savedKeys) {
+                this.apiKeys = JSON.parse(savedKeys);
+                document.getElementById('google-api-key').value = this.apiKeys.google || '';
+                document.getElementById('serpapi-key').value = this.apiKeys.serpapi || '';
+            }
+            
+            const searchEnabled = localStorage.getItem('web_search_enabled');
+            this.enabled = searchEnabled === 'true';
+            
+            const searchEngine = localStorage.getItem('search_engine') || 'google';
+            document.getElementById('search-engine').value = searchEngine;
+            document.getElementById('search-engine-value').textContent = 
+                searchEngine.charAt(0).toUpperCase() + searchEngine.slice(1);
+        },
         
-        localStorage.setItem('web_search_keys', JSON.stringify(this.apiKeys));
-        localStorage.setItem('web_search_enabled', this.enabled.toString());
-        localStorage.setItem('search_engine', document.getElementById('search-engine').value);
+        saveSettings: function() {
+            this.apiKeys.google = document.getElementById('google-api-key').value.trim();
+            this.apiKeys.serpapi = document.getElementById('serpapi-key').value.trim();
+            
+            localStorage.setItem('web_search_keys', JSON.stringify(this.apiKeys));
+            localStorage.setItem('web_search_enabled', this.enabled.toString());
+            localStorage.setItem('search_engine', document.getElementById('search-engine').value);
+            
+            showNotification('Search settings saved successfully', 'success');
+        },
         
-        showNotification('Search settings saved successfully', 'success');
-    },
-    
-    setupEventListeners: function() {
-        const searchEngine = document.getElementById('search-engine');
-        const searchResults = document.getElementById('search-results');
+        setupEventListeners: function() {
+            const searchEngine = document.getElementById('search-engine');
+            const searchResults = document.getElementById('search-results');
+            
+            if (searchEngine) {
+                searchEngine.addEventListener('change', (e) => {
+                    document.getElementById('search-engine-value').textContent = 
+                        e.target.options[e.target.selectedIndex].text;
+                });
+            }
+            
+            if (searchResults) {
+                searchResults.addEventListener('input', (e) => {
+                    document.getElementById('search-results-value').textContent = e.target.value;
+                });
+            }
+        },
         
-        if (searchEngine) {
-            searchEngine.addEventListener('change', (e) => {
-                document.getElementById('search-engine-value').textContent = 
-                    e.target.options[e.target.selectedIndex].text;
-            });
-        }
-        
-        if (searchResults) {
-            searchResults.addEventListener('input', (e) => {
-                document.getElementById('search-results-value').textContent = e.target.value;
-            });
-        }
-    },
-    
-    testSearch: async function() {
-        const query = document.getElementById('test-search-query').value.trim();
-        if (!query) {
-            showNotification('Please enter a search query', 'warning');
-            return;
-        }
-        
-        const resultsContainer = document.getElementById('test-search-results');
-        resultsContainer.innerHTML = `
-            <div style="text-align: center; padding: 20px; color: #6b7280;">
-                <i class="fas fa-spinner fa-spin"></i>
-                <div>Searching for "${query}"...</div>
-            </div>
-        `;
-        
-        try {
-            const searchResults = await this.performSearch(query, 3);
-            this.displayTestResults(searchResults, query);
-        } catch (error) {
-            resultsContainer.innerHTML = `
-                <div style="text-align: center; padding: 20px; color: #ef4444;">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <div>Search failed: ${error.message}</div>
-                    <div style="font-size: 0.8rem; margin-top: 10px;">
-                        Note: Web search is an optional feature. You can continue using the system without it.
-                    </div>
-                </div>
-            `;
-        }
-    },
-    
-    performSearch: async function(query, numResults = 5) {
-        // تحقق من التخزين المؤقت أولاً
-        const cacheKey = `${query}_${numResults}`;
-        if (this.searchCache.has(cacheKey)) {
-            return this.searchCache.get(cacheKey);
-        }
-        
-        // محاكاة البحث (في الإصدار الحقيقي، استخدم API حقيقي)
-        const mockResults = this.generateMockSearchResults(query, numResults);
-        
-        // حفظ في التخزين المؤقت
-        this.searchCache.set(cacheKey, mockResults);
-        
-        return mockResults;
-    },
-    
-    generateMockSearchResults: function(query, numResults) {
-        const results = [];
-        const topics = ['Artificial Intelligence', 'Machine Learning', 'Deep Learning', 'Natural Language Processing', 
-                       'Computer Vision', 'Robotics', 'Ethics in AI', 'Future of AI', 'AI Applications'];
-        
-        for (let i = 1; i <= numResults; i++) {
-            const topic = topics[Math.floor(Math.random() * topics.length)];
-            results.push({
-                title: `${topic} - Latest Research and Developments`,
-                url: `https://example.com/research/${topic.toLowerCase().replace(/ /g, '-')}`,
-                snippet: `Recent advancements in ${topic} have shown significant progress in ${query} applications. Researchers are exploring new methodologies that could revolutionize the field.`,
-                source: 'Example Research Journal',
-                date: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US')
-            });
-        }
-        
-        return results;
-    },
-    
-    displayTestResults: function(results, query) {
-        const resultsContainer = document.getElementById('test-search-results');
-        
-        if (results.length === 0) {
+        testSearch: async function() {
+            const query = document.getElementById('test-search-query').value.trim();
+            if (!query) {
+                showNotification('Please enter a search query', 'warning');
+                return;
+            }
+            
+            const resultsContainer = document.getElementById('test-search-results');
             resultsContainer.innerHTML = `
                 <div style="text-align: center; padding: 20px; color: #6b7280;">
-                    <i class="fas fa-search"></i>
-                    <div>No results found for "${query}"</div>
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <div>Searching for "${query}"...</div>
                 </div>
             `;
-            return;
-        }
-        
-        let html = `
-            <div style="font-size: 0.9rem; color: #6b7280; margin-bottom: 10px;">
-                Found ${results.length} results for "${query}"
-            </div>
-        `;
-        
-        results.forEach((result, index) => {
-            html += `
-                <div class="search-result-item" onclick="WebSearchSystem.useSearchResult(${index})">
-                    <div style="font-weight: bold; color: var(--search); margin-bottom: 5px;">
-                        ${result.title}
-                    </div>
-                    <div style="font-size: 0.85rem; color: var(--dark); margin-bottom: 5px;">
-                        ${result.snippet}
-                    </div>
-                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #6b7280;">
-                        <span>${result.source}</span>
-                        <span>${result.date}</span>
-                    </div>
-                </div>
-            `;
-        });
-        
-        resultsContainer.innerHTML = html;
-    },
-    
-    useSearchResult: function(index) {
-        const resultsContainer = document.getElementById('test-search-results');
-        const items = resultsContainer.querySelectorAll('.search-result-item');
-        
-        if (items[index]) {
-            const title = items[index].querySelector('div:first-child').textContent;
-            const snippet = items[index].querySelector('div:nth-child(2)').textContent;
             
-            document.getElementById('message-input').value = 
-                `Based on this search result: "${title}" - ${snippet.substring(0, 100)}...`;
-            
-            showNotification('Search result added to message input', 'info');
-        }
-    },
-    
-    runAdvancedTest: function() {
-        const tests = [
-            { query: 'latest AI research 2024', expected: 'research' },
-            { query: 'machine learning applications', expected: 'applications' },
-            { query: 'ethical AI guidelines', expected: 'ethics' }
-        ];
-        
-        let completed = 0;
-        let successful = 0;
-        
-        tests.forEach(async (test, index) => {
             try {
-                const results = await this.performSearch(test.query, 2);
-                completed++;
-                if (results.length > 0) successful++;
-                
-                if (completed === tests.length) {
-                    const score = Math.round((successful / tests.length) * 100);
-                    Swal.fire({
-                        title: 'Search System Test Results',
-                        html: `
-                            <div style="text-align: center; padding: 20px;">
-                                <div style="font-size: 3rem; color: ${score > 80 ? 'var(--circular)' : score > 60 ? 'var(--stellar)' : 'var(--existential)'}; font-weight: bold; margin: 20px 0;">
-                                    ${score}%
-                                </div>
-                                <div style="color: var(--dark); margin-bottom: 20px;">Search System Performance Score</div>
-                                
-                                <div style="background: #f8fafc; padding: 15px; border-radius: 12px; margin-top: 20px; text-align: left;">
-                                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                        <span>Tests Completed:</span>
-                                        <span style="font-weight: bold;">${completed}/${tests.length}</span>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                        <span>Successful Searches:</span>
-                                        <span style="font-weight: bold;">${successful}/${tests.length}</span>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between;">
-                                        <span>Status:</span>
-                                        <span style="font-weight: bold; color: ${score > 80 ? 'var(--circular)' : 'var(--existential)'}">
-                                            ${score > 80 ? 'Excellent' : score > 60 ? 'Good' : 'Needs Improvement'}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        `,
-                        icon: score > 80 ? 'success' : score > 60 ? 'info' : 'warning',
-                        confirmButtonText: 'OK'
-                    });
-                }
+                const searchResults = await this.performSearch(query, 3);
+                this.displayTestResults(searchResults, query);
             } catch (error) {
-                completed++;
-                if (completed === tests.length) {
-                    Swal.fire({
-                        title: 'Search Test Failed',
-                        text: 'Some search tests failed. Please check your API keys.',
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
-                }
+                resultsContainer.innerHTML = `
+                    <div style="text-align: center; padding: 20px; color: #ef4444;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>Search failed: ${error.message}</div>
+                        <div style="font-size: 0.8rem; margin-top: 10px;">
+                            Note: Web search is an optional feature. You can continue using the system without it.
+                        </div>
+                    </div>
+                `;
             }
-        });
-    },
-    
-    isEnabled: function() {
-        return this.enabled && (this.apiKeys.google || this.apiKeys.serpapi);
-    },
-    
-    getSearchContext: async function(query) {
-        if (!this.isEnabled()) return '';
+        },
         
-        try {
-            const results = await this.performSearch(query, 3);
-            if (results.length === 0) return '';
+        performSearch: async function(query, numResults = 5) {
+            const cacheKey = `${query}_${numResults}`;
+            if (this.searchCache.has(cacheKey)) {
+                return this.searchCache.get(cacheKey);
+            }
             
-            let context = '\n\n=== Web Search Results ===\n';
+            const mockResults = this.generateMockSearchResults(query, numResults);
+            
+            this.searchCache.set(cacheKey, mockResults);
+            
+            return mockResults;
+        },
+        
+        generateMockSearchResults: function(query, numResults) {
+            const results = [];
+            const topics = ['Artificial Intelligence', 'Machine Learning', 'Deep Learning', 'Natural Language Processing', 
+                           'Computer Vision', 'Robotics', 'Ethics in AI', 'Future of AI', 'AI Applications'];
+            
+            for (let i = 1; i <= numResults; i++) {
+                const topic = topics[Math.floor(Math.random() * topics.length)];
+                results.push({
+                    title: `${topic} - Latest Research and Developments`,
+                    url: `https://example.com/research/${topic.toLowerCase().replace(/ /g, '-')}`,
+                    snippet: `Recent advancements in ${topic} have shown significant progress in ${query} applications. Researchers are exploring new methodologies that could revolutionize the field.`,
+                    source: 'Example Research Journal',
+                    date: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString('en-US')
+                });
+            }
+            
+            return results;
+        },
+        
+        displayTestResults: function(results, query) {
+            const resultsContainer = document.getElementById('test-search-results');
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div style="text-align: center; padding: 20px; color: #6b7280;">
+                        <i class="fas fa-search"></i>
+                        <div>No results found for "${query}"</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = `
+                <div style="font-size: 0.9rem; color: #6b7280; margin-bottom: 10px;">
+                    Found ${results.length} results for "${query}"
+                </div>
+            `;
+            
             results.forEach((result, index) => {
-                context += `\n[Result ${index + 1}]: ${result.title}\n`;
-                context += `Summary: ${result.snippet}\n`;
-                context += `Source: ${result.source} (${result.date})\n`;
+                html += `
+                    <div class="search-result-item" onclick="WebSearchSystem.useSearchResult(${index})">
+                        <div style="font-weight: bold; color: var(--search); margin-bottom: 5px;">
+                            ${result.title}
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--dark); margin-bottom: 5px;">
+                            ${result.snippet}
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #6b7280;">
+                            <span>${result.source}</span>
+                            <span>${result.date}</span>
+                        </div>
+                    </div>
+                `;
             });
             
-            context += '\nPlease incorporate relevant information from these search results into your response.\n';
-            return context;
-        } catch (error) {
-            console.warn('Search failed:', error);
-            return '';
-        }
-    }
-};
-
-// ==========================================
-// 4. تهيئة النظام الرئيسي
-// ==========================================
-document.addEventListener('DOMContentLoaded', function() {
-    // تهيئة الأنظمة الفرعية
-    FileSystem.init();
-    PDFExportSystem.init();
-    WebSearchSystem.init();
-    
-    // تهيئة نظام الذكاء الاصطناعي
-    AIModelSystem.init();
-    
-    // تحميل إعدادات OpenRouter
-    initOpenRouterSettings();
-    
-    // إعداد مستمعي الأحداث
-    setupICPEventListeners();
-    
-    // تحديث حالة الاتصال
-    OpenRouterSystem.updateConnectionStatus();
-    
-    // عرض رسالة ترحيبية
-    showNotification('Advanced ICP System with PDF Export & Web Search is ready', 'success');
-});
-
-// ==========================================
-// 5. دوال واجهة المستخدم المحسنة
-// ==========================================
-function toggleFileUpload() {
-    const uploadArea = document.getElementById('file-upload-area');
-    uploadArea.classList.toggle('active');
-    
-    const isActive = uploadArea.classList.contains('active');
-    showNotification(`File upload ${isActive ? 'enabled' : 'disabled'}`, 'info');
-}
-
-function toggleWebSearch() {
-    WebSearchSystem.enabled = !WebSearchSystem.enabled;
-    
-    if (WebSearchSystem.enabled) {
-        if (!WebSearchSystem.apiKeys.google && !WebSearchSystem.apiKeys.serpapi) {
-            showNotification('Please configure search API keys first', 'warning');
-            switchToTab('web-search');
-            WebSearchSystem.enabled = false;
-            return;
-        }
-    }
-    
-    showNotification(`Web search ${WebSearchSystem.enabled ? 'enabled' : 'disabled'}`, 'info');
-    
-    // تحديث زر البحث
-    const searchBtn = document.querySelector('.tool-btn.search-btn');
-    if (searchBtn) {
-        searchBtn.innerHTML = WebSearchSystem.enabled 
-            ? '<i class="fas fa-search"></i> Web Search (On)'
-            : '<i class="fas fa-search"></i> Web Search (Off)';
-    }
-}
-
-function generatePDFPreview() {
-    PDFExportSystem.generatePDFPreview();
-}
-
-function exportToPDF() {
-    if (ICPFramework.conversationHistory.length === 0) {
-        Swal.fire({
-            title: 'No Conversation',
-            text: 'There is no conversation history to export. Start a conversation first.',
-            icon: 'warning',
-            confirmButtonText: 'OK'
-        });
-        return;
-    }
-    
-    PDFExportSystem.exportToPDF();
-}
-
-function testWebSearch() {
-    WebSearchSystem.testSearch();
-}
-
-function runAdvancedSearchTest() {
-    WebSearchSystem.runAdvancedTest();
-}
-
-function saveSearchAPIs() {
-    WebSearchSystem.saveSettings();
-}
-
-function showAdvancedSettings() {
-    Swal.fire({
-        title: 'Advanced System Settings',
-        html: `
-            <div style="text-align: left; padding: 20px;">
-                <div style="margin-bottom: 15px;">
-                    <strong>System Status:</strong>
-                    <div style="margin-top: 10px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                            <span>PDF Export System:</span>
-                            <span style="color: var(--circular); font-weight: bold;">Active</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                            <span>File Upload System:</span>
-                            <span style="color: var(--circular); font-weight: bold;">Active</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                            <span>Web Search System:</span>
-                            <span style="color: ${WebSearchSystem.enabled ? 'var(--circular)' : 'var(--existential)'}; font-weight: bold;">
-                                ${WebSearchSystem.enabled ? 'Active' : 'Inactive'}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 20px;">
-                    <strong>Export Statistics:</strong>
-                    <div style="margin-top: 10px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                            <span>PDF Exports:</span>
-                            <span style="font-weight: bold;">${JSON.parse(localStorage.getItem('pdf_export_stats') || '{"count": 0}').count}</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                            <span>Files Uploaded:</span>
-                            <span style="font-weight: bold;">${FileSystem.uploadedFiles.length}</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between;">
-                            <span>Search Queries:</span>
-                            <span style="font-weight: bold;">${WebSearchSystem.searchCache.size}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `,
-        icon: 'info',
-        confirmButtonText: 'OK',
-        showCancelButton: true,
-        cancelButtonText: 'Reset All',
-        showDenyButton: true,
-        denyButtonText: 'Export All Data'
-    }).then((result) => {
-        if (result.dismiss === Swal.DismissReason.cancel) {
-            resetAllSystems();
-        } else if (result.isDenied) {
-            exportAllData();
-        }
-    });
-}
-
-function resetAllSystems() {
-    Swal.fire({
-        title: 'Reset All Systems?',
-        text: 'This will clear all conversations, uploaded files, and search history.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, Reset All',
-        cancelButtonText: 'Cancel'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // إعادة تعيين النظام
-            ICPFramework.conversationHistory = [];
-            ICPFramework.messageHistory = [];
-            FileSystem.clearFiles();
-            WebSearchSystem.searchCache.clear();
+            resultsContainer.innerHTML = html;
+        },
+        
+        useSearchResult: function(index) {
+            const resultsContainer = document.getElementById('test-search-results');
+            const items = resultsContainer.querySelectorAll('.search-result-item');
             
-            // تحديث الواجهة
-            document.getElementById('chat-messages').innerHTML = `
-                <div class="message ai-message">
-                    <div class="message-header">
-                        <i class="fas fa-brain-circuit"></i>
-                        <span>Advanced ICP System</span>
-                        <span style="margin-right: auto; font-size: 0.8rem; color: var(--existential); font-weight: 600;">
-                            <i class="fas fa-bolt"></i> System Reset
-                        </span>
-                    </div>
-                    <div class="message-content">
-                        All systems have been reset. You can start fresh with:
-                        <br><br>
-                        • New conversation<br>
-                        • File uploads<br>
-                        • Web searches<br>
-                        • PDF exports
-                    </div>
-                    <div class="erd-badge">
-                        <i class="fas fa-chart-line"></i> System Ready
-                    </div>
-                </div>
-            `;
-            
-            showNotification('All systems have been reset successfully', 'success');
-        }
-    });
-}
-
-function exportAllData() {
-    const allData = {
-        conversationHistory: ICPFramework.conversationHistory,
-        messageHistory: ICPFramework.messageHistory,
-        uploadedFiles: FileSystem.uploadedFiles.map(f => ({
-            name: f.name,
-            type: f.type,
-            size: f.size,
-            timestamp: f.timestamp
-        })),
-        searchCache: Array.from(WebSearchSystem.searchCache.entries()),
-        systemInfo: {
-            version: '2.0.0',
-            exportDate: new Date().toISOString(),
-            model: AIModelSystem.currentModel?.name || 'OpenRouter'
-        }
-    };
-    
-    const dataStr = JSON.stringify(allData, null, 2);
-    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-    
-    const exportFileDefaultName = `ICP-System-Backup-${new Date().toISOString().split('T')[0]}.json`;
-    
-    const linkElement = document.createElement('a');
-    linkElement.setAttribute('href', dataUri);
-    linkElement.setAttribute('download', exportFileDefaultName);
-    linkElement.click();
-    
-    showNotification('All system data exported successfully', 'success');
-}
-
-// ==========================================
-// 6. نظام الحوار المحسن مع الملفات والبحث
-// ==========================================
-async function sendICPMessage() {
-    const input = document.getElementById('message-input');
-    let message = input.value.trim();
-    
-    if (!message && FileSystem.uploadedFiles.length === 0) {
-        showNotification('Please enter a message or upload files', 'warning');
-        return;
-    }
-
-    // إضافة سياق الملفات إذا كان موجوداً
-    const fileContext = FileSystem.getFileContentForAI();
-    
-    // إضافة سياق البحث إذا كان مفعلاً
-    let searchContext = '';
-    if (WebSearchSystem.enabled && message) {
-        searchContext = await WebSearchSystem.getSearchContext(message);
-    }
-
-    // بناء الرسالة النهائية
-    let fullMessage = message;
-    if (fileContext) fullMessage += fileContext;
-    if (searchContext) fullMessage += searchContext;
-
-    if (!fullMessage.trim()) {
-        showNotification('No valid content to send', 'warning');
-        return;
-    }
-
-    const modelConfig = AIModelSystem.getModelConfig();
-    const isOpenRouter = modelConfig.provider === 'OpenRouter';
-    
-    if (isOpenRouter && !OpenRouterSystem.apiKey) {
-        showNotification('Please enter OpenRouter API key first', 'error');
-        switchToTab('openrouter-settings');
-        return;
-    }
-
-    // إضافة رسالة المستخدم إلى الذاكرة
-    ICPFramework.addToMemory('user', fullMessage);
-    
-    // إضافة رسالة المستخدم إلى واجهة المستخدم
-    addICPMessage('user', message, ICPFramework.dialogueMode, null, null, FileSystem.uploadedFiles);
-    input.value = '';
-    
-    // مسح الملفات بعد إرسالها
-    FileSystem.clearFiles();
-    document.getElementById('file-upload-area').classList.remove('active');
-    
-    showTyping();
-
-    try {
-        const conversationContext = ICPFramework.getConversationContext();
-        const icpPrompt = ICPFramework.generateICPPrompt(fullMessage, ICPFramework.dialogueMode, conversationContext);
-        
-        const messages = [
-            { role: "system", content: icpPrompt },
-            ...conversationContext.slice(-10).map(msg => ({
-                role: msg.role === 'user' ? 'user' : 'assistant',
-                content: msg.content
-            })),
-            { role: "user", content: fullMessage }
-        ];
-
-        let response;
-        const startTime = Date.now();
-        
-        if (isOpenRouter) {
-            response = await OpenRouterSystem.sendMessage(messages, modelConfig);
-        } else {
-            response = await generateLocalResponse(fullMessage, modelConfig, conversationContext);
-        }
-        
-        const responseTime = Date.now() - startTime;
-        hideTyping();
-
-        // حساب ERD
-        PerformanceSystem.calculateERDWithWorker(
-            response, 
-            ICPFramework.dialogueMode, 
-            conversationContext.length,
-            function(erd) {
-                const aiMessage = ICPFramework.addToMemory('assistant', response);
-                addICPMessage('ai', response, ICPFramework.dialogueMode, erd, aiMessage.id);
+            if (items[index]) {
+                const title = items[index].querySelector('div:first-child').textContent;
+                const snippet = items[index].querySelector('div:nth-child(2)').textContent;
                 
-                ICPFramework.currentERD = erd;
-                document.getElementById('current-erd').textContent = erd.toFixed(1);
+                document.getElementById('message-input').value = 
+                    `Based on this search result: "${title}" - ${snippet.substring(0, 100)}...`;
                 
-                ICPFramework.conversationHistory.push({
-                    userMessage: message,
-                    aiResponse: response,
-                    dialogueMode: ICPFramework.dialogueMode,
-                    erd: erd,
-                    timestamp: new Date().toISOString(),
-                    model: modelConfig.name,
-                    responseTime: responseTime,
-                    hasFiles: FileSystem.uploadedFiles.length > 0,
-                    hasSearch: searchContext !== ''
-                });
-                
-                showNotification(`Response generated in ${responseTime}ms | ERD: ${erd.toFixed(1)}`, 'success');
+                showNotification('Search result added to message input', 'info');
             }
-        );
-
-    } catch (error) {
-        hideTyping();
-        console.error('Error in sendICPMessage:', error);
+        },
         
-        const fallbackResponse = generateFallbackICPResponse(message, ICPFramework.dialogueMode, ICPFramework.getConversationContext());
-        const fallbackERD = PerformanceSystem.calculateERDLocal(fallbackResponse, ICPFramework.dialogueMode, ICPFramework.messageHistory.length);
-        
-        const aiMessage = ICPFramework.addToMemory('assistant', fallbackResponse);
-        addICPMessage('ai', fallbackResponse, ICPFramework.dialogueMode, fallbackERD, aiMessage.id);
-        
-        showNotification('Error generating response: ' + error.message, 'error');
-    }
-}
-
-function addICPMessage(sender, content, mode, erd = null, messageId = null, files = []) {
-    const container = document.getElementById('chat-messages');
-    const messageDiv = document.createElement('div');
-    
-    messageDiv.className = sender === 'user' ? 'message user-message' : 'message ai-message';
-    
-    const senderName = sender === 'user' ? 'You' : 'ICP System';
-    const senderIcon = sender === 'user' ? 'fa-user' : 'fa-brain-circuit';
-    
-    let modeBadge = '';
-    if (sender === 'ai') {
-        const modeColors = {
-            existential: 'var(--existential)',
-            linear: 'var(--linear)',
-            quantum: 'var(--quantum)',
-            emotional: 'var(--emotional)'
-        };
-        modeBadge = `<span style="margin-right: auto; font-size: 0.8rem; color: ${modeColors[mode] || 'var(--existential)'}; font-weight: 600;">
-            <i class="fas fa-${mode === 'existential' ? 'star' : mode === 'quantum' ? 'atom' : mode === 'emotional' ? 'heart' : 'route'}"></i> 
-            ${mode === 'existential' ? 'Existential' : mode === 'quantum' ? 'Quantum' : mode === 'emotional' ? 'Emotional' : 'Linear'}
-        </span>`;
-    }
-    
-    const messageIdBadge = messageId ? `<span style="font-size: 0.7rem; color: var(--gray); margin-left: 10px;">#${messageId.toString().slice(-4)}</span>` : '';
-    
-    // عرض الملفات المرفقة
-    let filePreview = '';
-    if (sender === 'user' && files && files.length > 0) {
-        filePreview = `
-            <div class="file-preview">
-                <div style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 5px;">
-                    <i class="fas fa-paperclip"></i> ${files.length} file${files.length > 1 ? 's' : ''} attached
-                </div>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    ${files.map(file => `
-                        <div style="background: rgba(255, 255, 255, 0.2); padding: 5px 10px; border-radius: 6px; font-size: 0.7rem;">
-                            <i class="fas ${FileSystem.getFileIcon(file.type)}"></i> ${file.name}
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-        `;
-    }
-    
-    messageDiv.innerHTML = `
-        <div class="message-header">
-            <i class="fas ${senderIcon}"></i>
-            <span>${senderName} ${messageIdBadge}</span>
-            ${modeBadge}
-        </div>
-        <div class="message-content">${formatContent(content)}</div>
-        ${filePreview}
-        ${erd ? `<div class="erd-badge"><i class="fas fa-chart-line"></i> ERD: ${erd.toFixed(1)} | ${AIModelSystem.currentModel?.name || 'OpenRouter'}</div>` : ''}
-    `;
-    
-    if (messageId) messageDiv.dataset.messageId = messageId;
-    
-    container.appendChild(messageDiv);
-    container.scrollTop = container.scrollHeight;
-}
-
-// ==========================================
-// 7. دوال مساعدة إضافية
-// ==========================================
-function formatContent(content) {
-    return content
-        .replace(/\n/g, '<br>')
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/```(.*?)```/gs, '<pre><code>$1</code></pre>')
-        .replace(/`(.*?)`/g, '<code>$1</code>');
-}
-
-function showTyping() {
-    const indicator = document.getElementById('typing-indicator');
-    if (indicator) {
-        indicator.style.display = 'flex';
-    }
-}
-
-function hideTyping() {
-    const indicator = document.getElementById('typing-indicator');
-    if (indicator) {
-        indicator.style.display = 'none';
-    }
-}
-
-function showNotification(message, type = 'info') {
-    const container = document.getElementById('notification-container');
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-
-    const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle' };
-    const colors = { success: '#10b981', error: '#ef4444', warning: '#f59e0b', info: '#8b5cf6' };
-
-    notification.innerHTML = `
-        <div class="notification-icon">
-            <i class="fas ${icons[type]}" style="color: ${colors[type]}"></i>
-        </div>
-        <div>${message}</div>
-    `;
-
-    notification.style.borderRightColor = colors[type];
-    container.appendChild(notification);
-
-    setTimeout(() => {
-        notification.classList.add('hide');
-        setTimeout(() => notification.remove(), 500);
-    }, 5000);
-}
-
-// ==========================================
-// 8. نظام الذكاء الاصطناعي الأساسي (يجب تضمينه)
-// ==========================================
-// ملاحظة: يجب تضمين الكود السابق لأنظمة:
-// 1. PerformanceSystem
-// 2. AIModelSystem
-// 3. ICPFramework
-// 4. OpenRouterSystem
-// 5. دوال المساعدة الأخرى
-
-// هذه مجرد دوال مساعدة إضافية، النظام الكامل يتطلب تضمين جميع الأنظمة السابقة
-</script>
-
-<!-- SweetAlert -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-if (typeof Swal === 'undefined') {
-    window.Swal = {
-        fire: function(options) {
-            return new Promise((resolve) => {
-                const result = confirm(options.text || options.title);
-                resolve({ 
-                    isConfirmed: result, 
-                    dismiss: result ? undefined : 'cancel',
-                    isDenied: false
-                });
+        runAdvancedTest: function() {
+            const tests = [
+                { query: 'latest AI research 2024', expected: 'research' },
+                { query: 'machine learning applications', expected: 'applications' },
+                { query: 'ethical AI guidelines', expected: 'ethics' }
+            ];
+            
+            let completed = 0;
+            let successful = 0;
+            
+            tests.forEach(async (test, index) => {
+                try {
+                    const results = await this.performSearch(test.query, 2);
+                    completed++;
+                    if (results.length > 0) successful++;
+                    
+                    if (completed === tests.length) {
+                        const score = Math.round((successful / tests.length) * 100);
+                        Swal.fire({
+                            title: 'Search System Test Results',
+                            html: `
+                                <div style="text-align: center; padding: 20px;">
+                                    <div style="font-size: 3rem; color: ${score > 80 ? 'var(--circular)' : score > 60 ? 'var(--stellar)' : 'var(--existential)'}; font-weight: bold; margin: 20px 0;">
+                                        ${score}%
+                                    </div>
+                                    <div style="color: var(--dark); margin-bottom: 20px;">Search System Performance Score</div>
+                                    
+                                    <div style="background: #f8fafc; padding: 15px; border-radius: 12px; margin-top: 20px; text-align: left;">
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                            <span>Tests Completed:</span>
+                                            <span style="font-weight: bold;">${completed}/${tests.length}</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                            <span>Successful Searches:</span>
+                                            <span style="font-weight: bold;">${successful}/${tests.length}</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>Status:</span>
+                                            <span style="font-weight: bold; color: ${score > 80 ? 'var(--circular)' : 'var(--existential)'}">
+                                                ${score > 80 ? 'Excellent' : score > 60 ? 'Good' : 'Needs Improvement'}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `,
+                            icon: score > 80 ? 'success' : score > 60 ? 'info' : 'warning',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                } catch (error) {
+                    completed++;
+                    if (completed === tests.length) {
+                        Swal.fire({
+                            title: 'Search Test Failed',
+                            text: 'Some search tests failed. Please check your API keys.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                }
             });
         },
-        DismissReason: { cancel: 'cancel' }
+        
+        isEnabled: function() {
+            return this.enabled && (this.apiKeys.google || this.apiKeys.serpapi);
+        },
+        
+        getSearchContext: async function(query) {
+            if (!this.isEnabled()) return '';
+            
+            try {
+                const results = await this.performSearch(query, 3);
+                if (results.length === 0) return '';
+                
+                let context = '\n\n=== Web Search Results ===\n';
+                results.forEach((result, index) => {
+                    context += `\n[Result ${index + 1}]: ${result.title}\n`;
+                    context += `Summary: ${result.snippet}\n`;
+                    context += `Source: ${result.source} (${result.date})\n`;
+                });
+                
+                context += '\nPlease incorporate relevant information from these search results into your response.\n';
+                return context;
+            } catch (error) {
+                console.warn('Search failed:', error);
+                return '';
+            }
+        }
     };
-}
 
-// تهيئة النظام عند التحميل
-window.addEventListener('load', function() {
-    // تحديث إعدادات PDF
-    PDFExportSystem.updatePDFSettings();
-    
-    // عرض رسالة ترحيبية
-    setTimeout(() => {
-        showNotification('Advanced ICP System with PDF Export & Web Search is fully loaded', 'success');
-    }, 1000);
-});
-</script>
+    // ==========================================
+    // 8. دوال المساعدة الأساسية
+    // ==========================================
+    function generateLocalResponse(message, config, context) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const responses = {
+                    linear: `I've analyzed your query: "${message.substring(0, 100)}...". Based on systematic analysis, I recommend considering multiple factors and approaching this logically.`,
+                    existential: `Your question touches on deeper meanings. From an existential perspective, we might consider the broader implications and philosophical dimensions.`,
+                    quantum: `Exploring your query through multiple lenses reveals interesting probabilities and alternative interpretations worth considering.`,
+                    emotional: `I sense this topic might have emotional dimensions. It's important to approach with empathy and understanding.`
+                };
+                
+                resolve(responses[config.dialogueMode || 'linear'] + `\n\n(This is a local response as the AI model is not configured)`);
+            }, 1500);
+        });
+    }
+
+    function generateFallbackICPResponse(message, mode, context) {
+        const fallbacks = {
+            linear: `I understand you're asking about: "${message.substring(0, 80)}...". Let me break this down logically: 1) Identify key elements, 2) Analyze relationships, 3) Draw systematic conclusions.`,
+            existential: `This inquiry raises profound questions about meaning and existence. Consider how this relates to broader patterns and purposes in our understanding.`,
+            quantum: `Multiple interpretations of your query exist simultaneously. Each perspective offers unique insights worth exploring probabilistically.`,
+            emotional: `I appreciate you sharing this. It's important to approach such matters with care and emotional intelligence.`
+        };
+        
+        return fallbacks[mode] || fallbacks.linear;
+    }
+
+    // ==========================================
+    // 9. دوال واجهة المستخدم المحسنة
+    // ==========================================
+    function toggleFileUpload() {
+        const uploadArea = document.getElementById('file-upload-area');
+        uploadArea.classList.toggle('active');
+        
+        const isActive = uploadArea.classList.contains('active');
+        showNotification(`File upload ${isActive ? 'enabled' : 'disabled'}`, 'info');
+    }
+
+    function toggleWebSearch() {
+        WebSearchSystem.enabled = !WebSearchSystem.enabled;
+        
+        if (WebSearchSystem.enabled) {
+            if (!WebSearchSystem.apiKeys.google && !WebSearchSystem.apiKeys.serpapi) {
+                showNotification('Please configure search API keys first', 'warning');
+                switchToTab('web-search');
+                WebSearchSystem.enabled = false;
+                return;
+            }
+        }
+        
+        showNotification(`Web search ${WebSearchSystem.enabled ? 'enabled' : 'disabled'}`, 'info');
+        
+        const searchBtn = document.querySelector('.tool-btn.search-btn');
+        if (searchBtn) {
+            searchBtn.innerHTML = WebSearchSystem.enabled 
+                ? '<i class="fas fa-search"></i> Web Search (On)'
+                : '<i class="fas fa-search"></i> Web Search (Off)';
+        }
+    }
+
+    function generatePDFPreview() {
+        PDFExportSystem.generatePDFPreview();
+    }
+
+    function exportToPDF() {
+        if (ICPFramework.conversationHistory.length === 0) {
+            Swal.fire({
+                title: 'No Conversation',
+                text: 'There is no conversation history to export. Start a conversation first.',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
+        
+        PDFExportSystem.exportToPDF();
+    }
+
+    function testWebSearch() {
+        WebSearchSystem.testSearch();
+    }
+
+    function runAdvancedSearchTest() {
+        WebSearchSystem.runAdvancedTest();
+    }
+
+    function saveSearchAPIs() {
+        WebSearchSystem.saveSettings();
+    }
+
+    function saveOpenRouterApiKey() {
+        OpenRouterSystem.saveApiKey();
+    }
+
+    function testOpenRouterConnection() {
+        OpenRouterSystem.testConnection();
+    }
+
+    function showAdvancedSettings() {
+        Swal.fire({
+            title: 'Advanced System Settings',
+            html: `
+                <div style="text-align: left; padding: 20px;">
+                    <div style="margin-bottom: 15px;">
+                        <strong>System Status:</strong>
+                        <div style="margin-top: 10px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>PDF Export System:</span>
+                                <span style="color: var(--circular); font-weight: bold;">Active</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>File Upload System:</span>
+                                <span style="color: var(--circular); font-weight: bold;">Active</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Web Search System:</span>
+                                <span style="color: ${WebSearchSystem.enabled ? 'var(--circular)' : 'var(--existential)'}; font-weight: bold;">
+                                    ${WebSearchSystem.enabled ? 'Active' : 'Inactive'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <strong>Export Statistics:</strong>
+                        <div style="margin-top: 10px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>PDF Exports:</span>
+                                <span style="font-weight: bold;">${JSON.parse(localStorage.getItem('pdf_export_stats') || '{"count": 0}').count}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Files Uploaded:</span>
+                                <span style="font-weight: bold;">${FileSystem.uploadedFiles.length}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Search Queries:</span>
+                                <span style="font-weight: bold;">${WebSearchSystem.searchCache.size}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            icon: 'info',
+            confirmButtonText: 'OK',
+            showCancelButton: true,
+            cancelButtonText: 'Reset All',
+            showDenyButton: true,
+            denyButtonText: 'Export All Data'
+        }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.cancel) {
+                resetAllSystems();
+            } else if (result.isDenied) {
+                exportAllData();
+            }
+        });
+    }
+
+    function resetAllSystems() {
+        Swal.fire({
+            title: 'Reset All Systems?',
+            text: 'This will clear all conversations, uploaded files, and search history.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Reset All',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                ICPFramework.conversationHistory = [];
+                ICPFramework.messageHistory = [];
+                FileSystem.clearFiles();
+                WebSearchSystem.searchCache.clear();
+                
+                document.getElementById('chat-messages').innerHTML = `
+                    <div class="message ai-message">
+                        <div class="message-header">
+                            <i class="fas fa-brain-circuit"></i>
+                            <span>Advanced ICP System</span>
+                            <span style="margin-right: auto; font-size: 0.8rem; color: var(--existential); font-weight: 600;">
+                                <i class="fas fa-bolt"></i> System Reset
+                            </span>
+                        </div>
+                        <div class="message-content">
+                            All systems have been reset. You can start fresh with:
+                            <br><br>
+                            • New conversation<br>
+                            • File uploads<br>
+                            • Web searches<br>
+                            • PDF exports
+                        </div>
+                        <div class="erd-badge">
+                            <i class="fas fa-chart-line"></i> System Ready
+                        </div>
+                    </div>
+                `;
+                
+                showNotification('All systems have been reset successfully', 'success');
+            }
+        });
+    }
+
+    function exportAllData() {
+        const allData = {
+            conversationHistory: ICPFramework.conversationHistory,
+            messageHistory: ICPFramework.messageHistory,
+            uploadedFiles: FileSystem.uploadedFiles.map(f => ({
+                name: f.name,
+                type: f.type,
+                size: f.size,
+                timestamp: f.timestamp
+            })),
+            searchCache: Array.from(WebSearchSystem.searchCache.entries()),
+            systemInfo: {
+                version: '2.0.0',
+                exportDate: new Date().toISOString(),
+                model: AIModelSystem.currentModel?.name || 'OpenRouter'
+            }
+        };
+        
+        const dataStr = JSON.stringify(allData, null, 2);
+        const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+        
+        const exportFileDefaultName = `ICP-System-Backup-${new Date().toISOString().split('T')[0]}.json`;
+        
+        const linkElement = document.createElement('a');
+        linkElement.setAttribute('href', dataUri);
+        linkElement.setAttribute('download', exportFileDefaultName);
+        linkElement.click();
+        
+        showNotification('All system data exported successfully', 'success');
+    }
+
+    // ==========================================
+    // 10. نظام الحوار المحسن مع الملفات والبحث
+    // ==========================================
+    async function sendICPMessage() {
+        const input = document.getElementById('message-input');
+        let message = input.value.trim();
+        
+        if (!message && FileSystem.uploadedFiles.length === 0) {
+            showNotification('Please enter a message or upload files', 'warning');
+            return;
+        }
+
+        const fileContext = FileSystem.getFileContentForAI();
+        
+        let searchContext = '';
+        if (WebSearchSystem.enabled && message) {
+            searchContext = await WebSearchSystem.getSearchContext(message);
+        }
+
+        let fullMessage = message;
+        if (fileContext) fullMessage += fileContext;
+        if (searchContext) fullMessage += searchContext;
+
+        if (!fullMessage.trim()) {
+            showNotification('No valid content to send', 'warning');
+            return;
+        }
+
+        const modelConfig = AIModelSystem.getModelConfig();
+        const isOpenRouter = modelConfig.provider === 'OpenRouter';
+        
+        if (isOpenRouter && !OpenRouterSystem.apiKey) {
+            showNotification('Please enter OpenRouter API key first', 'error');
+            switchToTab('openrouter-settings');
+            return;
+        }
+
+        ICPFramework.addToMemory('user', fullMessage);
+        
+        addICPMessage('user', message, ICPFramework.dialogueMode, null, null, FileSystem.uploadedFiles);
+        input.value = '';
+        
+        FileSystem.clearFiles();
+        document.getElementById('file-upload-area').classList.remove('active');
+        
+        showTyping();
+
+        try {
+            const conversationContext = ICPFramework.getConversationContext();
+            const icpPrompt = ICPFramework.generateICPPrompt(fullMessage, ICPFramework.dialogueMode, conversationContext);
+            
+            const messages = [
+                { role: "system", content: icpPrompt },
+                ...conversationContext.slice(-10).map(msg => ({
+                    role: msg.role === 'user' ? 'user' : 'assistant',
+                    content: msg.content
+                })),
+                { role: "user", content: fullMessage }
+            ];
+
+            let response;
+            const startTime = Date.now();
+            
+            if (isOpenRouter) {
+                response = await OpenRouterSystem.sendMessage(messages, modelConfig);
+            } else {
+                response = await generateLocalResponse(fullMessage, modelConfig, conversationContext);
+            }
+            
+            const responseTime = Date.now() - startTime;
+            hideTyping();
+
+            PerformanceSystem.calculateERDWithWorker(
+                response, 
+                ICPFramework.dialogueMode, 
+                conversationContext.length,
+                function(erd) {
+                    const aiMessage = ICPFramework.addToMemory('assistant', response);
+                    addICPMessage('ai', response, ICPFramework.dialogueMode, erd, aiMessage.id);
+                    
+                    ICPFramework.currentERD = erd;
+                    document.getElementById('current-erd').textContent = erd.toFixed(1);
+                    
+                    ICPFramework.conversationHistory.push({
+                        userMessage: message,
+                        aiResponse: response,
+                        dialogueMode: ICPFramework.dialogueMode,
+                        erd: erd,
+                        timestamp: new Date().toISOString(),
+                        model: modelConfig.name,
+                        responseTime: responseTime,
+                        hasFiles: FileSystem.uploadedFiles.length > 0,
+                        hasSearch: searchContext !== ''
+                    });
+                    
+                    showNotification(`Response generated in ${responseTime}ms | ERD: ${erd.toFixed(1)}`, 'success');
+                }
+            );
+
+        } catch (error) {
+            hideTyping();
+            console.error('Error in sendICPMessage:', error);
+            
+            const fallbackResponse = generateFallbackICPResponse(message, ICPFramework.dialogueMode, ICPFramework.getConversationContext());
+            const fallbackERD = PerformanceSystem.calculateERDLocal(fallbackResponse, ICPFramework.dialogueMode, ICPFramework.messageHistory.length);
+            
+            const aiMessage = ICPFramework.addToMemory('assistant', fallbackResponse);
+            addICPMessage('ai', fallbackResponse, ICPFramework.dialogueMode, fallbackERD, aiMessage.id);
+            
+            showNotification('Error generating response: ' + error.message, 'error');
+        }
+    }
+
+    function addICPMessage(sender, content, mode, erd = null, messageId = null, files = []) {
+        const container = document.getElementById('chat-messages');
+        const messageDiv = document.createElement('div');
+        
+        messageDiv.className = sender === 'user' ? 'message user-message' : 'message ai-message';
+        
+        const senderName = sender === 'user' ? 'You' : 'ICP System';
+        const senderIcon = sender === 'user' ? 'fa-user' : 'fa-brain-circuit';
+        
+        let modeBadge = '';
+        if (sender === 'ai') {
+            const modeColors = {
+                existential: 'var(--existential)',
+                linear: 'var(--linear)',
+                quantum: 'var(--quantum)',
+                emotional: 'var(--emotional)'
+            };
+            modeBadge = `<span style="margin-right: auto; font-size: 0.8rem; color: ${modeColors[mode] || 'var(--existential)'}; font-weight: 600;">
+                <i class="fas fa-${mode === 'existential' ? 'star' : mode === 'quantum' ? 'atom' : mode === 'emotional' ? 'heart' : 'route'}"></i> 
+                ${mode === 'existential' ? 'Existential' : mode === 'quantum' ? 'Quantum' : mode === 'emotional' ? 'Emotional' : 'Linear'}
+            </span>`;
+        }
+        
+        const messageIdBadge = messageId ? `<span style="font-size: 0.7rem; color: var(--gray); margin-left: 10px;">#${messageId.toString().slice(-4)}</span>` : '';
+        
+        let filePreview = '';
+        if (sender === 'user' && files && files.length > 0) {
+            filePreview = `
+                <div class="file-preview">
+                    <div style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 5px;">
+                        <i class="fas fa-paperclip"></i> ${files.length} file${files.length > 1 ? 's' : ''} attached
+                    </div>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        ${files.map(file => `
+                            <div style="background: rgba(255, 255, 255, 0.2); padding: 5px 10px; border-radius: 6px; font-size: 0.7rem;">
+                                <i class="fas ${FileSystem.getFileIcon(file.type)}"></i> ${file.name}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+        
+        messageDiv.innerHTML = `
+            <div class="message-header">
+                <i class="fas ${senderIcon}"></i>
+                <span>${senderName} ${messageIdBadge}</span>
+                ${modeBadge}
+            </div>
+            <div class="message-content">${formatContent(content)}</div>
+            ${filePreview}
+            ${erd ? `<div class="erd-badge"><i class="fas fa-chart-line"></i> ERD: ${erd.toFixed(1)} | ${AIModelSystem.currentModel?.name || 'OpenRouter'}</div>` : ''}
+        `;
+        
+        if (messageId) messageDiv.dataset.messageId = messageId;
+        
+        container.appendChild(messageDiv);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    // ==========================================
+    // 11. دوال مساعدة إضافية
+    // ==========================================
+    function formatContent(content) {
+        return content
+            .replace(/\n/g, '<br>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/```(.*?)```/gs, '<pre><code>$1</code></pre>')
+            .replace(/`(.*?)`/g, '<code>$1</code>');
+    }
+
+    function showTyping() {
+        const indicator = document.getElementById('typing-indicator');
+        if (indicator) {
+            indicator.style.display = 'flex';
+        }
+    }
+
+    function hideTyping() {
+        const indicator = document.getElementById('typing-indicator');
+        if (indicator) {
+            indicator.style.display = 'none';
+        }
+    }
+
+    function showNotification(message, type = 'info') {
+        const container = document.getElementById('notification-container');
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+
+        const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle' };
+        const colors = { success: '#10b981', error: '#ef4444', warning: '#f59e0b', info: '#8b5cf6' };
+
+        notification.innerHTML = `
+            <div class="notification-icon">
+                <i class="fas ${icons[type]}" style="color: ${colors[type]}"></i>
+            </div>
+            <div>${message}</div>
+        `;
+
+        notification.style.borderRightColor = colors[type];
+        container.appendChild(notification);
+
+        setTimeout(() => {
+            notification.classList.add('hide');
+            setTimeout(() => notification.remove(), 500);
+        }, 5000);
+    }
+
+    // ==========================================
+    // 12. تهيئة النظام
+    // ==========================================
+    function initOpenRouterSettings() {
+        const stellarFactor = localStorage.getItem('stellar_factor') || 75;
+        const existentialDepth = localStorage.getItem('existential_depth') || 80;
+        
+        document.getElementById('stellar-factor').value = stellarFactor;
+        document.getElementById('existential-depth').value = existentialDepth;
+        
+        document.getElementById('stellar-value').textContent = stellarFactor + '%';
+        document.getElementById('existential-value').textContent = existentialDepth + '%';
+        
+        document.getElementById('stellar-factor').addEventListener('input', (e) => {
+            document.getElementById('stellar-value').textContent = e.target.value + '%';
+            localStorage.setItem('stellar_factor', e.target.value);
+        });
+        
+        document.getElementById('existential-depth').addEventListener('input', (e) => {
+            document.getElementById('existential-value').textContent = e.target.value + '%';
+            localStorage.setItem('existential_depth', e.target.value);
+        });
+    }
+
+    function setupICPEventListeners() {
+        document.getElementById('send-btn').addEventListener('click', sendICPMessage);
+        document.getElementById('message-input').addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                sendICPMessage();
+            }
+        });
+        
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                ICPFramework.setDialogueMode(btn.dataset.mode);
+            });
+        });
+        
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchToTab(btn.dataset.tab);
+            });
+        });
+        
+        document.getElementById('file-upload-btn').addEventListener('click', toggleFileUpload);
+        document.getElementById('web-search-btn').addEventListener('click', toggleWebSearch);
+        
+        document.querySelectorAll('input[type="range"]').forEach(slider => {
+            const updateValue = () => {
+                const valueSpan = document.getElementById(slider.id + '-value');
+                if (valueSpan) {
+                    valueSpan.textContent = slider.value;
+                }
+            };
+            
+            slider.addEventListener('input', updateValue);
+            updateValue();
+        });
+    }
+
+    function switchToTab(tabName) {
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.tab === tabName) {
+                btn.classList.add('active');
+            }
+        });
+        
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+            if (tab.id === tabName + '-tab') {
+                tab.classList.add('active');
+            }
+        });
+    }
+
+    function clearICPConversation() {
+        ICPFramework.clearConversation();
+    }
+
+    function setIntelligenceType(type) {
+        const types = {
+            stellar: 'existential',
+            linear: 'linear',
+            circular: 'linear',
+            quantum: 'quantum',
+            emotional: 'emotional'
+        };
+        
+        if (types[type]) {
+            ICPFramework.setDialogueMode(types[type]);
+        }
+    }
+
+    // ==========================================
+    // 13. تهيئة النظام الرئيسي
+    // ==========================================
+    document.addEventListener('DOMContentLoaded', function() {
+        FileSystem.init();
+        PDFExportSystem.init();
+        WebSearchSystem.init();
+        AIModelSystem.init();
+        OpenRouterSystem.init();
+        
+        initOpenRouterSettings();
+        setupICPEventListeners();
+        
+        OpenRouterSystem.updateConnectionStatus();
+        
+        PDFExportSystem.updatePDFSettings();
+        
+        showNotification('Advanced ICP System with PDF Export & Web Search is ready', 'success');
+    });
+    </script>
 </body>
 </html>
