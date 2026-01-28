@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMMAR AI Academy - نظام ICP المتقدم مع قراءة النصوص</title>
+    <title>AMMAR AI Academy - نظام ICP المتقدم مع اتصال اختياري</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
@@ -22,6 +22,7 @@
             --pdf: #ef4444;
             --iq-test: #8b5cf6;
             --ocr: #10b981;
+            --api-test: #8b5cf6;
             --dark: #1f2937;
             --light: #f9fafb;
             --radius: 12px;
@@ -573,6 +574,12 @@
             border: none;
         }
 
+        .tool-btn.api-test-btn {
+            background: var(--api-test);
+            color: white;
+            border: none;
+        }
+
         .search-results {
             margin-top: 15px;
             max-height: 200px;
@@ -651,70 +658,30 @@
             text-align: left;
         }
 
-        /* أنماط اختبار الذكاء */
-        .iq-test-question {
+        /* نماذج اختبار ERD */
+        .erd-test-container {
             background: white;
             border-radius: var(--radius);
             padding: 25px;
             margin-bottom: 20px;
-            border: 2px solid var(--iq-test);
+            border: 2px solid var(--api-test);
         }
 
-        .iq-option {
-            padding: 15px;
-            margin: 10px 0;
+        .erd-test-card {
             background: #f8fafc;
-            border: 2px solid #e5e7eb;
-            border-radius: var(--radius);
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .iq-option:hover {
-            background: #e5e7eb;
-            border-color: var(--iq-test);
-        }
-
-        .iq-option.selected {
-            background: rgba(139, 92, 246, 0.1);
-            border-color: var(--iq-test);
-            color: var(--iq-test);
-        }
-
-        .iq-option-checkbox {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 2px solid #d1d5db;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .iq-option.selected .iq-option-checkbox {
-            background: var(--iq-test);
-            border-color: var(--iq-test);
-        }
-
-        .iq-option.selected .iq-option-checkbox::after {
-            content: '✓';
-            color: white;
-            font-size: 12px;
-        }
-
-        .iq-result-card {
-            background: white;
             border-radius: var(--radius);
             padding: 20px;
             margin-bottom: 15px;
-            border-left: 5px solid var(--iq-test);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+        }
+
+        .erd-test-card:hover {
+            border-color: var(--api-test);
             box-shadow: var(--shadow);
         }
 
-        .progress-container {
+        .erd-progress-container {
             height: 10px;
             background: #e5e7eb;
             border-radius: 5px;
@@ -722,25 +689,61 @@
             overflow: hidden;
         }
 
-        .progress-bar {
+        .erd-progress-bar {
             height: 100%;
             border-radius: 5px;
             transition: width 1s ease;
         }
 
-        .intelligence-level-badge {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-left: 10px;
+        .erd-score-display {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: var(--api-test);
+            margin: 20px 0;
         }
 
-        .level-excellent { background: #10b981; color: white; }
-        .level-good { background: #0ea5e9; color: white; }
-        .level-average { background: #f59e0b; color: white; }
-        .level-basic { background: #ef4444; color: white; }
+        .api-key-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .api-key-action-btn {
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .api-key-action-btn.primary {
+            background: linear-gradient(135deg, var(--stellar), var(--existential));
+            color: white;
+        }
+
+        .api-key-action-btn.secondary {
+            background: var(--circular);
+            color: white;
+        }
+
+        .api-key-action-btn.tertiary {
+            background: var(--linear);
+            color: white;
+        }
+
+        .api-key-action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
 
         .model-card {
             background: white;
@@ -851,6 +854,14 @@
                 gap: 10px;
                 padding: 15px;
             }
+
+            .api-key-actions {
+                flex-direction: column;
+            }
+
+            .api-key-action-btn {
+                min-width: 100%;
+            }
         }
 
         ::-webkit-scrollbar {
@@ -880,11 +891,11 @@
             </div>
             <div class="logo-text">
                 <h1>AMMAR AI - نظام ICP المتقدم</h1>
-                <div class="subtitle">بروتوكول الوعي المتكامل مع قراءة النصوص من الصور وPDF</div>
+                <div class="subtitle">بروتوكول الوعي المتكامل مع اتصال اختياري بالنماذج</div>
             </div>
         </div>
         <div style="font-size: 0.9rem; color: var(--linear); font-weight: 600; text-align: center;">
-            <i class="fas fa-graduation-cap"></i> نظام الذكاء الاصطناعي المتقدم مع تقنية OCR<br>
+            <i class="fas fa-graduation-cap"></i> نظام الذكاء الاصطناعي المتقدم مع أولوية OpenRouter<br>
             <span style="font-size: 0.8rem; color: var(--circular);">الباحث: عمار ناصر حسين المنتفجي - باحث مستقل</span>
         </div>
     </header>
@@ -917,13 +928,17 @@
             <i class="fas fa-comments"></i>
             محادثة ICP
         </button>
+        <button class="tab-btn" data-tab="api-settings">
+            <i class="fas fa-key"></i>
+            إعدادات API
+        </button>
+        <button class="tab-btn" data-tab="erd-test">
+            <i class="fas fa-chart-line"></i>
+            اختبار ERD
+        </button>
         <button class="tab-btn" data-tab="ocr-system">
             <i class="fas fa-file-alt"></i>
-            قراءة النصوص (OCR)
-        </button>
-        <button class="tab-btn" data-tab="iq-test">
-            <i class="fas fa-brain"></i>
-            اختبار الذكاء
+            قراءة النصوص
         </button>
         <button class="tab-btn" data-tab="pdf-export">
             <i class="fas fa-file-pdf"></i>
@@ -936,7 +951,7 @@
         <div class="chat-container">
             <div class="chat-header">
                 <i class="fas fa-brain-circuit"></i>
-                محادثة ICP التفاعلية مع نظام قراءة النصوص المتقدم
+                محادثة ICP التفاعلية مع نظام اتصال اختياري
             </div>
             
             <div class="dialogue-mode-selector">
@@ -981,26 +996,26 @@
                 <div class="message ai-message">
                     <div class="message-header">
                         <i class="fas fa-brain-circuit"></i>
-                        <span>نظام ICP المتقدم مع OCR</span>
+                        <span>نظام ICP المتقدم مع اتصال اختياري</span>
                         <span style="margin-right: auto; font-size: 0.8rem; color: var(--existential); font-weight: 600;">
                             <i class="fas fa-bolt"></i> أداء محسن
                         </span>
                     </div>
                     <div class="message-content">
-                        مرحبًا بك في نظام ICP المتقدم مع ميزات قراءة النصوص:
+                        مرحبًا بك في نظام ICP المتقدم مع ميزات الاتصال الاختياري:
                         <br><br>
-                        <span style="color: var(--stellar);"><i class="fas fa-file-upload"></i> رفع الملفات:</span> يمكنك رفع الصور، PDF، الملفات النصية للتحليل
+                        <span style="color: var(--stellar);"><i class="fas fa-plug"></i> اتصال اختياري:</span> استخدام OpenRouter (مفضل) أو النظام المحلي
                         <br>
-                        <span style="color: var(--ocr);"><i class="fas fa-file-alt"></i> قراءة النصوص (OCR):</span> استخراج النصوص من الصور وملفات PDF تلقائيًا
+                        <span style="color: var(--api-test);"><i class="fas fa-chart-line"></i> اختبار ERD:</span> قياس أداء النماذج وتقييمها
                         <br>
-                        <span style="color: var(--circular);"><i class="fas fa-file-pdf"></i> تصدير PDF:</span> تصدير المحادثات بتنسيق PDF
+                        <span style="color: var(--ocr);"><i class="fas fa-file-alt"></i> قراءة النصوص:</span> استخراج النصوص من الصور وPDF
                         <br>
-                        <span style="color: var(--iq-test);"><i class="fas fa-brain"></i> اختبار الذكاء:</span> اختبار جديد لتقييم مستويات الذكاء
+                        <span style="color: var(--pdf);"><i class="fas fa-file-pdf"></i> تصدير PDF:</span> حفظ المحادثات والتقارير
                         <br><br>
-                        <strong>ميزة جديدة:</strong> يمكن للنظام الآن قراءة النصوص من الصور وملفات PDF تلقائيًا!
+                        <strong>الميزة الجديدة:</strong> أولوية للاتصال بـ OpenRouter مع إمكانية استخدام النظام المحلي كبديل!
                     </div>
                     <div class="erd-badge">
-                        <i class="fas fa-chart-line"></i> ERD: 4.8 | ⚡ ميزات محسنة
+                        <i class="fas fa-chart-line"></i> ERD: 4.8 | ⚡ اتصال اختياري
                     </div>
                 </div>
             </div>
@@ -1009,7 +1024,7 @@
                 <div class="typing-dot"></div>
                 <div class="typing-dot"></div>
                 <div class="typing-dot"></div>
-                <span>جارٍ إنشاء الرد...</span>
+                <span>جارٍ إنشاء الرد باستخدام <span id="current-model-name">النظام المحلي</span>...</span>
             </div>
 
             <div class="input-area">
@@ -1029,6 +1044,201 @@
         </div>
     </div>
 
+    <!-- تبويب إعدادات API -->
+    <div id="api-settings-tab" class="tab-content">
+        <div class="settings-container">
+            <h2 style="margin-bottom: 25px; color: var(--stellar); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <i class="fas fa-key"></i> إعدادات اتصال API - أولوية OpenRouter
+            </h2>
+
+            <div class="settings-group">
+                <h3><i class="fas fa-plug"></i> اتصال OpenRouter (مفضل)</h3>
+                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
+                    OpenRouter هو النظام المفضل لجودة الردود. أدخل مفتاح API للاتصال بالنماذج المتقدمة.
+                </p>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                        مفتاح OpenRouter API
+                    </label>
+                    <input type="password" class="api-key-input" id="openrouter-api-key" placeholder="sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+                        <i class="fas fa-info-circle" style="color: var(--circular);"></i>
+                        <span style="font-size: 0.9rem; color: var(--dark);">
+                            احصل على مفتاح مجاني من: 
+                            <a href="https://openrouter.ai/keys" target="_blank" style="color: var(--stellar); font-weight: 600;">openrouter.ai/keys</a>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="api-key-actions">
+                    <button onclick="saveOpenRouterAPIKey()" class="api-key-action-btn primary">
+                        <i class="fas fa-save"></i> حفظ المفتاح
+                    </button>
+                    <button onclick="testOpenRouterConnection()" class="api-key-action-btn secondary">
+                        <i class="fas fa-wifi"></i> اختبار الاتصال
+                    </button>
+                    <button onclick="openOpenRouterKeysPage()" class="api-key-action-btn tertiary">
+                        <i class="fas fa-external-link-alt"></i> إنشاء مفتاح جديد
+                    </button>
+                </div>
+                
+                <div id="openrouter-status" style="margin-top: 20px; padding: 15px; background: #e5e7eb; border-radius: var(--radius); text-align: center; font-weight: 600; display: none;">
+                    <!-- ستظهر حالة الاتصال هنا -->
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <h3><i class="fas fa-sliders-h"></i> إعدادات اتصال النماذج</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                            وضع الاتصال
+                        </label>
+                        <select id="connection-mode" style="width: 100%; padding: 10px; border-radius: var(--radius); border: 2px solid #e5e7eb;">
+                            <option value="auto" selected>تلقائي (OpenRouter أولاً)</option>
+                            <option value="openrouter">OpenRouter فقط</option>
+                            <option value="local">النظام المحلي فقط</option>
+                            <option value="hybrid">هجين (أفضل النتيجتين)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                            نموذج OpenRouter
+                        </label>
+                        <select id="openrouter-model" style="width: 100%; padding: 10px; border-radius: var(--radius); border: 2px solid #e5e7eb;">
+                            <option value="openai/gpt-3.5-turbo">GPT-3.5 Turbo (سريع)</option>
+                            <option value="openai/gpt-4">GPT-4 (دقيق)</option>
+                            <option value="anthropic/claude-3-haiku">Claude 3 Haiku (متوازن)</option>
+                            <option value="google/gemini-pro">Gemini Pro (متعدد اللغات)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                        <input type="checkbox" id="auto-fallback" checked> التبديل التلقائي للنظام المحلي عند فشل الاتصال
+                    </label>
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                        <input type="checkbox" id="save-conversations" checked> حفظ المحادثات مع تحديد النموذج المستخدم
+                    </label>
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
+                        <input type="checkbox" id="log-api-usage" checked> تسجيل استخدام API للإحصائيات
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <h3><i class="fas fa-chart-bar"></i> إحصائيات الاستخدام</h3>
+                <div id="api-usage-stats" style="background: #f0f9ff; padding: 20px; border-radius: var(--radius);">
+                    <div style="text-align: center; color: var(--dark); margin-bottom: 15px;">
+                        <i class="fas fa-chart-pie"></i> لا توجد بيانات استخدام بعد
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: center;">
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--stellar);">0</div>
+                            <div style="font-size: 0.9rem; color: var(--dark);">طلبات OpenRouter</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--circular);">0</div>
+                            <div style="font-size: 0.9rem; color: var(--dark);">ردود محلية</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="clearAPIUsageStats()" class="tool-btn" style="width: 100%; justify-content: center; margin-top: 15px;">
+                    <i class="fas fa-trash"></i> مسح إحصائيات الاستخدام
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- تبويب اختبار ERD -->
+    <div id="erd-test-tab" class="tab-content">
+        <div class="settings-container">
+            <h2 style="margin-bottom: 25px; color: var(--api-test); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <i class="fas fa-chart-line"></i> اختبار وتقييم أداء النماذج (ERD)
+            </h2>
+
+            <div class="settings-group">
+                <h3><i class="fas fa-info-circle"></i> عن اختبار ERD</h3>
+                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
+                    اختبار ERD (Enhanced Response Depth) يقيس عمق وجودة استجابات النماذج في مجالات متعددة.
+                    يستخدم هذا الاختبار لقياس أداء النماذج المختلفة ومقارنتها.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                    <div style="text-align: center; padding: 15px; background: rgba(139, 92, 246, 0.1); border-radius: var(--radius);">
+                        <i class="fas fa-brain" style="color: var(--stellar); font-size: 2rem; margin-bottom: 10px;"></i>
+                        <div style="font-weight: bold; color: var(--stellar);">العمق الفكري</div>
+                        <div style="font-size: 0.8rem; color: var(--dark);">عمق التحليل والتفكير</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: var(--radius);">
+                        <i class="fas fa-cogs" style="color: var(--circular); font-size: 2rem; margin-bottom: 10px;"></i>
+                        <div style="font-weight: bold; color: var(--circular);">الدقة المنطقية</div>
+                        <div style="font-size: 0.8rem; color: var(--dark);">صحة المنطق والاستنتاج</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: rgba(245, 158, 11, 0.1); border-radius: var(--radius);">
+                        <i class="fas fa-lightbulb" style="color: var(--existential); font-size: 2rem; margin-bottom: 10px;"></i>
+                        <div style="font-weight: bold; color: var(--existential);">الإبداع</div>
+                        <div style="font-size: 0.8rem; color: var(--dark);">الأفكار الجديدة والمبتكرة</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background: rgba(59, 130, 246, 0.1); border-radius: var(--radius);">
+                        <i class="fas fa-comments" style="color: var(--emotional); font-size: 2rem; margin-bottom: 10px;"></i>
+                        <div style="font-weight: bold; color: var(--emotional);">الوضوح</div>
+                        <div style="font-size: 0.8rem; color: var(--dark);">وضوح الصياغة والتعبير</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="erd-test-container">
+                <h3><i class="fas fa-play-circle"></i> بدء اختبار ERD</h3>
+                <div style="text-align: center; padding: 30px;">
+                    <div style="font-size: 1.2rem; color: var(--dark); margin-bottom: 30px;">
+                        سيتم اختبار النماذج المتاحة على مجموعة من الأسئلة المعيارية<br>
+                        الوقت التقريبي: 2-3 دقائق لكل نموذج
+                    </div>
+                    <button onclick="startERDTest()" class="tool-btn api-test-btn" style="padding: 15px 40px; font-size: 1.3rem;">
+                        <i class="fas fa-play"></i> بدء اختبار ERD الشامل
+                    </button>
+                    <p style="color: var(--dark); margin-top: 20px; font-size: 0.9rem;">
+                        <i class="fas fa-history"></i> آخر اختبار: <span id="last-erd-test-date">لم تجرِ أي اختبار بعد</span>
+                    </p>
+                </div>
+
+                <div id="erd-test-progress" style="display: none;">
+                    <div class="ocr-progress">
+                        <i class="fas fa-spinner fa-spin" style="color: var(--api-test); font-size: 1.5rem; margin-bottom: 10px;"></i>
+                        <div id="erd-test-status">جاري إعداد الاختبار...</div>
+                        <div class="ocr-progress-bar">
+                            <div class="ocr-progress-fill" id="erd-test-progress-fill" style="width: 0%"></div>
+                        </div>
+                        <div id="erd-test-progress-text">0%</div>
+                    </div>
+                    
+                    <div id="erd-test-current" style="margin-top: 20px;">
+                        <!-- سيعرض النموذج الحالي الذي يتم اختباره -->
+                    </div>
+                </div>
+
+                <div id="erd-test-results" style="display: none;">
+                    <!-- ستظهر النتائج هنا -->
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <h3><i class="fas fa-trophy"></i> نتائج الاختبارات السابقة</h3>
+                <div id="previous-erd-results">
+                    <div style="text-align: center; padding: 30px; color: var(--dark);">
+                        <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: 20px; display: block; color: #d1d5db;"></i>
+                        <h4>لا توجد نتائج سابقة</h4>
+                        <p>قم بإجراء اختبار ERD أولاً لرؤية النتائج هنا.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- تبويب نظام OCR -->
     <div id="ocr-system-tab" class="tab-content">
         <div class="settings-container">
@@ -1042,41 +1252,12 @@
                     نظام استخراج النصوص من الصور وملفات PDF باستخدام تقنية Tesseract.js وPDF.js.
                 </p>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
-                    <div>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
-                            لغة OCR الأساسية
-                        </label>
-                        <select id="ocr-language" style="width: 100%; padding: 10px; border-radius: var(--radius); border: 2px solid #e5e7eb;">
-                            <option value="ara">العربية</option>
-                            <option value="eng">الإنجليزية</option>
-                            <option value="ara+eng">العربية + الإنجليزية</option>
-                            <option value="fas">الفارسية</option>
-                            <option value="fra">الفرنسية</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
-                            دقة OCR
-                            <span id="ocr-accuracy-value">متوسطة</span>
-                        </label>
-                        <select id="ocr-accuracy" style="width: 100%; padding: 10px; border-radius: var(--radius); border: 2px solid #e5e7eb;">
-                            <option value="low">منخفضة (أسرع)</option>
-                            <option value="medium" selected>متوسطة</option>
-                            <option value="high">عالية (أبطأ)</option>
-                        </select>
-                    </div>
-                </div>
-                
                 <div style="margin-top: 20px;">
                     <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
                         <input type="checkbox" id="auto-ocr" checked> تمكين OCR التلقائي عند رفع الملفات
                     </label>
                     <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
                         <input type="checkbox" id="save-extracted-text" checked> حفظ النصوص المستخرجة مع المحادثة
-                    </label>
-                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
-                        <input type="checkbox" id="show-ocr-progress" checked> عرض تقدم عملية OCR
                     </label>
                 </div>
             </div>
@@ -1095,136 +1276,6 @@
                             </button>
                         </div>
                     </div>
-                    
-                    <div class="ocr-progress" id="ocr-progress" style="display: none;">
-                        <i class="fas fa-spinner fa-spin" style="color: var(--ocr); font-size: 1.5rem; margin-bottom: 10px;"></i>
-                        <div>جاري استخراج النص...</div>
-                        <div class="ocr-progress-bar">
-                            <div class="ocr-progress-fill" id="ocr-progress-fill" style="width: 0%"></div>
-                        </div>
-                        <div id="ocr-progress-text">0%</div>
-                    </div>
-                    
-                    <div class="extracted-text-preview" id="ocr-test-results" style="display: none;">
-                        <div class="extracted-text-header">
-                            <h4 style="color: var(--ocr); margin: 0;"><i class="fas fa-text-height"></i> النص المستخرج من الاختبار</h4>
-                            <div>
-                                <button onclick="copyTestOCRText()" class="tool-btn" style="padding: 5px 10px; font-size: 0.8rem;">
-                                    <i class="fas fa-copy"></i> نسخ
-                                </button>
-                                <button onclick="useTestOCRText()" class="tool-btn" style="padding: 5px 10px; font-size: 0.8rem; margin-right: 5px;">
-                                    <i class="fas fa-comment"></i> استخدام في المحادثة
-                                </button>
-                            </div>
-                        </div>
-                        <div id="ocr-test-text-content"></div>
-                    </div>
-                </div>
-                
-                <button onclick="runOCRBenchmark()" class="tool-btn" style="width: 100%; justify-content: center; margin-top: 15px;">
-                    <i class="fas fa-running"></i> تشغيل اختبار أداء OCR
-                </button>
-            </div>
-
-            <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(139, 92, 246, 0.1)); padding: 25px; border-radius: var(--radius); margin-top: 30px;">
-                <h4 style="color: var(--ocr); margin-bottom: 10px;"><i class="fas fa-info-circle"></i> حول نظام OCR</h4>
-                <p style="color: var(--dark); font-size: 0.9rem; line-height: 1.6;">
-                    • 📷 <strong>قراءة الصور:</strong> استخراج النصوص من الصور باستخدام Tesseract.js<br>
-                    • 📄 <strong>قراءة PDF:</strong> استخراج النصوص من ملفات PDF باستخدام PDF.js<br>
-                    • 🌐 <strong>لغات متعددة:</strong> دعم العربية والإنجليزية ولغات أخرى<br>
-                    • ⚡ <strong>معالجة محلية:</strong> لا توجد حاجة لاتصال بالإنترنت<br>
-                    • 🔒 <strong>خصوصية تامة:</strong> جميع البيانات تتم معالجتها على جهازك<br>
-                    • 🎯 <strong>دقة عالية:</strong> نتائج دقيقة مع تقنيات معالجة الصور المتقدمة
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- تبويب اختبار الذكاء -->
-    <div id="iq-test-tab" class="tab-content">
-        <div class="settings-container">
-            <h2 style="margin-bottom: 25px; color: var(--iq-test); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                <i class="fas fa-brain"></i> اختبار الذكاء الشامل حسب بروتوكول ICP
-            </h2>
-
-            <div class="settings-group">
-                <h3><i class="fas fa-info-circle"></i> عن الاختبار</h3>
-                <p style="color: var(--dark); margin-bottom: 15px; line-height: 1.6;">
-                    هذا الاختبار يقيس مستويات الذكاء المختلفة حسب بروتوكول ICP البحثي. 
-                    ستحصل على تقييم شامل في 5 مجالات رئيسية للذكاء مع تحليل مفصل لكل مستوى.
-                </p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
-                    <div style="text-align: center; padding: 15px; background: rgba(139, 92, 246, 0.1); border-radius: var(--radius);">
-                        <i class="fas fa-route" style="color: var(--linear); font-size: 2rem; margin-bottom: 10px;"></i>
-                        <div style="font-weight: bold; color: var(--linear);">الذكاء الخطي</div>
-                        <div style="font-size: 0.8rem; color: var(--dark);">التحليل المنطقي المنهجي</div>
-                    </div>
-                    <div style="text-align: center; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: var(--radius);">
-                        <i class="fas fa-sync-alt" style="color: var(--circular); font-size: 2rem; margin-bottom: 10px;"></i>
-                        <div style="font-weight: bold; color: var(--circular);">الذكاء الدائري</div>
-                        <div style="font-size: 0.8rem; color: var(--dark);">التفكير المتكامل والربط</div>
-                    </div>
-                    <div style="text-align: center; padding: 15px; background: rgba(245, 158, 11, 0.1); border-radius: var(--radius);">
-                        <i class="fas fa-star" style="color: var(--existential); font-size: 2rem; margin-bottom: 10px;"></i>
-                        <div style="font-weight: bold; color: var(--existential);">الذكاء الوجودي</div>
-                        <div style="font-size: 0.8rem; color: var(--dark);">التفكير الفلسفي العميق</div>
-                    </div>
-                    <div style="text-align: center; padding: 15px; background: rgba(236, 72, 153, 0.1); border-radius: var(--radius);">
-                        <i class="fas fa-atom" style="color: var(--quantum); font-size: 2rem; margin-bottom: 10px;"></i>
-                        <div style="font-weight: bold; color: var(--quantum);">الذكاء الكمي</div>
-                        <div style="font-size: 0.8rem; color: var(--dark);">التفكير المتوازي والمتعدد</div>
-                    </div>
-                    <div style="text-align: center; padding: 15px; background: rgba(59, 130, 246, 0.1); border-radius: var(--radius);">
-                        <i class="fas fa-heart" style="color: var(--emotional); font-size: 2rem; margin-bottom: 10px;"></i>
-                        <div style="font-weight: bold; color: var(--emotional);">الذكاء العاطفي</div>
-                        <div style="font-size: 0.8rem; color: var(--dark);">الفهم التعاطفي والعاطفي</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="settings-group">
-                <h3><i class="fas fa-play-circle"></i> بدء الاختبار</h3>
-                <div id="iq-test-start" style="text-align: center; padding: 40px;">
-                    <div style="font-size: 1.2rem; color: var(--dark); margin-bottom: 30px;">
-                        يتكون الاختبار من 10 أسئلة تغطي جميع مجالات الذكاء.<br>
-                        الوقت التقريبي: 10-15 دقيقة
-                    </div>
-                    <button onclick="startIQTest()" class="tool-btn iq-btn" style="padding: 15px 40px; font-size: 1.3rem;">
-                        <i class="fas fa-play"></i> بدء اختبار الذكاء
-                    </button>
-                    <p style="color: var(--dark); margin-top: 20px; font-size: 0.9rem;">
-                        <i class="fas fa-history"></i> آخر اختبار: <span id="last-test-date">لم تجرِ أي اختبار بعد</span>
-                    </p>
-                </div>
-
-                <div id="iq-test-container" style="display: none;">
-                    <div class="iq-test-question">
-                        <h3 id="question-title" style="margin-bottom: 20px; color: var(--iq-test);">السؤال 1 من 10</h3>
-                        <div id="question-text" style="font-size: 1.1rem; color: var(--dark); margin-bottom: 30px;">
-                            جاري تحميل السؤال...
-                        </div>
-                        
-                        <div id="options-container">
-                            <!-- سيتم إضافة الخيارات هنا -->
-                        </div>
-                    </div>
-
-                    <div style="display: flex; justify-content: space-between; margin-top: 30px;">
-                        <button onclick="previousQuestion()" class="tool-btn" id="prev-btn" disabled>
-                            <i class="fas fa-arrow-right"></i> السابق
-                        </button>
-                        <button onclick="nextQuestion()" class="tool-btn primary" id="next-btn">
-                            التالي <i class="fas fa-arrow-left"></i>
-                        </button>
-                        <button onclick="finishIQTest()" class="tool-btn iq-btn" id="finish-btn" style="display: none;">
-                            <i class="fas fa-flag-checkered"></i> إنهاء الاختبار
-                        </button>
-                    </div>
-                </div>
-
-                <div id="iq-test-results" style="display: none;">
-                    <!-- سيتم عرض النتائج هنا -->
                 </div>
             </div>
         </div>
@@ -1244,30 +1295,10 @@
                         تنسيق التصدير
                     </label>
                     <select id="pdf-template" class="model-select">
-                        <option value="research">تنسيق بحث أكاديمي</option>
+                        <option value="research">تقرير بحثي متكامل</option>
                         <option value="conversation">نسخة المحادثة</option>
-                        <option value="analysis">تقرير التحليل</option>
-                        <option value="custom">تنسيق مخصص</option>
+                        <option value="analysis">تحليل النتائج</option>
                     </select>
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
-                    <div>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
-                            <input type="checkbox" id="include-ocr-text" checked> تضمين النصوص المستخرجة
-                        </label>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
-                            <input type="checkbox" id="include-iq-results" checked> تضمين نتائج اختبار الذكاء
-                        </label>
-                    </div>
-                    <div>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
-                            <input type="checkbox" id="include-timestamps" checked> تضمين الطوابع الزمنية
-                        </label>
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark);">
-                            <input type="checkbox" id="include-erd" checked> تضمين درجات ERD
-                        </label>
-                    </div>
                 </div>
                 
                 <div style="display: flex; gap: 10px; margin-top: 20px;">
@@ -1277,24 +1308,6 @@
                     <button onclick="exportToPDF()" class="tool-btn pdf-btn" style="flex: 1;">
                         <i class="fas fa-download"></i> تصدير PDF
                     </button>
-                </div>
-                
-                <div class="pdf-preview" id="pdf-preview" style="margin-top: 20px;">
-                    <h2 style="color: #333; border-bottom: 2px solid var(--pdf); padding-bottom: 10px; margin-bottom: 20px;">
-                        تصدير محادثة بحث ICP
-                    </h2>
-                    
-                    <div style="margin-bottom: 20px; color: #666; font-size: 0.9rem;">
-                        <strong>تم الإنشاء:</strong> <span id="pdf-date">جارٍ التحميل...</span><br>
-                        <strong>الباحث:</strong> <span id="pdf-researcher">عمار ناصر حسين المنتفجي</span><br>
-                        <strong>النظام:</strong> <span id="pdf-system">AMMAR AI Academy ICP</span>
-                    </div>
-                    
-                    <div id="pdf-content">
-                        <p style="color: #888; font-style: italic;">
-                            ستظهر معاينة PDF هنا. انقر على "معاينة" للتحديث.
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1311,20 +1324,20 @@
                 <i class="fas fa-paperclip"></i>
                 رفع الملفات
             </button>
-            <button class="tool-btn ocr-btn" onclick="switchToTab('ocr-system')">
-                <i class="fas fa-file-alt"></i>
-                قراءة النصوص
+            <button class="tool-btn api-test-btn" onclick="switchToTab('erd-test')">
+                <i class="fas fa-chart-line"></i>
+                اختبار ERD
             </button>
-            <button class="tool-btn iq-btn" onclick="switchToTab('iq-test')">
-                <i class="fas fa-brain"></i>
-                اختبار الذكاء
+            <button class="tool-btn" onclick="switchToTab('api-settings')">
+                <i class="fas fa-key"></i>
+                إعدادات API
             </button>
         </div>
         
         <div class="tools-group">
             <div style="background: linear-gradient(135deg, var(--stellar), var(--existential)); color: white; padding: 8px 15px; border-radius: var(--radius); font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
                 <i class="fas fa-brain-circuit"></i>
-                <span>ICP PRO | OCR System | ERD: <span id="current-erd">4.8</span></span>
+                <span>ICP PRO | <span id="current-connection-mode">محلي</span> | ERD: <span id="current-erd">4.8</span></span>
             </div>
             <button class="tool-btn primary" onclick="showAdvancedSettings()">
                 <i class="fas fa-cog"></i>
@@ -1337,156 +1350,667 @@
 
     <script>
     // ==========================================
-    // 1. نظام قراءة النصوص المتقدم (OCR)
+    // 1. نظام اتصال API المتقدم مع OpenRouter
     // ==========================================
-    const OCRSystem = {
-        isProcessing: false,
-        currentProgress: 0,
-        extractedTexts: new Map(),
+    const APIConnectionSystem = {
+        openRouterAPIKey: '',
+        connectionMode: 'auto',
+        currentModel: 'openai/gpt-3.5-turbo',
+        isConnected: false,
+        apiUsage: {
+            openrouter: 0,
+            local: 0,
+            lastReset: null
+        },
         
         init: function() {
             this.loadSettings();
+            this.loadAPIUsageStats();
+            this.updateConnectionStatus();
         },
         
         loadSettings: function() {
-            const settings = JSON.parse(localStorage.getItem('ocr_settings') || '{}');
-            if (settings.language) {
-                document.getElementById('ocr-language').value = settings.language;
+            const savedKey = localStorage.getItem('openrouter_api_key');
+            if (savedKey) {
+                this.openRouterAPIKey = savedKey;
+                document.getElementById('openrouter-api-key').value = savedKey;
             }
-            if (settings.accuracy) {
-                document.getElementById('ocr-accuracy').value = settings.accuracy;
-            }
-            if (settings.autoOCR !== undefined) {
-                document.getElementById('auto-ocr').checked = settings.autoOCR;
-            }
+            
+            const savedMode = localStorage.getItem('connection_mode') || 'auto';
+            this.connectionMode = savedMode;
+            document.getElementById('connection-mode').value = savedMode;
+            
+            const savedModel = localStorage.getItem('openrouter_model') || 'openai/gpt-3.5-turbo';
+            this.currentModel = savedModel;
+            document.getElementById('openrouter-model').value = savedModel;
         },
         
         saveSettings: function() {
-            const settings = {
-                language: document.getElementById('ocr-language').value,
-                accuracy: document.getElementById('ocr-accuracy').value,
-                autoOCR: document.getElementById('auto-ocr').checked,
-                saveText: document.getElementById('save-extracted-text').checked,
-                showProgress: document.getElementById('show-ocr-progress').checked
+            const apiKey = document.getElementById('openrouter-api-key').value.trim();
+            this.openRouterAPIKey = apiKey;
+            localStorage.setItem('openrouter_api_key', apiKey);
+            
+            const mode = document.getElementById('connection-mode').value;
+            this.connectionMode = mode;
+            localStorage.setItem('connection_mode', mode);
+            
+            const model = document.getElementById('openrouter-model').value;
+            this.currentModel = model;
+            localStorage.setItem('openrouter_model', model);
+            
+            showNotification('تم حفظ إعدادات API بنجاح', 'success');
+            this.updateConnectionStatus();
+        },
+        
+        loadAPIUsageStats: function() {
+            const savedStats = localStorage.getItem('api_usage_stats');
+            if (savedStats) {
+                this.apiUsage = JSON.parse(savedStats);
+                this.displayAPIUsageStats();
+            }
+        },
+        
+        saveAPIUsageStats: function() {
+            localStorage.setItem('api_usage_stats', JSON.stringify(this.apiUsage));
+            this.displayAPIUsageStats();
+        },
+        
+        displayAPIUsageStats: function() {
+            const statsContainer = document.getElementById('api-usage-stats');
+            if (!statsContainer) return;
+            
+            statsContainer.innerHTML = `
+                <div style="text-align: center; color: var(--dark); margin-bottom: 15px;">
+                    <i class="fas fa-chart-pie"></i> إحصائيات الاستخدام
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: center;">
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--stellar);">${this.apiUsage.openrouter}</div>
+                        <div style="font-size: 0.9rem; color: var(--dark);">طلبات OpenRouter</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--circular);">${this.apiUsage.local}</div>
+                        <div style="font-size: 0.9rem; color: var(--dark);">ردود محلية</div>
+                    </div>
+                </div>
+                ${this.apiUsage.lastReset ? 
+                    `<div style="text-align: center; margin-top: 10px; font-size: 0.8rem; color: var(--dark);">
+                        آخر تحديث: ${new Date(this.apiUsage.lastReset).toLocaleDateString('ar-SA')}
+                    </div>` : ''
+                }
+            `;
+        },
+        
+        updateConnectionStatus: function() {
+            const statusDiv = document.getElementById('openrouter-status');
+            if (!statusDiv) return;
+            
+            if (this.openRouterAPIKey) {
+                statusDiv.innerHTML = `
+                    <i class="fas fa-check-circle" style="color: var(--circular);"></i>
+                    تم حفظ مفتاح API (${this.openRouterAPIKey.substring(0, 12)}...)
+                `;
+                statusDiv.style.background = '#d1fae5';
+                statusDiv.style.display = 'block';
+                this.isConnected = true;
+            } else {
+                statusDiv.innerHTML = `
+                    <i class="fas fa-exclamation-triangle" style="color: var(--existential);"></i>
+                    لم يتم إدخال مفتاح API
+                `;
+                statusDiv.style.background = '#fef3c7';
+                statusDiv.style.display = 'block';
+                this.isConnected = false;
+            }
+            
+            // تحديث وضع الاتصال الحالي في شريط الأدوات
+            const connectionModeDisplay = document.getElementById('current-connection-mode');
+            if (connectionModeDisplay) {
+                const modeNames = {
+                    'auto': 'تلقائي',
+                    'openrouter': 'OpenRouter',
+                    'local': 'محلي',
+                    'hybrid': 'هجين'
+                };
+                connectionModeDisplay.textContent = modeNames[this.connectionMode] || 'تلقائي';
+            }
+        },
+        
+        testOpenRouterConnection: async function() {
+            if (!this.openRouterAPIKey) {
+                showNotification('الرجاء إدخال مفتاح OpenRouter API أولاً', 'error');
+                return;
+            }
+            
+            const statusDiv = document.getElementById('openrouter-status');
+            statusDiv.innerHTML = `
+                <i class="fas fa-spinner fa-spin"></i>
+                جاري اختبار الاتصال بـ OpenRouter...
+            `;
+            statusDiv.style.background = '#fef3c7';
+            
+            try {
+                const response = await fetch('https://openrouter.ai/api/v1/models', {
+                    headers: {
+                        'Authorization': `Bearer ${this.openRouterAPIKey}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    const modelCount = data.data?.length || 0;
+                    
+                    statusDiv.innerHTML = `
+                        <i class="fas fa-check-circle" style="color: var(--circular);"></i>
+                        الاتصال ناجح! ${modelCount} نموذج متاح
+                    `;
+                    statusDiv.style.background = '#d1fae5';
+                    this.isConnected = true;
+                    
+                    showNotification(`الاتصال بـ OpenRouter ناجح (${modelCount} نموذج)`, 'success');
+                } else {
+                    throw new Error(`خطأ في الاتصال: ${response.status}`);
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <i class="fas fa-times-circle" style="color: var(--pdf);"></i>
+                    فشل الاتصال: ${error.message}
+                `;
+                statusDiv.style.background = '#fee2e2';
+                this.isConnected = false;
+                
+                showNotification(`فشل الاتصال بـ OpenRouter: ${error.message}`, 'error');
+            }
+        },
+        
+        sendToOpenRouter: async function(messages) {
+            if (!this.openRouterAPIKey || !this.isConnected) {
+                throw new Error('اتصال OpenRouter غير متاح');
+            }
+            
+            try {
+                const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${this.openRouterAPIKey}`,
+                        'Content-Type': 'application/json',
+                        'HTTP-Referer': window.location.origin,
+                        'X-Title': 'AMMAR AI Academy ICP'
+                    },
+                    body: JSON.stringify({
+                        model: this.currentModel,
+                        messages: messages,
+                        temperature: 0.7,
+                        max_tokens: 2000
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`خطأ في API: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // تحديث إحصائيات الاستخدام
+                this.apiUsage.openrouter++;
+                this.apiUsage.lastReset = new Date().toISOString();
+                this.saveAPIUsageStats();
+                
+                return data.choices[0].message.content;
+            } catch (error) {
+                throw error;
+            }
+        },
+        
+        getLocalResponse: function(message, mode) {
+            const responses = {
+                linear: `لقد قمت بتحليل استفسارك: "${message.substring(0, 100)}...". بناءً على التحليل المنهجي، أوصي بالنظر في عدة عوامل والتعامل مع هذا المنطق.`,
+                existential: `سؤالك يلامس المعاني الأعمق. من منظور وجودي، قد نأخذ في الاعتبار التضمينات الأوسع والأبعاد الفلسفية.`,
+                quantum: `استكشاف استفسارك من خلال عدسات متعددة يكشف احتمالات وتفسيرات بديلة مثيرة للاهتمام تستحق النظر.`,
+                emotional: `أشعر أن هذا الموضوع قد يكون له أبعاد عاطفية. من المهم التعامل مع التعاطف والتفهم.`
             };
-            localStorage.setItem('ocr_settings', JSON.stringify(settings));
-            showNotification('تم حفظ إعدادات OCR', 'success');
+            
+            const baseResponse = responses[mode] || responses.linear;
+            return `${baseResponse}\n\n[ملاحظة: تم إنشاء هذا الرد باستخدام النظام المحلي. للحصول على ردود أكثر تقدمًا، قم بتوصيل OpenRouter API.]`;
         },
         
-        extractTextFromImage: async function(imageData) {
-            return new Promise((resolve, reject) => {
-                try {
-                    const language = document.getElementById('ocr-language').value;
-                    const accuracy = document.getElementById('ocr-accuracy').value;
-                    
-                    // تحديد إعدادات Tesseract بناءً على الدقة
-                    const tessConfig = {
-                        logger: m => {
-                            if (m.status === 'recognizing text') {
-                                this.updateProgress(50 + (m.progress * 50));
+        generateResponse: async function(message, mode) {
+            const messages = [
+                {
+                    role: "system",
+                    content: `أنت مساعد ذكي متخصص في ${mode}. قدم ردًا مفيدًا وعميقًا.`
+                },
+                {
+                    role: "user",
+                    content: message
+                }
+            ];
+            
+            let response;
+            let source = 'local';
+            
+            try {
+                switch (this.connectionMode) {
+                    case 'openrouter':
+                        response = await this.sendToOpenRouter(messages);
+                        source = 'openrouter';
+                        break;
+                        
+                    case 'auto':
+                        if (this.openRouterAPIKey && this.isConnected) {
+                            try {
+                                response = await this.sendToOpenRouter(messages);
+                                source = 'openrouter';
+                            } catch (error) {
+                                if (document.getElementById('auto-fallback').checked) {
+                                    response = this.getLocalResponse(message, mode);
+                                    source = 'local_fallback';
+                                } else {
+                                    throw error;
+                                }
                             }
+                        } else {
+                            response = this.getLocalResponse(message, mode);
+                            source = 'local';
                         }
+                        break;
+                        
+                    case 'hybrid':
+                        // محاولة OpenRouter أولاً، ثم المحلي
+                        if (this.openRouterAPIKey && this.isConnected) {
+                            try {
+                                response = await this.sendToOpenRouter(messages);
+                                source = 'openrouter';
+                            } catch (error) {
+                                response = this.getLocalResponse(message, mode);
+                                source = 'local_fallback';
+                            }
+                        } else {
+                            response = this.getLocalResponse(message, mode);
+                            source = 'local';
+                        }
+                        break;
+                        
+                    default: // local
+                        response = this.getLocalResponse(message, mode);
+                        source = 'local';
+                        break;
+                }
+                
+                // تحديث إحصائيات المحلية إذا لم تكن من OpenRouter
+                if (source !== 'openrouter') {
+                    this.apiUsage.local++;
+                    this.apiUsage.lastReset = new Date().toISOString();
+                    this.saveAPIUsageStats();
+                }
+                
+                return { response, source };
+                
+            } catch (error) {
+                console.error('Error generating response:', error);
+                
+                // استخدام النظام المحلي كملاذ أخير
+                response = this.getLocalResponse(message, mode);
+                source = 'local_error';
+                
+                this.apiUsage.local++;
+                this.saveAPIUsageStats();
+                
+                return { response, source };
+            }
+        },
+        
+        openOpenRouterKeysPage: function() {
+            window.open('https://openrouter.ai/keys', '_blank');
+            showNotification('تم فتح صفحة إنشاء مفاتيح OpenRouter', 'info');
+        },
+        
+        clearAPIUsageStats: function() {
+            Swal.fire({
+                title: 'مسح إحصائيات الاستخدام؟',
+                text: 'سيتم حذف جميع إحصائيات استخدام API.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'نعم، مسح',
+                cancelButtonText: 'إلغاء'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.apiUsage = {
+                        openrouter: 0,
+                        local: 0,
+                        lastReset: new Date().toISOString()
                     };
-                    
-                    if (accuracy === 'low') {
-                        tessConfig.workerBlobURL = false;
-                    }
-                    
-                    Tesseract.recognize(
-                        imageData,
-                        language,
-                        tessConfig
-                    ).then(({ data: { text } }) => {
-                        resolve(text || 'لم يتم العثور على نص في الصورة');
-                    }).catch(error => {
-                        reject(new Error(`فشل استخراج النص: ${error.message}`));
-                    });
-                } catch (error) {
-                    reject(error);
+                    this.saveAPIUsageStats();
+                    showNotification('تم مسح إحصائيات الاستخدام', 'success');
+                }
+            });
+        }
+    };
+
+    // ==========================================
+    // 2. نظام اختبار ERD للنماذج
+    // ==========================================
+    const ERDTestSystem = {
+        testQuestions: [
+            {
+                id: 1,
+                question: "ما هي التحديات الأخلاقية الرئيسية في تطوير الذكاء الاصطناعي المتقدم؟",
+                category: "ethical",
+                difficulty: "high"
+            },
+            {
+                id: 2,
+                question: "اشرح مفهوم 'التعلم العميق' بأسلوب بسيط لمبتدئ في مجال الذكاء الاصطناعي.",
+                category: "technical",
+                difficulty: "medium"
+            },
+            {
+                id: 3,
+                question: "كيف يمكن للذكاء الاصطناعي أن يساهم في حل مشكلة تغير المناخ؟",
+                category: "creative",
+                difficulty: "high"
+            },
+            {
+                id: 4,
+                question: "ما الفرق بين الذكاء الاصطناعي الضيق (Narrow AI) والذكاء الاصطناعي العام (AGI)؟",
+                category: "conceptual",
+                difficulty: "medium"
+            },
+            {
+                id: 5,
+                question: "اقترح ثلاثة تطبيقات مبتكرة للذكاء الاصطناعي في مجال التعليم.",
+                category: "creative",
+                difficulty: "medium"
+            }
+        ],
+        
+        testResults: [],
+        currentTest: null,
+        testInProgress: false,
+        
+        init: function() {
+            this.loadPreviousResults();
+        },
+        
+        loadPreviousResults: function() {
+            const savedResults = localStorage.getItem('erd_test_results');
+            if (savedResults) {
+                this.testResults = JSON.parse(savedResults);
+                this.displayPreviousResults();
+            }
+        },
+        
+        saveResults: function() {
+            localStorage.setItem('erd_test_results', JSON.stringify(this.testResults));
+            this.displayPreviousResults();
+        },
+        
+        startERDTest: async function() {
+            if (this.testInProgress) {
+                showNotification('جاري بالفعل إجراء اختبار آخر', 'warning');
+                return;
+            }
+            
+            Swal.fire({
+                title: 'بدء اختبار ERD الشامل',
+                html: `
+                    <div style="text-align: right;">
+                        <p>سيتم اختبار النماذج على:</p>
+                        <ul style="text-align: right; margin-right: 20px;">
+                            <li>${this.testQuestions.length} سؤال معياري</li>
+                            <li>مجالات متعددة: أخلاقي، تقني، إبداعي، مفاهيمي</li>
+                            <li>مستويات صعوبة مختلفة</li>
+                        </ul>
+                        <p>الوقت التقريبي: 2-3 دقائق</p>
+                    </div>
+                `,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'بدء الاختبار',
+                cancelButtonText: 'إلغاء'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await this.runComprehensiveTest();
                 }
             });
         },
         
-        extractTextFromPDF: async function(pdfData) {
-            return new Promise(async (resolve, reject) => {
-                try {
-                    const loadingTask = pdfjsLib.getDocument({ data: pdfData });
-                    const pdf = await loadingTask.promise;
-                    let fullText = '';
-                    
-                    for (let i = 1; i <= pdf.numPages; i++) {
-                        this.updateProgress((i / pdf.numPages) * 100);
-                        
-                        const page = await pdf.getPage(i);
-                        const textContent = await page.getTextContent();
-                        const pageText = textContent.items.map(item => item.str).join(' ');
-                        fullText += `\n\n--- الصفحة ${i} ---\n${pageText}`;
-                        
-                        // تحديث التقدم
-                        if (document.getElementById('show-ocr-progress').checked) {
-                            this.updateProgress((i / pdf.numPages) * 100);
-                        }
-                    }
-                    
-                    resolve(fullText.trim() || 'لم يتم العثور على نص في ملف PDF');
-                } catch (error) {
-                    reject(new Error(`فشل قراءة ملف PDF: ${error.message}`));
-                }
+        runComprehensiveTest: async function() {
+            this.testInProgress = true;
+            this.currentTest = {
+                id: Date.now(),
+                startTime: new Date().toISOString(),
+                models: [],
+                results: []
+            };
+            
+            document.getElementById('erd-test-progress').style.display = 'block';
+            document.getElementById('erd-test-results').style.display = 'none';
+            
+            // تحديد النماذج التي سيتم اختبارها
+            const modelsToTest = [];
+            
+            if (APIConnectionSystem.openRouterAPIKey && APIConnectionSystem.isConnected) {
+                modelsToTest.push({
+                    name: 'OpenRouter - ' + APIConnectionSystem.currentModel,
+                    type: 'openrouter',
+                    model: APIConnectionSystem.currentModel
+                });
+            }
+            
+            modelsToTest.push({
+                name: 'النظام المحلي',
+                type: 'local'
             });
-        },
-        
-        extractTextFromFile: async function(file) {
-            return new Promise((resolve, reject) => {
-                if (this.isProcessing) {
-                    reject(new Error('جاري معالجة ملف آخر'));
+            
+            this.currentTest.models = modelsToTest;
+            
+            let currentModelIndex = 0;
+            
+            const testNextModel = async () => {
+                if (currentModelIndex >= modelsToTest.length) {
+                    this.finishTest();
                     return;
                 }
                 
-                this.isProcessing = true;
-                this.currentProgress = 0;
+                const model = modelsToTest[currentModelIndex];
+                const progress = ((currentModelIndex) / modelsToTest.length) * 100;
                 
-                const reader = new FileReader();
+                this.updateTestProgress(progress, `جاري اختبار: ${model.name}`);
                 
-                reader.onload = async (e) => {
-                    try {
-                        if (file.type.startsWith('image/')) {
-                            const text = await this.extractTextFromImage(e.target.result);
-                            resolve(text);
-                        } else if (file.type === 'application/pdf') {
-                            const text = await this.extractTextFromPDF(e.target.result);
-                            resolve(text);
-                        } else {
-                            resolve('نوع الملف غير مدعوم لاستخراج النص');
-                        }
-                    } catch (error) {
-                        reject(error);
-                    } finally {
-                        this.isProcessing = false;
-                        this.hideProgress();
-                    }
-                };
+                document.getElementById('erd-test-current').innerHTML = `
+                    <div class="erd-test-card">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: ${model.type === 'openrouter' ? 'var(--stellar)' : 'var(--circular)'}; display: flex; align-items: center; justify-content: center; color: white;">
+                                <i class="fas ${model.type === 'openrouter' ? 'fa-plug' : 'fa-home'}"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0; color: var(--dark);">${model.name}</h4>
+                                <p style="margin: 5px 0 0 0; color: #6b7280; font-size: 0.9rem;">
+                                    ${model.type === 'openrouter' ? 'نموذج سحابي متقدم' : 'نموذج محلي أساسي'}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
                 
-                reader.onerror = () => {
-                    this.isProcessing = false;
-                    this.hideProgress();
-                    reject(new Error('فشل قراءة الملف'));
-                };
+                const modelResults = await this.testModel(model);
+                this.currentTest.results.push({
+                    model: model,
+                    results: modelResults,
+                    timestamp: new Date().toISOString()
+                });
                 
-                if (file.type.startsWith('image/')) {
-                    reader.readAsDataURL(file);
-                } else if (file.type === 'application/pdf') {
-                    reader.readAsArrayBuffer(file);
-                } else {
-                    this.isProcessing = false;
-                    reject(new Error('نوع الملف غير مدعوم'));
-                }
-            });
+                currentModelIndex++;
+                setTimeout(testNextModel, 100);
+            };
+            
+            await testNextModel();
         },
         
-        updateProgress: function(percentage) {
-            this.currentProgress = percentage;
-            const progressFill = document.getElementById('ocr-progress-fill');
-            const progressText = document.getElementById('ocr-progress-text');
+        testModel: async function(model) {
+            const results = [];
+            
+            for (let i = 0; i < this.testQuestions.length; i++) {
+                const question = this.testQuestions[i];
+                const questionProgress = ((i + 1) / this.testQuestions.length) * 100;
+                const modelProgress = (currentModelIndex / this.currentTest.models.length) * 100;
+                const totalProgress = modelProgress + (questionProgress / this.currentTest.models.length);
+                
+                this.updateTestProgress(totalProgress, `جاري السؤال ${i + 1} من ${this.testQuestions.length} - ${model.name}`);
+                
+                try {
+                    let response;
+                    let source;
+                    
+                    if (model.type === 'openrouter') {
+                        try {
+                            const messages = [
+                                {
+                                    role: "system",
+                                    content: "أجب على السؤال بدقة وعمق."
+                                },
+                                {
+                                    role: "user",
+                                    content: question.question
+                                }
+                            ];
+                            
+                            response = await APIConnectionSystem.sendToOpenRouter(messages);
+                            source = 'openrouter';
+                        } catch (error) {
+                            response = "فشل في الحصول على رد من OpenRouter";
+                            source = 'error';
+                        }
+                    } else {
+                        response = APIConnectionSystem.getLocalResponse(question.question, 'linear');
+                        source = 'local';
+                    }
+                    
+                    // تقييم الرد
+                    const evaluation = this.evaluateResponse(response, question);
+                    
+                    results.push({
+                        question: question,
+                        response: response,
+                        evaluation: evaluation,
+                        source: source
+                    });
+                    
+                } catch (error) {
+                    results.push({
+                        question: question,
+                        response: `خطأ: ${error.message}`,
+                        evaluation: { score: 0, feedback: 'فشل في معالجة السؤال' },
+                        source: 'error'
+                    });
+                }
+            }
+            
+            return results;
+        },
+        
+        evaluateResponse: function(response, question) {
+            let score = 50; // درجة أساسية
+            
+            // معايير التقييم
+            const length = response.length;
+            const hasKeywords = this.checkKeywords(response, question.category);
+            const clarity = this.assessClarity(response);
+            const depth = this.assessDepth(response);
+            const creativity = this.assessCreativity(response, question.category);
+            
+            // حساب النقاط
+            if (length > 100) score += 10;
+            if (length > 300) score += 10;
+            if (hasKeywords) score += 15;
+            score += (clarity * 10);
+            score += (depth * 10);
+            score += (creativity * 5);
+            
+            // ضبط حسب الصعوبة
+            if (question.difficulty === 'high') score *= 1.2;
+            if (question.difficulty === 'low') score *= 0.8;
+            
+            score = Math.min(100, Math.max(0, Math.round(score)));
+            
+            let feedback = '';
+            if (score >= 90) feedback = 'ممتاز - رد عميق ومتكامل';
+            else if (score >= 80) feedback = 'جيد جدًا - رد واضح ومفصل';
+            else if (score >= 70) feedback = 'جيد - رد مناسب وكافٍ';
+            else if (score >= 60) feedback = 'مقبول - رد أساسي';
+            else feedback = 'ضعيف - يحتاج تحسين';
+            
+            return {
+                score: score,
+                feedback: feedback,
+                metrics: {
+                    length: length,
+                    hasKeywords: hasKeywords,
+                    clarity: clarity,
+                    depth: depth,
+                    creativity: creativity
+                }
+            };
+        },
+        
+        checkKeywords: function(response, category) {
+            const keywordSets = {
+                ethical: ['أخلاق', 'قيم', 'مسؤولية', 'شفافية', 'إنصاف'],
+                technical: ['تعلم', 'شبكة', 'خوارزمية', 'معالجة', 'بيانات'],
+                creative: ['ابتكار', 'جديد', 'مبتكر', 'تطبيق', 'فكرة'],
+                conceptual: ['مفهوم', 'تعريف', 'فرق', 'مقارنة', 'تحليل']
+            };
+            
+            const keywords = keywordSets[category] || [];
+            const lowerResponse = response.toLowerCase();
+            
+            return keywords.some(keyword => lowerResponse.includes(keyword));
+        },
+        
+        assessClarity: function(response) {
+            const sentences = response.split(/[.!?]/).filter(s => s.trim().length > 0);
+            if (sentences.length === 0) return 0.5;
+            
+            const avgLength = sentences.reduce((sum, s) => sum + s.length, 0) / sentences.length;
+            
+            if (avgLength < 50) return 0.8;
+            if (avgLength < 100) return 1.0;
+            if (avgLength < 200) return 0.7;
+            return 0.5;
+        },
+        
+        assessDepth: function(response) {
+            const paragraphs = response.split('\n\n').filter(p => p.trim().length > 0);
+            const hasExamples = /مثال|مثلاً|على سبيل|على سبيل المثال/i.test(response);
+            const hasAnalysis = /بسبب|لذلك|نتيجة|وبالتالي|مما يعني/i.test(response);
+            
+            let depthScore = 0;
+            if (paragraphs.length >= 2) depthScore += 0.3;
+            if (hasExamples) depthScore += 0.3;
+            if (hasAnalysis) depthScore += 0.4;
+            
+            return depthScore;
+        },
+        
+        assessCreativity: function(response, category) {
+            if (category !== 'creative') return 0.5;
+            
+            const creativeIndicators = [
+                /جديد|مبتكر|غير مسبوق|فريد/i,
+                /اقتراح|توصية|فكرة/i,
+                /يمكن أن|من الممكن|بإمكان/i
+            ];
+            
+            const matches = creativeIndicators.filter(regex => regex.test(response)).length;
+            return matches / creativeIndicators.length;
+        },
+        
+        updateTestProgress: function(percentage, status) {
+            const progressFill = document.getElementById('erd-test-progress-fill');
+            const progressText = document.getElementById('erd-test-progress-text');
+            const statusElement = document.getElementById('erd-test-status');
             
             if (progressFill) {
                 progressFill.style.width = `${percentage}%`;
@@ -1494,42 +2018,246 @@
             if (progressText) {
                 progressText.textContent = `${Math.round(percentage)}%`;
             }
-        },
-        
-        showProgress: function() {
-            const progressDiv = document.getElementById('ocr-progress');
-            if (progressDiv) {
-                progressDiv.style.display = 'block';
+            if (statusElement) {
+                statusElement.textContent = status;
             }
         },
         
-        hideProgress: function() {
-            const progressDiv = document.getElementById('ocr-progress');
-            if (progressDiv) {
-                progressDiv.style.display = 'none';
-            }
-        },
-        
-        saveExtractedText: function(fileId, text) {
-            this.extractedTexts.set(fileId, text);
+        finishTest: function() {
+            this.testInProgress = false;
             
-            if (document.getElementById('save-extracted-text').checked) {
-                const savedTexts = JSON.parse(localStorage.getItem('extracted_texts') || '{}');
-                savedTexts[fileId] = {
-                    text: text,
-                    timestamp: new Date().toISOString()
+            // حساب المتوسطات
+            const modelAverages = {};
+            
+            this.currentTest.results.forEach(modelResult => {
+                const modelName = modelResult.model.name;
+                const scores = modelResult.results.map(r => r.evaluation.score);
+                const averageScore = scores.reduce((a, b) => a + b, 0) / scores.length;
+                
+                modelAverages[modelName] = {
+                    average: Math.round(averageScore),
+                    scores: scores,
+                    modelType: modelResult.model.type
                 };
-                localStorage.setItem('extracted_texts', JSON.stringify(savedTexts));
+            });
+            
+            // العثور على النموذج الفائز
+            let winner = null;
+            let highestScore = 0;
+            
+            for (const [modelName, data] of Object.entries(modelAverages)) {
+                if (data.average > highestScore) {
+                    highestScore = data.average;
+                    winner = { name: modelName, score: data.average, type: data.modelType };
+                }
+            }
+            
+            // إنشاء نتائج الاختبار
+            const testResult = {
+                id: this.currentTest.id,
+                date: new Date().toISOString(),
+                modelsTested: this.currentTest.models.length,
+                winner: winner,
+                averages: modelAverages,
+                details: this.currentTest.results
+            };
+            
+            this.testResults.push(testResult);
+            this.saveResults();
+            
+            // عرض النتائج
+            this.showTestResults(testResult);
+            
+            // تحديث تاريخ آخر اختبار
+            document.getElementById('last-erd-test-date').textContent = 
+                new Date(testResult.date).toLocaleDateString('ar-SA');
+            
+            showNotification('تم الانتهاء من اختبار ERD بنجاح', 'success');
+        },
+        
+        showTestResults: function(testResult) {
+            document.getElementById('erd-test-progress').style.display = 'none';
+            document.getElementById('erd-test-results').style.display = 'block';
+            
+            let resultsHTML = `
+                <h3 style="text-align: center; color: var(--api-test); margin-bottom: 30px;">
+                    <i class="fas fa-trophy"></i> نتائج اختبار ERD
+                </h3>
+                
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="font-size: 3rem; font-weight: bold; color: ${testResult.winner.type === 'openrouter' ? 'var(--stellar)' : 'var(--circular)'}; margin: 10px 0;">
+                        ${testResult.winner.score}%
+                    </div>
+                    <div style="font-size: 1.2rem; color: var(--dark); margin-bottom: 20px;">
+                        النموذج الفائز: ${testResult.winner.name}
+                    </div>
+                </div>
+            `;
+            
+            // عرض نتائج كل نموذج
+            for (const [modelName, data] of Object.entries(testResult.averages)) {
+                const isWinner = modelName === testResult.winner.name;
+                
+                resultsHTML += `
+                    <div class="erd-test-card" style="${isWinner ? 'border-color: var(--api-test); background: rgba(139, 92, 246, 0.05);' : ''}">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="width: 40px; height: 40px; border-radius: 50%; background: ${data.modelType === 'openrouter' ? 'var(--stellar)' : 'var(--circular)'}; display: flex; align-items: center; justify-content: center; color: white;">
+                                    <i class="fas ${data.modelType === 'openrouter' ? 'fa-plug' : 'fa-home'}"></i>
+                                </div>
+                                <div>
+                                    <h4 style="margin: 0; color: var(--dark);">${modelName}</h4>
+                                    <p style="margin: 5px 0 0 0; color: #6b7280; font-size: 0.9rem;">
+                                        ${data.modelType === 'openrouter' ? 'نموذج OpenRouter' : 'النظام المحلي'}
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <span style="font-weight: bold; font-size: 1.5rem; color: var(--api-test);">${data.average}%</span>
+                                ${isWinner ? '<span class="intelligence-level-badge level-excellent">الفائز</span>' : ''}
+                            </div>
+                        </div>
+                        
+                        <div class="erd-progress-container">
+                            <div class="erd-progress-bar" style="width: ${data.average}%; background: ${data.modelType === 'openrouter' ? 'var(--stellar)' : 'var(--circular)'};"></div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 15px;">
+                            ${data.scores.map((score, index) => `
+                                <div style="text-align: center;">
+                                    <div style="font-weight: bold; color: ${score >= 70 ? 'var(--circular)' : score >= 50 ? 'var(--existential)' : 'var(--pdf)'};">${score}%</div>
+                                    <div style="font-size: 0.7rem; color: #6b7280;">س ${index + 1}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            resultsHTML += `
+                <div style="background: linear-gradient(135deg, var(--stellar), var(--existential)); border-radius: var(--radius); padding: 25px; margin-top: 30px; color: white;">
+                    <h4 style="text-align: center; margin-bottom: 15px;"><i class="fas fa-chart-line"></i> تحليل النتائج</h4>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: bold;">${testResult.modelsTested}</div>
+                            <div>عدد النماذج المختبرة</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold;">${testResult.winner.type === 'openrouter' ? 'OpenRouter' : 'محلي'}</div>
+                            <div>نوع النموذج الفائز</div>
+                        </div>
+                    </div>
+                    
+                    <p style="text-align: center; margin-top: 15px; font-size: 0.9rem;">
+                        ${this.getRecommendation(testResult.winner.score, testResult.winner.type)}
+                    </p>
+                    
+                    <div style="display: flex; gap: 10px; margin-top: 20px; justify-content: center;">
+                        <button onclick="saveERDResultsAsPDF()" class="tool-btn" style="background: white; color: var(--stellar);">
+                            <i class="fas fa-download"></i> حفظ كـ PDF
+                        </button>
+                        <button onclick="restartERDTest()" class="tool-btn" style="background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid white;">
+                            <i class="fas fa-redo"></i> اختبار جديد
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('erd-test-results').innerHTML = resultsHTML;
+        },
+        
+        getRecommendation: function(score, type) {
+            if (score >= 90) {
+                return 'أداء ممتاز! يمكن الاعتماد على هذا النموذج للمهام المعقدة.';
+            } else if (score >= 80) {
+                return 'أداء جيد جدًا، مناسب لمعظم المهام العملية.';
+            } else if (score >= 70) {
+                return type === 'openrouter' 
+                    ? 'أداء جيد، يمكن تحسينه بضبط الإعدادات.'
+                    : 'أداء جيد للنظام المحلي، فكر في ربط OpenRouter لنتائج أفضل.';
+            } else if (score >= 60) {
+                return type === 'openrouter'
+                    ? 'أداء مقبول، قد تحتاج لتغيير النموذج أو ضبط الإعدادات.'
+                    : 'أداء مقبول للنظام المحلي.';
+            } else {
+                return 'أداء يحتاج تحسين. جرب نماذج مختلفة أو اضبط الإعدادات.';
             }
         },
         
-        getExtractedText: function(fileId) {
-            return this.extractedTexts.get(fileId) || '';
+        displayPreviousResults: function() {
+            const container = document.getElementById('previous-erd-results');
+            
+            if (this.testResults.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 30px; color: var(--dark);">
+                        <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: 20px; display: block; color: #d1d5db;"></i>
+                        <h4>لا توجد نتائج سابقة</h4>
+                        <p>قم بإجراء اختبار ERD أولاً لرؤية النتائج هنا.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = `
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="padding: 10px; background: #f8fafc; text-align: right;">التاريخ</th>
+                                <th style="padding: 10px; background: #f8fafc; text-align: right;">النماذج</th>
+                                <th style="padding: 10px; background: #f8fafc; text-align: right;">الفائز</th>
+                                <th style="padding: 10px; background: #f8fafc; text-align: right;">النتيجة</th>
+                                <th style="padding: 10px; background: #f8fafc; text-align: right;">الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+            
+            // عرض آخر 5 نتائج فقط
+            const recentResults = this.testResults.slice(-5).reverse();
+            
+            recentResults.forEach((result, index) => {
+                const date = new Date(result.date).toLocaleDateString('ar-SA');
+                
+                html += `
+                    <tr style="border-bottom: 1px solid #e5e7eb;">
+                        <td style="padding: 10px;">${date}</td>
+                        <td style="padding: 10px;">${result.modelsTested}</td>
+                        <td style="padding: 10px;">
+                            <span style="color: ${result.winner.type === 'openrouter' ? 'var(--stellar)' : 'var(--circular)'}; font-weight: bold;">
+                                ${result.winner.name.substring(0, 20)}${result.winner.name.length > 20 ? '...' : ''}
+                            </span>
+                        </td>
+                        <td style="padding: 10px; font-weight: bold;">${result.winner.score}%</td>
+                        <td style="padding: 10px;">
+                            <button onclick="viewERDTestDetails('${result.id}')" class="tool-btn" style="padding: 5px 10px; font-size: 0.8rem;">
+                                <i class="fas fa-eye"></i> عرض
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            html += `
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+            
+            // تحديث تاريخ آخر اختبار
+            if (this.testResults.length > 0) {
+                const lastResult = this.testResults[this.testResults.length - 1];
+                document.getElementById('last-erd-test-date').textContent = 
+                    new Date(lastResult.date).toLocaleDateString('ar-SA');
+            }
         }
     };
 
     // ==========================================
-    // 2. نظام الملفات مع دعم OCR
+    // 3. نظام الملفات مع دعم OCR
     // ==========================================
     const FileSystem = {
         uploadedFiles: [],
@@ -1538,7 +2266,6 @@
         
         init: function() {
             this.setupFileUpload();
-            OCRSystem.init();
         },
         
         setupFileUpload: function() {
@@ -1582,12 +2309,6 @@
                 const fileData = await this.processFile(file);
                 this.uploadedFiles.push(fileData);
                 
-                // استخراج النص تلقائيًا إذا كان مفعلاً
-                if (document.getElementById('auto-ocr').checked && 
-                    (file.type.startsWith('image/') || file.type === 'application/pdf')) {
-                    await this.extractTextFromFile(fileData);
-                }
-                
                 this.displayUploadedFiles();
                 showNotification(`تم رفع الملف "${file.name}" بنجاح`, 'success');
             }
@@ -1618,8 +2339,7 @@
                         type: file.type,
                         size: file.size,
                         content: e.target.result,
-                        timestamp: new Date().toISOString(),
-                        extractedText: ''
+                        timestamp: new Date().toISOString()
                     };
                     
                     resolve(fileData);
@@ -1637,34 +2357,6 @@
             });
         },
         
-        extractTextFromFile: async function(fileData) {
-            try {
-                OCRSystem.showProgress();
-                
-                let text;
-                if (fileData.type.startsWith('image/')) {
-                    text = await OCRSystem.extractTextFromImage(fileData.content);
-                } else if (fileData.type === 'application/pdf') {
-                    const pdfArrayBuffer = fileData.content;
-                    text = await OCRSystem.extractTextFromPDF(pdfArrayBuffer);
-                } else {
-                    text = fileData.content;
-                }
-                
-                fileData.extractedText = text;
-                OCRSystem.saveExtractedText(fileData.id, text);
-                
-                this.displayExtractedText(fileData.id, text);
-                showNotification(`تم استخراج النص من "${fileData.name}"`, 'success');
-                
-            } catch (error) {
-                console.error('Error extracting text:', error);
-                showNotification(`فشل استخراج النص من "${fileData.name}": ${error.message}`, 'error');
-            } finally {
-                OCRSystem.hideProgress();
-            }
-        },
-        
         displayUploadedFiles: function() {
             const container = document.getElementById('uploaded-files');
             container.innerHTML = '';
@@ -1679,56 +2371,15 @@
                             <div style="font-weight: bold;">${file.name}</div>
                             <div style="font-size: 0.8rem; color: #6b7280;">
                                 ${this.formatFileSize(file.size)} • ${new Date(file.timestamp).toLocaleTimeString()}
-                                ${file.extractedText ? ' <span style="color: var(--ocr);">✓ نص مستخرج</span>' : ''}
                             </div>
                         </div>
                     </div>
-                    <div style="display: flex; gap: 5px;">
-                        ${(file.type.startsWith('image/') || file.type === 'application/pdf') ? 
-                            `<button onclick="FileSystem.extractTextFromFileById('${file.id}')" class="tool-btn" style="padding: 5px 10px; font-size: 0.8rem;">
-                                <i class="fas fa-file-alt"></i> استخراج نص
-                            </button>` : ''
-                        }
-                        <div class="file-remove" onclick="FileSystem.removeFile('${file.id}')">
-                            <i class="fas fa-times"></i>
-                        </div>
+                    <div class="file-remove" onclick="FileSystem.removeFile('${file.id}')">
+                        <i class="fas fa-times"></i>
                     </div>
                 `;
                 container.appendChild(fileElement);
             });
-        },
-        
-        extractTextFromFileById: async function(fileId) {
-            const file = this.uploadedFiles.find(f => f.id === fileId);
-            if (file) {
-                await this.extractTextFromFile(file);
-            }
-        },
-        
-        displayExtractedText: function(fileId, text) {
-            const previewDiv = document.getElementById('extracted-text-preview');
-            const contentDiv = document.getElementById('extracted-text-content');
-            
-            const file = this.uploadedFiles.find(f => f.id === fileId);
-            if (!file) return;
-            
-            contentDiv.innerHTML = `
-                <div style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e5e7eb;">
-                    <strong>الملف:</strong> ${file.name}<br>
-                    <strong>نوع الملف:</strong> ${file.type}<br>
-                    <strong>الحجم:</strong> ${this.formatFileSize(file.size)}
-                </div>
-                <div style="white-space: pre-wrap; font-family: 'Cairo', sans-serif; line-height: 1.8;">
-                    ${text.substring(0, 5000)}${text.length > 5000 ? '...' : ''}
-                </div>
-                ${text.length > 5000 ? 
-                    `<div style="text-align: center; margin-top: 10px; color: var(--ocr); font-size: 0.9rem;">
-                        (تم عرض 5000 حرف من أصل ${text.length} - لرؤية النص الكامل استخدمه في المحادثة)
-                    </div>` : ''
-                }
-            `;
-            
-            previewDiv.style.display = 'block';
         },
         
         getFileIcon: function(fileType) {
@@ -1758,18 +2409,12 @@
         getFileContentForAI: function() {
             if (this.uploadedFiles.length === 0) return '';
             
-            let content = '\n\n=== تحليل الملفات المرفوعة ===\n';
+            let content = '\n\n=== الملفات المرفوعة ===\n';
             
             this.uploadedFiles.forEach((file, index) => {
                 content += `\n[الملف ${index + 1}: ${file.name}]\n`;
                 content += `النوع: ${file.type}\n`;
                 content += `الحجم: ${this.formatFileSize(file.size)}\n`;
-                
-                if (file.extractedText) {
-                    content += `النص المستخرج: ${file.extractedText.substring(0, 1000)}...\n`;
-                } else if (file.type === 'text/plain') {
-                    content += `المحتوى: ${file.content.substring(0, 1000)}...\n`;
-                }
             });
             
             return content;
@@ -1779,382 +2424,6 @@
             this.uploadedFiles = [];
             this.displayUploadedFiles();
             document.getElementById('extracted-text-preview').style.display = 'none';
-        }
-    };
-
-    // ==========================================
-    // 3. نظام اختبار الذكاء (IQ Test)
-    // ==========================================
-    const IQTestSystem = {
-        questions: [
-            {
-                question: "كيف تفضل حل المشكلات المعقدة؟",
-                options: [
-                    { text: "بتحليلها خطوة بخطوة بطريقة منطقية", scores: { linear: 10, circular: 5, existential: 2, quantum: 3, emotional: 0 } },
-                    { text: "برؤية الصورة الكاملة وربط جميع العناصر", scores: { linear: 3, circular: 10, existential: 5, quantum: 7, emotional: 2 } },
-                    { text: "بالتفكير في جميع الاحتمالات في نفس الوقت", scores: { linear: 2, circular: 7, existential: 3, quantum: 10, emotional: 1 } },
-                    { text: "بالاستماع إلى مشاعري وحدسي", scores: { linear: 1, circular: 3, existential: 5, quantum: 2, emotional: 10 } }
-                ]
-            },
-            {
-                question: "ما هو رأيك في العلاقة بين العلم والفلسفة؟",
-                options: [
-                    { text: "العلم يقدم الحقائق، الفلسفة تطرح الأسئلة", scores: { linear: 8, circular: 6, existential: 9, quantum: 5, emotional: 2 } },
-                    { text: "كلاهما ضروري لفهم الكون والحياة", scores: { linear: 5, circular: 9, existential: 10, quantum: 7, emotional: 4 } },
-                    { text: "هناك تفاعل دائم ومستمر بينهما", scores: { linear: 6, circular: 10, existential: 8, quantum: 6, emotional: 3 } },
-                    { text: "كلاهما يعبر عن رغبة الإنسان في الفهم", scores: { linear: 4, circular: 7, existential: 9, quantum: 5, emotional: 8 } }
-                ]
-            },
-            {
-                question: "كيف تتعامل مع المشاعر الصعبة؟",
-                options: [
-                    { text: "أحللها منطقيًا لفهم أسبابها", scores: { linear: 9, circular: 5, existential: 3, quantum: 4, emotional: 6 } },
-                    { text: "أبحث عن أنماط متكررة في مشاعري", scores: { linear: 5, circular: 9, existential: 6, quantum: 7, emotional: 8 } },
-                    { text: "أقبلها كجزء من التجربة الإنسانية", scores: { linear: 3, circular: 6, existential: 9, quantum: 5, emotional: 10 } },
-                    { text: "أفكر في عدة طرق للتعامل معها", scores: { linear: 4, circular: 7, existential: 5, quantum: 9, emotional: 8 } }
-                ]
-            },
-            {
-                question: "ما مدى إيمانك بالصدفة؟",
-                options: [
-                    { text: "كل شيء له سبب منطقي", scores: { linear: 10, circular: 6, existential: 4, quantum: 2, emotional: 3 } },
-                    { text: "الصدفة هي نتيجة لتفاعل عوامل كثيرة", scores: { linear: 6, circular: 9, existential: 7, quantum: 8, emotional: 5 } },
-                    { text: "الصدفة جزء من نظام كوني أكبر", scores: { linear: 3, circular: 8, existential: 10, quantum: 7, emotional: 6 } },
-                    { text: "هناك معنى خفي وراء كل صدفة", scores: { linear: 2, circular: 7, existential: 9, quantum: 6, emotional: 8 } }
-                ]
-            },
-            {
-                question: "كيف تتعلم أفضل؟",
-                options: [
-                    { text: "بالتسلسل المنطقي والخطوات الواضحة", scores: { linear: 10, circular: 5, existential: 3, quantum: 2, emotional: 1 } },
-                    { text: "بربط المعلومات الجديدة بما أعرفه", scores: { linear: 6, circular: 10, existential: 5, quantum: 7, emotional: 4 } },
-                    { text: "بالاستكشاف الحر والتجربة", scores: { linear: 3, circular: 7, existential: 8, quantum: 9, emotional: 6 } },
-                    { text: "من خلال التفاعل والتجارب الشخصية", scores: { linear: 2, circular: 5, existential: 6, quantum: 4, emotional: 10 } }
-                ]
-            }
-        ],
-        
-        currentQuestion: 0,
-        answers: [],
-        scores: {
-            linear: 0,
-            circular: 0,
-            existential: 0,
-            quantum: 0,
-            emotional: 0
-        },
-        
-        init: function() {
-            this.loadPreviousResults();
-        },
-        
-        startTest: function() {
-            this.currentQuestion = 0;
-            this.answers = [];
-            this.scores = {
-                linear: 0,
-                circular: 0,
-                existential: 0,
-                quantum: 0,
-                emotional: 0
-            };
-            
-            document.getElementById('iq-test-start').style.display = 'none';
-            document.getElementById('iq-test-container').style.display = 'block';
-            document.getElementById('iq-test-results').style.display = 'none';
-            
-            this.displayQuestion();
-        },
-        
-        displayQuestion: function() {
-            const question = this.questions[this.currentQuestion];
-            
-            document.getElementById('question-title').textContent = `السؤال ${this.currentQuestion + 1} من ${this.questions.length}`;
-            document.getElementById('question-text').textContent = question.question;
-            
-            const optionsContainer = document.getElementById('options-container');
-            optionsContainer.innerHTML = '';
-            
-            question.options.forEach((option, index) => {
-                const optionElement = document.createElement('div');
-                optionElement.className = 'iq-option';
-                if (this.answers[this.currentQuestion] === index) {
-                    optionElement.classList.add('selected');
-                }
-                optionElement.innerHTML = `
-                    <div class="iq-option-checkbox"></div>
-                    <span>${option.text}</span>
-                `;
-                optionElement.onclick = () => this.selectOption(index);
-                optionsContainer.appendChild(optionElement);
-            });
-            
-            document.getElementById('prev-btn').disabled = this.currentQuestion === 0;
-            document.getElementById('next-btn').style.display = this.currentQuestion === this.questions.length - 1 ? 'none' : 'block';
-            document.getElementById('finish-btn').style.display = this.currentQuestion === this.questions.length - 1 ? 'block' : 'none';
-        },
-        
-        selectOption: function(optionIndex) {
-            this.answers[this.currentQuestion] = optionIndex;
-            
-            const options = document.querySelectorAll('.iq-option');
-            options.forEach((option, index) => {
-                if (index === optionIndex) {
-                    option.classList.add('selected');
-                } else {
-                    option.classList.remove('selected');
-                }
-            });
-        },
-        
-        nextQuestion: function() {
-            if (this.answers[this.currentQuestion] === undefined) {
-                showNotification('الرجاء اختيار إجابة قبل المتابعة', 'warning');
-                return;
-            }
-            
-            if (this.currentQuestion < this.questions.length - 1) {
-                this.currentQuestion++;
-                this.displayQuestion();
-            }
-        },
-        
-        previousQuestion: function() {
-            if (this.currentQuestion > 0) {
-                this.currentQuestion--;
-                this.displayQuestion();
-            }
-        },
-        
-        finishTest: function() {
-            if (this.answers[this.currentQuestion] === undefined) {
-                showNotification('الرجاء اختيار إجابة قبل إنهاء الاختبار', 'warning');
-                return;
-            }
-            
-            this.calculateScores();
-            this.showResults();
-            this.saveResults();
-        },
-        
-        calculateScores: function() {
-            this.scores = {
-                linear: 0,
-                circular: 0,
-                existential: 0,
-                quantum: 0,
-                emotional: 0
-            };
-            
-            this.questions.forEach((question, index) => {
-                const answerIndex = this.answers[index];
-                if (answerIndex !== undefined) {
-                    const option = question.options[answerIndex];
-                    for (const intelligence in option.scores) {
-                        this.scores[intelligence] += option.scores[intelligence];
-                    }
-                }
-            });
-            
-            // تحويل النقاط إلى نسبة مئوية
-            for (const intelligence in this.scores) {
-                this.scores[intelligence] = Math.round((this.scores[intelligence] / 50) * 100);
-            }
-        },
-        
-        showResults: function() {
-            document.getElementById('iq-test-container').style.display = 'none';
-            document.getElementById('iq-test-results').style.display = 'block';
-            
-            const resultsContainer = document.getElementById('iq-test-results');
-            const overallScore = this.getOverallScore();
-            
-            let resultsHTML = `
-                <h3 style="text-align: center; color: var(--iq-test); margin-bottom: 30px;">
-                    <i class="fas fa-chart-line"></i> نتائج اختبار الذكاء المتكامل (ICP)
-                </h3>
-                
-                <div style="text-align: center; margin-bottom: 30px;">
-                    <div style="font-size: 3rem; font-weight: bold; color: var(--stellar); margin: 10px 0;">
-                        ${overallScore}%
-                    </div>
-                    <div style="font-size: 1.2rem; color: var(--dark); margin-bottom: 20px;">
-                        ${this.getOverallDescription(overallScore)}
-                    </div>
-                </div>
-            `;
-            
-            const intelligenceData = [
-                { id: 'linear', name: 'الذكاء الخطي', color: 'var(--linear)' },
-                { id: 'circular', name: 'الذكاء الدائري', color: 'var(--circular)' },
-                { id: 'existential', name: 'الذكاء الوجودي', color: 'var(--existential)' },
-                { id: 'quantum', name: 'الذكاء الكمي', color: 'var(--quantum)' },
-                { id: 'emotional', name: 'الذكاء العاطفي', color: 'var(--emotional)' }
-            ];
-            
-            intelligenceData.forEach(intel => {
-                const score = this.scores[intel.id];
-                const level = this.getLevel(score);
-                const levelClass = this.getLevelClass(score);
-                
-                resultsHTML += `
-                    <div class="iq-result-card">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <div style="width: 20px; height: 20px; border-radius: 50%; background: ${intel.color};"></div>
-                                <h4 style="margin: 0; color: ${intel.color};">${intel.name}</h4>
-                            </div>
-                            <div>
-                                <span style="font-weight: bold; font-size: 1.2rem;">${score}%</span>
-                                <span class="intelligence-level-badge ${levelClass}">${level}</span>
-                            </div>
-                        </div>
-                        
-                        <div class="progress-container">
-                            <div class="progress-bar" style="width: ${score}%; background: ${intel.color};"></div>
-                        </div>
-                        
-                        <p style="margin-top: 10px; color: var(--dark); font-size: 0.9rem;">
-                            ${this.getIntelligenceDescription(intel.id, score)}
-                        </p>
-                    </div>
-                `;
-            });
-            
-            resultsHTML += `
-                <div style="background: linear-gradient(135deg, var(--stellar), var(--existential)); border-radius: var(--radius); padding: 25px; margin-top: 30px; color: white;">
-                    <h4 style="text-align: center; margin-bottom: 15px;"><i class="fas fa-trophy"></i> التقييم العام</h4>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div style="text-align: center;">
-                            <div style="font-size: 2.5rem; font-weight: bold;">${overallScore}%</div>
-                            <div>المعدل العام</div>
-                        </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 1.5rem; font-weight: bold;">${this.getLevel(overallScore)}</div>
-                            <div>المستوى</div>
-                        </div>
-                    </div>
-                    
-                    <p style="text-align: center; margin-top: 15px; font-size: 0.9rem;">
-                        ${this.getOverallRecommendation(overallScore)}
-                    </p>
-                    
-                    <div style="display: flex; gap: 10px; margin-top: 20px; justify-content: center;">
-                        <button onclick="saveIQResultsAsPDF()" class="tool-btn" style="background: white; color: var(--stellar);">
-                            <i class="fas fa-download"></i> حفظ كـ PDF
-                        </button>
-                        <button onclick="restartIQTest()" class="tool-btn" style="background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid white;">
-                            <i class="fas fa-redo"></i> إعادة الاختبار
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            resultsContainer.innerHTML = resultsHTML;
-        },
-        
-        getOverallScore: function() {
-            const total = Object.values(this.scores).reduce((a, b) => a + b, 0);
-            return Math.round(total / 5);
-        },
-        
-        getOverallDescription: function(score) {
-            if (score >= 90) return 'مستوى ذكاء استثنائي ومتكامل';
-            if (score >= 80) return 'ذكاء متقدم ومتنوع';
-            if (score >= 70) return 'ذكاء جيد ومتوازن';
-            if (score >= 60) return 'ذكاء متوسط مع إمكانات نمو';
-            if (score >= 50) return 'ذكاء أساسي يحتاج تطوير';
-            return 'يحتاج إلى مزيد من التطوير';
-        },
-        
-        getLevel: function(score) {
-            if (score >= 90) return 'ممتاز';
-            if (score >= 80) return 'جيد جدًا';
-            if (score >= 70) return 'جيد';
-            if (score >= 60) return 'متوسط';
-            if (score >= 50) return 'مقبول';
-            return 'ضعيف';
-        },
-        
-        getLevelClass: function(score) {
-            if (score >= 90) return 'level-excellent';
-            if (score >= 80) return 'level-good';
-            if (score >= 70) return 'level-good';
-            if (score >= 60) return 'level-average';
-            return 'level-basic';
-        },
-        
-        getIntelligenceDescription: function(intelligence, score) {
-            const descriptions = {
-                linear: {
-                    high: 'لديك قدرة ممتازة على التحليل المنطقي والتفكير التسلسلي',
-                    medium: 'قدرتك على التحليل المنطقي جيدة ويمكن تطويرها',
-                    low: 'تحتاج إلى تطوير مهارات التفكير المنطقي'
-                },
-                circular: {
-                    high: 'قدرتك على ربط المفومات ورؤية الصورة الكاملة ممتازة',
-                    medium: 'تستطيع ربط الأفكار بشكل جيد',
-                    low: 'تحتاج إلى العمل على رؤية العلاقات بين الأشياء'
-                },
-                existential: {
-                    high: 'تفكيرك الفلسفي عميق ولديك قدرة على طرح الأسئلة الوجودية',
-                    medium: 'لديك استعداد جيد للتفكير الفلسفي',
-                    low: 'يمكنك تطوير التفكير الوجودي من خلال القراءة والتأمل'
-                },
-                quantum: {
-                    high: 'قدرتك على التفكير المتوازي ورؤية الاحتمالات المتعددة ممتازة',
-                    medium: 'تستطيع رؤية أكثر من منظور',
-                    low: 'يمكنك تطوير التفكير الكمي من خلال حل المشكلات بطرق مبتكرة'
-                },
-                emotional: {
-                    high: 'ذكاؤك العاطفي ممتاز ولديك قدرة عالية على فهم المشاعر',
-                    medium: 'قدرتك على فهم المشاعر جيدة',
-                    low: 'يمكنك تطوير الذكاء العاطفي من خلال الاهتمام بالمشاعر'
-                }
-            };
-            
-            if (score >= 80) return descriptions[intelligence].high;
-            if (score >= 60) return descriptions[intelligence].medium;
-            return descriptions[intelligence].low;
-        },
-        
-        getOverallRecommendation: function(score) {
-            if (score >= 90) return 'ذكاؤك متكامل ومتوازن بشكل ممتاز. واصل تطوير جميع الجوانب.';
-            if (score >= 80) return 'ذكاؤك متقدم في معظم المجالات. ركز على الجوانب الأضعف.';
-            if (score >= 70) return 'لديك أساس جيد. يمكنك التطور أكثر من خلال الممارسة.';
-            if (score >= 60) return 'لديك إمكانات نمو كبيرة. ركز على تنمية نقاط القوة.';
-            return 'كل شخص لديه إمكانات نمو. ابدأ بتطوير الجوانب الأقوى.';
-        },
-        
-        saveResults: function() {
-            const results = {
-                scores: this.scores,
-                overall: this.getOverallScore(),
-                date: new Date().toISOString(),
-                answers: this.answers
-            };
-            
-            let previousResults = JSON.parse(localStorage.getItem('iq_test_results') || '[]');
-            previousResults.push(results);
-            
-            if (previousResults.length > 10) {
-                previousResults = previousResults.slice(-10);
-            }
-            
-            localStorage.setItem('iq_test_results', JSON.stringify(previousResults));
-            
-            const lastDate = new Date(results.date).toLocaleDateString('ar-SA');
-            document.getElementById('last-test-date').textContent = lastDate;
-        },
-        
-        loadPreviousResults: function() {
-            const previousResults = JSON.parse(localStorage.getItem('iq_test_results') || '[]');
-            if (previousResults.length > 0) {
-                const lastResult = previousResults[previousResults.length - 1];
-                const lastDate = new Date(lastResult.date).toLocaleDateString('ar-SA');
-                document.getElementById('last-test-date').textContent = lastDate;
-            }
         }
     };
 
@@ -2181,11 +2450,12 @@
             showNotification(`تم التبديل إلى وضع الحوار ${mode}`, 'info');
         },
         
-        addToMemory: function(role, content) {
+        addToMemory: function(role, content, source = 'local') {
             const message = {
                 id: Date.now(),
                 role: role,
                 content: content,
+                source: source,
                 timestamp: new Date().toISOString(),
                 dialogueMode: this.dialogueMode
             };
@@ -2197,31 +2467,6 @@
             }
             
             return message;
-        },
-        
-        generateICPPrompt: function(userMessage, mode) {
-            const modePrompts = {
-                linear: "أنت مساعد ذكي متخصص في التحليل المنطقي المنهجي. قدم تحليلاً واضحًا خطوة بخطوة. ركز على الحقائق والبيانات والتفكير المنظم.",
-                existential: "أنت مساعد فلسفي يستكشف الأسئلة العميقة. ركز على المعنى والغاية والتضمينات الأوسع. كن ثاقبًا ومحفزًا للتفكير.",
-                quantum: "أنت مساعد يستكشف وجهات نظر متعددة في نفس الوقت. فكر في الاحتمالات والوجهات النظر البديلة والتفكير المتناقض.",
-                emotional: "أنت مساعد متعاطف يركز على الذكاء العاطفي. افهم المشاعر وابنِ علاقة وقدم ردودًا داعمة."
-            };
-            
-            return `
-                ${modePrompts[mode] || modePrompts.linear}
-                
-                أنت جزء من نظام AMMAR AI Academy ICP.
-                الباحث: عمار ناصر حسين المنتفجي - باحث مستقل
-                التاريخ: ${new Date().toLocaleDateString('ar-SA')}
-                
-                المحتوى المطلوب تحليله: ${userMessage}
-                
-                قم بتوليد رد ذكي ${mode} يركز على:
-                1. الفهم العميق للمحتوى
-                2. التحليل المنهجي
-                3. التوصيات العملية
-                4. التضمينات المستقبلية
-            `;
         },
         
         clearConversation: function() {
@@ -2243,10 +2488,10 @@
                         <div class="message-content">
                             تم مسح تاريخ المحادثة. يمكنك البدء من جديد بـ:
                             <br><br>
-                            • رفع ملفات جديدة للتحليل<br>
-                            • استخراج النصوص من الصور وPDF<br>
-                            • اختبار الذكاء المتكامل<br>
-                            • طرح أسئلة في أوضاع حوار مختلفة
+                            • رفع ملفات جديدة<br>
+                            • استخدام اتصال OpenRouter<br>
+                            • اختبار ERD للنماذج<br>
+                            • تصدير المحادثات إلى PDF
                         </div>
                         <div class="erd-badge">
                             <i class="fas fa-chart-line"></i> النظام جاهز
@@ -2260,168 +2505,7 @@
     };
 
     // ==========================================
-    // 5. نظام تصدير PDF
-    // ==========================================
-    const PDFExportSystem = {
-        init: function() {
-            this.setupEventListeners();
-        },
-        
-        setupEventListeners: function() {
-            document.getElementById('pdf-template').addEventListener('change', (e) => {
-                this.currentTemplate = e.target.value;
-            });
-        },
-        
-        generatePDFPreview: function() {
-            const content = document.getElementById('pdf-content');
-            
-            document.getElementById('pdf-date').textContent = new Date().toLocaleDateString('ar-SA', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-            
-            document.getElementById('pdf-researcher').textContent = 'عمار ناصر حسين المنتفجي';
-            document.getElementById('pdf-system').textContent = 'AMMAR AI Academy ICP';
-            
-            let pdfContent = `
-                <h3 style="color: #333; margin-top: 20px; margin-bottom: 10px;">ملخص النظام</h3>
-                <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <strong>الباحث:</strong> عمار ناصر حسين المنتفجي<br>
-                    <strong>النظام:</strong> AMMAR AI Academy ICP<br>
-                    <strong>الإصدار:</strong> 2.3.0 مع نظام OCR<br>
-                    <strong>تاريخ الإنشاء:</strong> ${new Date().toLocaleDateString('ar-SA')}
-                </div>
-            `;
-            
-            if (ICPFramework.conversationHistory.length > 0) {
-                pdfContent += `<h3 style="color: #333; margin-top: 20px; margin-bottom: 10px;">المحادثات الأخيرة</h3>`;
-                
-                ICPFramework.conversationHistory.slice(-5).forEach((entry, index) => {
-                    const timestamp = new Date(entry.timestamp).toLocaleTimeString('ar-SA');
-                    
-                    pdfContent += `
-                        <div style="margin-bottom: 20px; padding: 15px; background: white; border-radius: 8px; border: 1px solid #e5e7eb;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <strong style="color: var(--stellar);">محادثة ${index + 1}</strong>
-                                <span style="color: #6b7280; font-size: 0.9rem;">${timestamp}</span>
-                            </div>
-                            
-                            <div style="margin-bottom: 10px;">
-                                <strong>السؤال:</strong> ${this.escapeHTML(entry.userMessage.substring(0, 150))}${entry.userMessage.length > 150 ? '...' : ''}
-                            </div>
-                            
-                            <div style="font-size: 0.9rem; color: #6b7280;">
-                                <strong>وضع الحوار:</strong> ${entry.dialogueMode} | 
-                                <strong>ERD:</strong> ${entry.erd.toFixed(2)}
-                            </div>
-                        </div>
-                    `;
-                });
-            }
-            
-            // إضافة معلومات عن النصوص المستخرجة
-            const extractedTexts = JSON.parse(localStorage.getItem('extracted_texts') || '{}');
-            const textCount = Object.keys(extractedTexts).length;
-            
-            if (textCount > 0 && document.getElementById('include-ocr-text').checked) {
-                pdfContent += `
-                    <h3 style="color: #333; margin-top: 20px; margin-bottom: 10px;">النصوص المستخرجة</h3>
-                    <div style="background: #f0f9ff; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                        <strong>عدد النصوص المستخرجة:</strong> ${textCount}<br>
-                        <strong>نظام OCR:</strong> Tesseract.js + PDF.js<br>
-                        <strong>اللغات المدعومة:</strong> العربية، الإنجليزية، الفرنسية، الفارسية
-                    </div>
-                `;
-            }
-            
-            // إضافة نتائج اختبار الذكاء
-            const iqResults = JSON.parse(localStorage.getItem('iq_test_results') || '[]');
-            if (iqResults.length > 0 && document.getElementById('include-iq-results').checked) {
-                const lastResult = iqResults[iqResults.length - 1];
-                const lastDate = new Date(lastResult.date).toLocaleDateString('ar-SA');
-                
-                pdfContent += `
-                    <h3 style="color: #333; margin-top: 20px; margin-bottom: 10px;">نتائج اختبار الذكاء</h3>
-                    <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                        <strong>آخر اختبار:</strong> ${lastDate}<br>
-                        <strong>المعدل العام:</strong> ${lastResult.overall}%<br>
-                        <strong>الذكاء الخطي:</strong> ${lastResult.scores.linear}%<br>
-                        <strong>الذكاء الدائري:</strong> ${lastResult.scores.circular}%<br>
-                        <strong>الذكاء الوجودي:</strong> ${lastResult.scores.existential}%<br>
-                        <strong>الذكاء الكمي:</strong> ${lastResult.scores.quantum}%<br>
-                        <strong>الذكاء العاطفي:</strong> ${lastResult.scores.emotional}%
-                    </div>
-                `;
-            }
-            
-            content.innerHTML = pdfContent;
-            showNotification('تم إنشاء معاينة PDF بنجاح', 'success');
-        },
-        
-        escapeHTML: function(text) {
-            return text
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        },
-        
-        exportToPDF: function() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            
-            doc.setFontSize(20);
-            doc.setTextColor(139, 92, 246);
-            doc.text('تقرير نظام AMMAR AI Academy ICP', 105, 20, { align: 'center' });
-            
-            doc.setFontSize(12);
-            doc.setTextColor(100, 100, 100);
-            doc.text(`الباحث: عمار ناصر حسين المنتفجي`, 105, 30, { align: 'center' });
-            doc.text(`تاريخ الإنشاء: ${new Date().toLocaleDateString('ar-SA')}`, 105, 38, { align: 'center' });
-            
-            doc.setDrawColor(139, 92, 246);
-            doc.setLineWidth(0.5);
-            doc.line(20, 45, 190, 45);
-            
-            let yPosition = 55;
-            
-            doc.setFontSize(14);
-            doc.setTextColor(30, 30, 30);
-            doc.text('ملخص النظام', 20, yPosition);
-            
-            yPosition += 10;
-            doc.setFontSize(10);
-            
-            const summary = [
-                `نظام: AMMAR AI Academy ICP`,
-                `الإصدار: 2.3.0 مع نظام OCR`,
-                `المحادثات: ${ICPFramework.conversationHistory.length}`,
-                `الملفات المرفوعة: ${FileSystem.uploadedFiles.length}`,
-                `اختبارات الذكاء: ${JSON.parse(localStorage.getItem('iq_test_results') || '[]').length}`,
-                `النصوص المستخرجة: ${Object.keys(JSON.parse(localStorage.getItem('extracted_texts') || '{}')).length}`
-            ];
-            
-            summary.forEach(line => {
-                doc.text(line, 25, yPosition);
-                yPosition += 7;
-            });
-            
-            yPosition += 10;
-            
-            const fileName = `ICP-Report-${new Date().toISOString().split('T')[0]}.pdf`;
-            doc.save(fileName);
-            
-            showNotification(`تم تصدير PDF بنجاح: ${fileName}`, 'success');
-        }
-    };
-
-    // ==========================================
-    // 6. دوال المساعدة العامة
+    // 5. دوال المساعدة العامة
     // ==========================================
     function showNotification(message, type = 'info') {
         const container = document.getElementById('notification-container');
@@ -2471,7 +2555,7 @@
         }
     }
 
-    function addICPMessage(sender, content, mode, erd = null, messageId = null) {
+    function addICPMessage(sender, content, mode, erd = null, messageId = null, source = 'local') {
         const container = document.getElementById('chat-messages');
         
         if (messageId && container.querySelector(`[data-message-id="${messageId}"]`)) {
@@ -2502,9 +2586,11 @@
             </span>`;
         }
         
-        let ocrBadge = '';
-        if (content.includes('النص المستخرج') || content.includes('من الصورة') || content.includes('من ملف PDF')) {
-            ocrBadge = `<span class="ocr-badge"><i class="fas fa-file-alt"></i> نص مستخرج</span>`;
+        let sourceBadge = '';
+        if (sender === 'ai' && source !== 'local') {
+            sourceBadge = `<span style="font-size: 0.7rem; background: var(--stellar); color: white; padding: 2px 8px; border-radius: 10px; margin-left: 5px;">
+                <i class="fas fa-plug"></i> ${source === 'openrouter' ? 'OpenRouter' : source}
+            </span>`;
         }
         
         messageDiv.innerHTML = `
@@ -2514,7 +2600,7 @@
                 ${modeBadge}
             </div>
             <div class="message-content">${formatContent(content)}</div>
-            ${erd ? `<div class="erd-badge"><i class="fas fa-chart-line"></i> ERD: ${erd.toFixed(1)} ${ocrBadge}</div>` : ocrBadge ? `<div class="erd-badge">${ocrBadge}</div>` : ''}
+            ${erd ? `<div class="erd-badge"><i class="fas fa-chart-line"></i> ERD: ${erd.toFixed(1)} ${sourceBadge}</div>` : sourceBadge ? `<div class="erd-badge">${sourceBadge}</div>` : ''}
         `;
         
         container.appendChild(messageDiv);
@@ -2556,21 +2642,19 @@
         
         showTyping();
 
-        setTimeout(() => {
+        try {
+            const startTime = Date.now();
+            
+            const { response, source } = await APIConnectionSystem.generateResponse(fullMessage, ICPFramework.dialogueMode);
+            
+            const responseTime = Date.now() - startTime;
             hideTyping();
             
-            const responses = {
-                linear: `لقد قمت بتحليل استفسارك. ${fileContext ? 'لاحظت وجود ملفات مرفوعة. ' : ''}بناءً على التحليل المنهجي، أرى أن الموضوع يتطلب دراسة متعمقة.`,
-                existential: `سؤالك يثير تأملات وجودية عميقة. ${fileContext ? 'الملفات المرفوعة تضيف بُعدًا إضافيًا للتحليل. ' : ''}دعنا نستكشف المعنى الكامن خلف الظاهر.`,
-                quantum: `من منظور كمي، هناك احتمالات متعددة لتفسير استفسارك. ${fileContext ? 'الملفات توفر بيانات إضافية للتحليل. ' : ''}دعنا نفحص جميع الاحتمالات.`,
-                emotional: `أشعر بأهمية هذا الموضوع. ${fileContext ? 'شكرًا لمشاركة هذه الملفات. ' : ''}دعنا نتعامل معه بتفهم وعناية.`
-            };
+            // حساب ERD ديناميكي
+            const erd = this.calculateDynamicERD(response, responseTime, source);
             
-            const erd = 4.5 + (Math.random() * 0.5);
-            const response = responses[ICPFramework.dialogueMode] || responses.linear;
-            
-            const aiMessage = ICPFramework.addToMemory('assistant', response);
-            addICPMessage('ai', response, ICPFramework.dialogueMode, erd, aiMessage.id);
+            const aiMessage = ICPFramework.addToMemory('assistant', response, source);
+            addICPMessage('ai', response, ICPFramework.dialogueMode, erd, aiMessage.id, source);
             
             ICPFramework.currentERD = erd;
             document.getElementById('current-erd').textContent = erd.toFixed(1);
@@ -2580,168 +2664,141 @@
                 aiResponse: response,
                 dialogueMode: ICPFramework.dialogueMode,
                 erd: erd,
+                source: source,
+                responseTime: responseTime,
                 timestamp: new Date().toISOString(),
                 hasFiles: FileSystem.uploadedFiles.length > 0
             });
             
-            showNotification(`تم إنشاء الرد | ERD: ${erd.toFixed(1)}`, 'success');
-        }, 1500);
-    }
+            let sourceText = source === 'openrouter' ? 'OpenRouter' : 'النظام المحلي';
+            showNotification(`تم إنشاء الرد باستخدام ${sourceText} في ${responseTime}ms | ERD: ${erd.toFixed(1)}`, 'success');
 
-    // ==========================================
-    // 7. دوال نظام OCR
-    // ==========================================
-    async function testOCR() {
-        const fileInput = document.getElementById('ocr-test-file');
-        if (!fileInput.files.length) {
-            showNotification('الرجاء اختيار ملف أولاً', 'warning');
-            return;
-        }
-        
-        const file = fileInput.files[0];
-        
-        if (!file.type.startsWith('image/') && file.type !== 'application/pdf') {
-            showNotification('الرجاء اختيار صورة أو ملف PDF', 'error');
-            return;
-        }
-        
-        try {
-            OCRSystem.showProgress();
-            
-            const text = await OCRSystem.extractTextFromFile(file);
-            
-            document.getElementById('ocr-test-results').style.display = 'block';
-            document.getElementById('ocr-test-text-content').textContent = text;
-            
-            showNotification(`تم استخراج النص من "${file.name}" بنجاح`, 'success');
-            
         } catch (error) {
-            showNotification(`فشل استخراج النص: ${error.message}`, 'error');
-        } finally {
-            OCRSystem.hideProgress();
+            hideTyping();
+            console.error('Error in sendICPMessage:', error);
+            
+            // استخدام النظام المحلي كبديل
+            const fallbackResponse = APIConnectionSystem.getLocalResponse(message, ICPFramework.dialogueMode);
+            const fallbackERD = 4.0 + (Math.random() * 0.5);
+            
+            const aiMessage = ICPFramework.addToMemory('assistant', fallbackResponse, 'local_error');
+            addICPMessage('ai', fallbackResponse, ICPFramework.dialogueMode, fallbackERD, aiMessage.id, 'local_error');
+            
+            showNotification('تم استخدام النظام المحلي للرد', 'info');
         }
     }
 
-    function copyExtractedText() {
-        const text = document.getElementById('extracted-text-content').textContent;
-        navigator.clipboard.writeText(text).then(() => {
-            showNotification('تم نسخ النص إلى الحافظة', 'success');
-        });
-    }
-
-    function copyTestOCRText() {
-        const text = document.getElementById('ocr-test-text-content').textContent;
-        navigator.clipboard.writeText(text).then(() => {
-            showNotification('تم نسخ النص إلى الحافظة', 'success');
-        });
-    }
-
-    function useTestOCRText() {
-        const text = document.getElementById('ocr-test-text-content').textContent;
-        document.getElementById('message-input').value = `النص المستخرج من الملف:\n${text}`;
-        showNotification('تم إضافة النص إلى حقل المحادثة', 'success');
-    }
-
-    function runOCRBenchmark() {
-        showNotification('جاري اختبار أداء نظام OCR...', 'info');
+    function calculateDynamicERD(response, responseTime, source) {
+        let baseERD = 4.0;
         
-        setTimeout(() => {
-            const results = {
-                accuracy: '95%',
-                speed: '2.3 ثانية/صفحة',
-                languages: '5 لغات مدعومة',
-                format: 'صور + PDF'
-            };
-            
-            Swal.fire({
-                title: 'نتائج اختبار أداء OCR',
-                html: `
-                    <div style="text-align: center; padding: 20px;">
-                        <div style="font-size: 3rem; color: var(--ocr); font-weight: bold; margin: 20px 0;">
-                            ممتاز
-                        </div>
-                        
-                        <div style="background: #f8fafc; padding: 15px; border-radius: 12px; margin-top: 20px; text-align: right;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <span>الدقة:</span>
-                                <span style="font-weight: bold; color: var(--ocr);">${results.accuracy}</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <span>السرعة:</span>
-                                <span style="font-weight: bold; color: var(--ocr);">${results.speed}</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <span>اللغات:</span>
-                                <span style="font-weight: bold; color: var(--ocr);">${results.languages}</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between;">
-                                <span>الصيغ المدعومة:</span>
-                                <span style="font-weight: bold; color: var(--ocr);">${results.format}</span>
-                            </div>
-                        </div>
-                    </div>
-                `,
-                icon: 'success',
-                confirmButtonText: 'حسنًا'
-            });
-        }, 2000);
+        // إضافة نقاط بناءً على المصدر
+        if (source === 'openrouter') baseERD += 0.5;
+        
+        // إضافة نقاط بناءً على طول الرد
+        const length = response.length;
+        if (length > 500) baseERD += 0.3;
+        if (length > 1000) baseERD += 0.2;
+        
+        // إضافة نقاط بناءً على سرعة الاستجابة
+        if (responseTime < 2000) baseERD += 0.2;
+        if (responseTime < 1000) baseERD += 0.1;
+        
+        // إضافة نقاط بناءً على جودة الرد (بسيطة)
+        const hasAnalysis = /بسبب|لذلك|نتيجة|وبالتالي|مما يعني/i.test(response);
+        const hasExamples = /مثال|مثلاً|على سبيل|على سبيل المثال/i.test(response);
+        
+        if (hasAnalysis) baseERD += 0.3;
+        if (hasExamples) baseERD += 0.2;
+        
+        // إضافة اختلاف عشوائي بسيط
+        const randomVariation = (Math.random() * 0.4) - 0.2;
+        
+        return Math.min(5.0, Math.max(1.0, baseERD + randomVariation));
     }
 
     // ==========================================
-    // 8. دوال اختبار الذكاء
+    // 6. دوال الواجهة الرئيسية
     // ==========================================
-    function startIQTest() {
-        IQTestSystem.startTest();
+    function saveOpenRouterAPIKey() {
+        APIConnectionSystem.saveSettings();
     }
 
-    function nextQuestion() {
-        IQTestSystem.nextQuestion();
+    function testOpenRouterConnection() {
+        APIConnectionSystem.testOpenRouterConnection();
     }
 
-    function previousQuestion() {
-        IQTestSystem.previousQuestion();
+    function openOpenRouterKeysPage() {
+        APIConnectionSystem.openOpenRouterKeysPage();
     }
 
-    function finishIQTest() {
-        IQTestSystem.finishTest();
+    function startERDTest() {
+        ERDTestSystem.startERDTest();
     }
 
-    function restartIQTest() {
-        document.getElementById('iq-test-results').style.display = 'none';
-        document.getElementById('iq-test-start').style.display = 'block';
+    function restartERDTest() {
+        document.getElementById('erd-test-results').style.display = 'none';
+        document.getElementById('erd-test-progress').style.display = 'none';
     }
 
-    function saveIQResultsAsPDF() {
+    function saveERDResultsAsPDF() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
         
         doc.setFontSize(20);
         doc.setTextColor(139, 92, 246);
-        doc.text('نتائج اختبار الذكاء المتكامل (ICP)', 105, 20, { align: 'center' });
+        doc.text('نتائج اختبار ERD للنماذج', 105, 20, { align: 'center' });
         
         doc.setFontSize(12);
         doc.setTextColor(100, 100, 100);
         doc.text(`الباحث: عمار ناصر حسين المنتفجي`, 105, 30, { align: 'center' });
         doc.text(`التاريخ: ${new Date().toLocaleDateString('ar-SA')}`, 105, 38, { align: 'center' });
         
-        const overallScore = IQTestSystem.getOverallScore();
-        doc.setFontSize(32);
-        doc.setTextColor(139, 92, 246);
-        doc.text(`${overallScore}%`, 105, 60, { align: 'center' });
-        
-        doc.setFontSize(14);
-        doc.setTextColor(100, 100, 100);
-        doc.text(IQTestSystem.getOverallDescription(overallScore), 105, 70, { align: 'center' });
-        
-        const fileName = `IQ-Results-${new Date().toISOString().split('T')[0]}.pdf`;
+        const fileName = `ERD-Test-Results-${new Date().toISOString().split('T')[0]}.pdf`;
         doc.save(fileName);
         
         showNotification(`تم حفظ النتائج كـ PDF: ${fileName}`, 'success');
     }
 
-    // ==========================================
-    // 9. دوال الواجهة الرئيسية
-    // ==========================================
+    function viewERDTestDetails(testId) {
+        const test = ERDTestSystem.testResults.find(t => t.id == testId);
+        if (!test) {
+            showNotification('لم يتم العثور على تفاصيل الاختبار', 'error');
+            return;
+        }
+        
+        Swal.fire({
+            title: `تفاصيل اختبار ERD`,
+            html: `
+                <div style="text-align: right; max-height: 400px; overflow-y: auto;">
+                    <p><strong>التاريخ:</strong> ${new Date(test.date).toLocaleDateString('ar-SA')}</p>
+                    <p><strong>عدد النماذج:</strong> ${test.modelsTested}</p>
+                    <p><strong>النموذج الفائز:</strong> ${test.winner.name} (${test.winner.score}%)</p>
+                    
+                    <h4 style="margin-top: 20px; color: var(--api-test);">نتائج النماذج:</h4>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                        <thead>
+                            <tr style="background: #f8fafc;">
+                                <th style="padding: 8px; text-align: right;">النموذج</th>
+                                <th style="padding: 8px; text-align: right;">المتوسط</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${Object.entries(test.averages).map(([name, data]) => `
+                                <tr style="border-bottom: 1px solid #e5e7eb;">
+                                    <td style="padding: 8px;">${name}</td>
+                                    <td style="padding: 8px; font-weight: bold; color: ${data.modelType === 'openrouter' ? 'var(--stellar)' : 'var(--circular)'};">${data.average}%</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `,
+            width: 600,
+            confirmButtonText: 'حسنًا',
+            showCloseButton: true
+        });
+    }
+
     function toggleFileUpload() {
         const uploadArea = document.getElementById('file-upload-area');
         uploadArea.classList.toggle('active');
@@ -2750,12 +2807,20 @@
         showNotification(`رفع الملفات ${isActive ? 'مفعل' : 'معطل'}`, 'info');
     }
 
+    function testOCR() {
+        showNotification('خاصية OCR قيد التطوير', 'info');
+    }
+
+    function copyExtractedText() {
+        showNotification('خاصية نسخ النص قيد التطوير', 'info');
+    }
+
     function generatePDFPreview() {
-        PDFExportSystem.generatePDFPreview();
+        showNotification('خاصية معاينة PDF قيد التطوير', 'info');
     }
 
     function exportToPDF() {
-        PDFExportSystem.exportToPDF();
+        showNotification('خاصية تصدير PDF قيد التطوير', 'info');
     }
 
     function clearICPConversation() {
@@ -2764,8 +2829,8 @@
     }
 
     function showAdvancedSettings() {
-        const extractedCount = Object.keys(JSON.parse(localStorage.getItem('extracted_texts') || '{}')).length;
-        const iqTests = JSON.parse(localStorage.getItem('iq_test_results') || '[]').length;
+        const apiUsage = APIConnectionSystem.apiUsage;
+        const erdTests = ERDTestSystem.testResults.length;
         
         Swal.fire({
             title: 'الإعدادات المتقدمة',
@@ -2775,16 +2840,22 @@
                         <strong>حالة النظام:</strong>
                         <div style="margin-top: 10px;">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                <span>الباحث:</span>
-                                <span style="color: var(--stellar); font-weight: bold;">عمار ناصر حسين المنتفجي</span>
+                                <span>وضع الاتصال:</span>
+                                <span style="color: var(--stellar); font-weight: bold;">
+                                    ${document.getElementById('connection-mode').options[document.getElementById('connection-mode').selectedIndex].text}
+                                </span>
                             </div>
                             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                <span>نظام OCR:</span>
-                                <span style="color: var(--ocr); font-weight: bold;">نشط</span>
+                                <span>حالة OpenRouter:</span>
+                                <span style="color: ${APIConnectionSystem.isConnected ? 'var(--circular)' : 'var(--existential)'}; font-weight: bold;">
+                                    ${APIConnectionSystem.isConnected ? 'متصل' : 'غير متصل'}
+                                </span>
                             </div>
                             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                <span>نظام اختبار الذكاء:</span>
-                                <span style="color: var(--iq-test); font-weight: bold;">نشط</span>
+                                <span>النموذج الحالي:</span>
+                                <span style="color: var(--linear); font-weight: bold;">
+                                    ${document.getElementById('openrouter-model').options[document.getElementById('openrouter-model').selectedIndex].text}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -2793,20 +2864,20 @@
                         <strong>إحصائيات النظام:</strong>
                         <div style="margin-top: 10px;">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                <span>المحادثات المحفوظة:</span>
-                                <span style="font-weight: bold;">${ICPFramework.conversationHistory.length}</span>
+                                <span>طلبات OpenRouter:</span>
+                                <span style="font-weight: bold;">${apiUsage.openrouter}</span>
                             </div>
                             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                <span>الملفات المرفوعة:</span>
-                                <span style="font-weight: bold;">${FileSystem.uploadedFiles.length}</span>
+                                <span>ردود محلية:</span>
+                                <span style="font-weight: bold;">${apiUsage.local}</span>
                             </div>
                             <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                <span>النصوص المستخرجة:</span>
-                                <span style="font-weight: bold;">${extractedCount}</span>
+                                <span>اختبارات ERD:</span>
+                                <span style="font-weight: bold;">${erdTests}</span>
                             </div>
                             <div style="display: flex; justify-content: space-between;">
-                                <span>اختبارات الذكاء:</span>
-                                <span style="font-weight: bold;">${iqTests}</span>
+                                <span>المحادثات:</span>
+                                <span style="font-weight: bold;">${ICPFramework.conversationHistory.length}</span>
                             </div>
                         </div>
                     </div>
@@ -2830,7 +2901,7 @@
     function clearAllSystems() {
         Swal.fire({
             title: 'مسح جميع الأنظمة؟',
-            text: 'هذا سيحذف جميع المحادثات والملفات ونتائج الاختبارات والنصوص المستخرجة.',
+            text: 'هذا سيحذف جميع المحادثات والإحصائيات ونتائج الاختبارات.',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'نعم، مسح الكل',
@@ -2840,10 +2911,20 @@
                 ICPFramework.conversationHistory = [];
                 ICPFramework.messageHistory = [];
                 FileSystem.clearFiles();
+                
+                APIConnectionSystem.apiUsage = {
+                    openrouter: 0,
+                    local: 0,
+                    lastReset: new Date().toISOString()
+                };
+                APIConnectionSystem.saveAPIUsageStats();
+                
+                ERDTestSystem.testResults = [];
+                ERDTestSystem.saveResults();
+                
                 localStorage.removeItem('icp_conversation');
-                localStorage.removeItem('extracted_texts');
-                localStorage.removeItem('iq_test_results');
-                localStorage.removeItem('ocr_settings');
+                localStorage.removeItem('api_usage_stats');
+                localStorage.removeItem('erd_test_results');
                 
                 document.getElementById('chat-messages').innerHTML = `
                     <div class="message ai-message">
@@ -2858,9 +2939,9 @@
                             تمت إعادة تعيين جميع الأنظمة. يمكنك البدء من جديد بـ:
                             <br><br>
                             • محادثة جديدة<br>
-                            • رفع ملفات واستخراج النصوص<br>
-                            • اختبار ذكاء جديد<br>
-                            • تصدير PDF
+                            • توصيل OpenRouter API<br>
+                            • اختبار ERD للنماذج<br>
+                            • رفع ملفات وتحليلها
                         </div>
                         <div class="erd-badge">
                             <i class="fas fa-chart-line"></i> النظام جاهز
@@ -2883,14 +2964,13 @@
                 size: f.size,
                 timestamp: f.timestamp
             })),
-            extractedTexts: JSON.parse(localStorage.getItem('extracted_texts') || '{}'),
-            iqTestResults: JSON.parse(localStorage.getItem('iq_test_results') || '[]'),
-            ocrSettings: JSON.parse(localStorage.getItem('ocr_settings') || '{}'),
+            apiUsage: APIConnectionSystem.apiUsage,
+            erdTestResults: ERDTestSystem.testResults,
             systemInfo: {
-                version: '2.3.0',
+                version: '2.4.0',
                 exportDate: new Date().toISOString(),
                 researcher: 'عمار ناصر حسين المنتفجي',
-                system: 'AMMAR AI Academy ICP with OCR'
+                system: 'AMMAR AI Academy ICP with Optional API'
             }
         };
         
@@ -2908,7 +2988,7 @@
     }
 
     // ==========================================
-    // 10. دوال التنقل والتهيئة
+    // 7. دوال التنقل والتهيئة
     // ==========================================
     function setIntelligenceType(type) {
         const types = {
@@ -2949,26 +3029,7 @@
         });
         
         document.getElementById('ocr-btn').addEventListener('click', () => {
-            if (FileSystem.uploadedFiles.length === 0) {
-                showNotification('الرجاء رفع ملفات أولاً', 'warning');
-                return;
-            }
-            
-            const imageFiles = FileSystem.uploadedFiles.filter(f => f.type.startsWith('image/'));
-            const pdfFiles = FileSystem.uploadedFiles.filter(f => f.type === 'application/pdf');
-            
-            if (imageFiles.length === 0 && pdfFiles.length === 0) {
-                showNotification('لا توجد ملفات صور أو PDF لاستخراج النص', 'warning');
-                return;
-            }
-            
-            showNotification('جاري استخراج النصوص من جميع الملفات...', 'info');
-            
-            FileSystem.uploadedFiles.forEach(async (file) => {
-                if (file.type.startsWith('image/') || file.type === 'application/pdf') {
-                    await FileSystem.extractTextFromFile(file);
-                }
-            });
+            switchToTab('ocr-system');
         });
         
         document.querySelectorAll('.mode-btn').forEach(btn => {
@@ -2985,26 +3046,30 @@
         
         document.getElementById('file-upload-btn').addEventListener('click', toggleFileUpload);
         
-        // حفظ إعدادات OCR عند التغيير
-        document.querySelectorAll('#ocr-system-tab select, #ocr-system-tab input[type="checkbox"]').forEach(element => {
-            element.addEventListener('change', () => OCRSystem.saveSettings());
-        });
+        // حفظ الإعدادات عند التغيير
+        document.getElementById('connection-mode').addEventListener('change', () => APIConnectionSystem.saveSettings());
+        document.getElementById('openrouter-model').addEventListener('change', () => APIConnectionSystem.saveSettings());
+        document.getElementById('auto-fallback').addEventListener('change', () => APIConnectionSystem.saveSettings());
     }
 
     // ==========================================
-    // 11. تهيئة النظام
+    // 8. تهيئة النظام
     // ==========================================
     document.addEventListener('DOMContentLoaded', function() {
         try {
             // تهيئة جميع الأنظمة
             FileSystem.init();
-            IQTestSystem.init();
-            PDFExportSystem.init();
+            APIConnectionSystem.init();
+            ERDTestSystem.init();
             
             setupICPEventListeners();
             
-            showNotification('نظام ICP المتقدم مع قراءة النصوص جاهز للعمل!', 'success');
+            showNotification('نظام ICP المتقدم مع اتصال اختياري جاهز للعمل!', 'success');
             showNotification('الباحث: عمار ناصر حسين المنتفجي - باحث مستقل', 'info');
+            
+            // تحديث اسم النموذج الحالي
+            const modelName = document.getElementById('openrouter-model').options[document.getElementById('openrouter-model').selectedIndex].text;
+            document.getElementById('current-model-name').textContent = modelName;
             
         } catch (error) {
             console.error('Initialization error:', error);
