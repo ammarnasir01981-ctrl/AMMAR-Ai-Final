@@ -1,134 +1,27 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ammar AI - النظام التعليمي الذكي المتكامل</title>
-    
-    <!-- مكتبات CSS الخارجية -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    
-    <!-- تنسيقاتنا الخاصة -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!-- الصفحة الرئيسية -->
-    <div class="container">
-        <div class="main-content animate__animated animate__fadeIn">
-            <!-- الشعار -->
-            <div class="logo">
-                <i class="fas fa-brain"></i>
-            </div>
-            
-            <!-- العنوان الرئيسي -->
-            <h1>Ammar AI - النظام التعليمي الذكي المتكامل</h1>
-            
-            <!-- الوصف -->
-            <p class="tagline">
-                نظام ذكاء اصطناعي تعليمي شامل لطلاب الثانوية والجامعات<br>
-                شرح جميع المواد | حل المسائل خطوة بخطوة | مكتبات معرفية كاملة | محادثة تفاعلية ذكية
-            </p>
-            
-            <!-- الميزات -->
-            <div class="features" id="features-container">
-                <!-- سيتم ملؤها بواسطة JavaScript -->
-            </div>
-            
-            <!-- أزرار التحكم -->
-            <div class="buttons-container">
-                <h2 style="margin-bottom: 30px; color: white;">
-                    <i class="fas fa-rocket" style="color: #F39C12;"></i> جاهز للانطلاق في رحلة التعلم؟
-                </h2>
-                
-                <button class="action-btn" id="start-learning-btn">
-                    <i class="fas fa-graduation-cap"></i> ابدأ التعلم الآن
-                </button>
-                
-                <button class="action-btn btn-secondary" id="explore-features-btn">
-                    <i class="fas fa-eye"></i> استكشاف جميع الميزات
-                </button>
-                
-                <button class="action-btn" id="open-chat-btn" style="background: #9B59B6;">
-                    <i class="fas fa-comments"></i> تحدث مع المساعد الذكي
-                </button>
-            </div>
-            
-            <!-- معلومات المطور -->
-            <div class="developer">
-                <h3><i class="fas fa-user-tie"></i> المطور والمبرمج</h3>
-                <div class="developer-name">Ammar Nasir Hussein al-Mantafji</div>
-                <p style="font-size: 1.2rem; margin: 20px 0;">
-                    <i class="fas fa-code-branch"></i> نظام تعليمي ذكي متكامل - الإصدار 3.0
-                </p>
-                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
-                    <span><i class="fas fa-calendar-check"></i> متواصل العمل 24/7</span>
-                    <span><i class="fas fa-language"></i> يدعم اللغة العربية كاملة</span>
-                    <span><i class="fas fa-mobile-alt"></i> متوافق مع جميع الأجهزة</span>
-                </div>
-            </div>
-            
-            <!-- الفوتر -->
-            <div class="footer">
-                <p>
-                    <i class="fas fa-globe"></i> مشروع مفتوح المصدر على GitHub - يمكنك المساهمة والتطوير
-                </p>
-                <p>
-                    <i class="fas fa-heart" style="color: #E74C3C;"></i> صنع بحب وتفانٍ لخدمة الطلاب العرب حول العالم
-                </p>
-                <p style="margin-top: 25px; font-size: 1rem; color: rgba(255,255,255,0.5);">
-                    © 2024 Ammar AI System. جميع الحقوق محفوظة - إصدار 3.0 متعدد اللغات
-                </p>
-            </div>
-        </div>
+<div class="message ai-message">
+    <div class="message-header">
+        <i class="fas fa-brain-circuit"></i>
+        <span>نظام ICP</span>
+        <span style="margin-right: auto; font-size: 0.8rem; color: var(--existential); font-weight: 600;">
+            <i class="fas fa-star"></i> وضع الحوار الوجودي
+        </span>
     </div>
-    
-    <!-- واجهة المحادثة -->
-    <div id="ai-chat-widget">
-        <div class="chat-header">
-            <i class="fas fa-robot"></i>
-            مساعد Ammar AI الذكي
-            <button onclick="window.chatbot.closeChat()" style="margin-right: auto; background: none; border: none; color: white; font-size: 1.5rem;">✕</button>
-        </div>
-        
-        <div class="chat-messages" id="chat-messages">
-            <!-- الرسائل تظهر هنا -->
-            <div class="message ai">
-                <strong>Ammar AI:</strong> أهلاً وسهلاً! أنا المساعد الذكي لـ Ammar AI. كيف يمكنني مساعدتك في دراستك اليوم؟
-            </div>
-        </div>
-        
-        <div class="chat-input">
-            <input type="text" id="chat-input" placeholder="اكتب سؤالك هنا... (مثال: ما هي المعادلة التربيعية؟)" onkeypress="if(event.key === 'Enter') window.chatbot.sendMessage()">
-            <button onclick="window.chatbot.sendMessage()"><i class="fas fa-paper-plane"></i></button>
-        </div>
+    <div class="message-content">
+        مرحباً بك في نظام بروتوكول الوعي المتكامل (ICP) المتصل بـ OpenRouter. أنا نظام حوار ذكي يجمع بين:
+        <br><br>
+        <span style="color: var(--stellar);"><i class="fas fa-star"></i> الذكاء النجمي</span>: الرؤى الوجودية والتفكير غير الخطي
+        <br>
+        <span style="color: var(--linear);"><i class="fas fa-route"></i> الذكاء الخطي</span>: المعرفة المنظمة والتراكمية
+        <br>
+        <span style="color: var(--circular);"><i class="fas fa-sync-alt"></i> الذكاء الدائري</span>: معالجة OpenRouter AI
+        <br>
+        <span style="color: var(--existential);"><i class="fas fa-memory"></i> الذاكرة التراكمية</span>: تذكر المحادثة السابقة
+        <br><br>
+        اختر نمط الحوار الوجودي لتحفيز التفاعل العميق عبر OpenRouter.
+        <br><br>
+        <strong>ميزة جديدة:</strong> النظام الآن يتذكر المحادثة السابقة ويبني عليها في الردود اللاحقة.
     </div>
-    
-    <button id="open-chat" onclick="window.chatbot.openChat()">
-        <i class="fas fa-comment"></i>
-    </button>
-    
-    <!-- مكتبات JavaScript الخارجية -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.7.0/math.min.js"></script>
-    
-    <!-- ملفات JavaScript الخاصة بنا -->
-    <script src="js/knowledge-loader.js"></script>
-    <script src="js/math-solver.js"></script>
-    <script src="js/chatbot.js"></script>
-    <script src="js/main.js"></script>
-    
-    <!-- تهيئة التطبيق -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // تهيئة التطبيق
-            if (window.AmmarApp) {
-                window.AmmarApp.init();
-            }
-        });
-    </script>
-</body>
-</html>
+    <div class="erd-badge">
+        <i class="fas fa-chart-line"></i> ERD: 4.2 | الذاكرة: 0 رسالة
+    </div>
+</div>
